@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="hsqldb_embedded-1392064270693-1247157275" provider="generic" driver="hsqldb_embedded" name="HSQLDB - db" create-date="1392064302203" save-password="true" show-system-objects="true" read-only="false">
+		<connection server="" database="C:\Users\Малик\workspace\Calculation\data\database\db" url="jdbc:hsqldb:file:C:\Users\Малик\workspace\Calculation\data\database\db" user="" type="dev">
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
+				<property name="port" value="22"/>
+				<property name="host" value=""/>
+				<property name="keyPath" value=""/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
+				<property name="socks-host" value=""/>
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+		</connection>
+	</data-source>
+</data-sources>

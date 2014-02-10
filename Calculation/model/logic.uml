@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_2OuZoIniEeOjhrP9Cd-JLA" name="NewModel">
+  <packagedElement xmi:type="uml:Package" xmi:id="_irOMEJGpEeOqh8qiw-xLdg" name="ru.malik.economics.model">
+    <ownedComment xmi:id="_YSdMAJGqEeOqh8qiw-xLdg" annotatedElement="_YTFeIJGqEeOqh8qiw-xLdg">
+      <body>Класс продукции — изделия производимое прдприятием</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YSeaIJGqEeOqh8qiw-xLdg" annotatedElement="_YS0_cJGqEeOqh8qiw-xLdg">
+      <body>Единица измерения</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YShdcJGqEeOqh8qiw-xLdg" annotatedElement="_YS5Q4JGqEeOqh8qiw-xLdg">
+      <body>Класс работника</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YSiEgJGqEeOqh8qiw-xLdg" annotatedElement="_YS87QJGqEeOqh8qiw-xLdg">
+      <body>Класс &quot;ресурс&quot;. Аналог термина &quot;Экономический ресурс&quot;. Например, людские ресурсы или материальные ресурсы.</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YSlu4JGqEeOqh8qiw-xLdg" annotatedElement="_YTJIgJGqEeOqh8qiw-xLdg">
+      <body>Партия товара</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YStqsJGqEeOqh8qiw-xLdg" annotatedElement="_2OuZoIniEeOjhrP9Cd-JLA _YSqnYJGqEeOqh8qiw-xLdg">
+      <body>Номенклатура — базовый класс всех вещей.</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YStqsZGqEeOqh8qiw-xLdg" annotatedElement="_YSwuAJGqEeOqh8qiw-xLdg">
+      <body>Работа, которая имеет объем. Например: пропилить 200мм бруса или сварить 1000мм шва.</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YRe7oZGqEeOqh8qiw-xLdg" annotatedElement="_YRe7oJGqEeOqh8qiw-xLdg">
+      <body>Калькуляция продукта</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YSvf4JGqEeOqh8qiw-xLdg" annotatedElement="_YTMy4JGqEeOqh8qiw-xLdg">
+      <body>Материапльный ресурс. Т.е. это некий товар в каком-то объеме</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YSZhoZGqEeOqh8qiw-xLdg" annotatedElement="_YSZhoJGqEeOqh8qiw-xLdg">
+      <body>Человеский ресурс, который состоит из работника и объема человеко*часов</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YSeaIpGqEeOqh8qiw-xLdg" annotatedElement="_YSeaIZGqEeOqh8qiw-xLdg">
+      <body>Класс &quot;работа&quot;. Например: работа по отрезке бруска; работа по зачистке швов.</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YSirkZGqEeOqh8qiw-xLdg" annotatedElement="_YSirkJGqEeOqh8qiw-xLdg">
+      <body>Профессия. Например: столяр, плотник, сварщик</body>
+    </ownedComment>
+    <ownedComment xmi:id="_YSm9AZGqEeOqh8qiw-xLdg" annotatedElement="_YSm9AJGqEeOqh8qiw-xLdg">
+      <body>Профессии разбитые на уровни</body>
+    </ownedComment>
+    <packageImport xmi:id="_XAMroInjEeOjhrP9Cd-JLA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YRe7oJGqEeOqh8qiw-xLdg" name="ProductCalculation"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YSY6kJGqEeOqh8qiw-xLdg" name="MaterialResources" memberEnd="_YSY6kZGqEeOqh8qiw-xLdg _YSY6lJGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YSY6lJGqEeOqh8qiw-xLdg">
+      <ownedEnd xmi:id="_YSY6kZGqEeOqh8qiw-xLdg" name="materialResources" type="_YTMy4JGqEeOqh8qiw-xLdg" association="_YSY6kJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSY6kpGqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSY6k5GqEeOqh8qiw-xLdg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_YSY6lJGqEeOqh8qiw-xLdg" name="nomenclatures" type="_YSqnYJGqEeOqh8qiw-xLdg" association="_YSY6kJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSY6lZGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSY6lpGqEeOqh8qiw-xLdg" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YSZhoJGqEeOqh8qiw-xLdg" name="PeopleResource">
+      <generalization xmi:id="_YSZhopGqEeOqh8qiw-xLdg" general="_YS87QJGqEeOqh8qiw-xLdg"/>
+      <ownedAttribute xmi:id="_YSZho5GqEeOqh8qiw-xLdg" name="volume">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YSck8JGqEeOqh8qiw-xLdg" name="professions[1]" memberEnd="_YSck8ZGqEeOqh8qiw-xLdg _YSck9JGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YSck9JGqEeOqh8qiw-xLdg">
+      <ownedEnd xmi:id="_YSck8ZGqEeOqh8qiw-xLdg" name="workers" type="_YS5Q4JGqEeOqh8qiw-xLdg" association="_YSck8JGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSck8pGqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSck85GqEeOqh8qiw-xLdg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_YSck9JGqEeOqh8qiw-xLdg" name="professions" type="_YSirkJGqEeOqh8qiw-xLdg" association="_YSck8JGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSck9ZGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSck9pGqEeOqh8qiw-xLdg" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YSdzEJGqEeOqh8qiw-xLdg" name="productCalculations[0..*]" memberEnd="_YSdzEZGqEeOqh8qiw-xLdg _YSdzFJGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YSdzEZGqEeOqh8qiw-xLdg">
+      <ownedEnd xmi:id="_YSdzEZGqEeOqh8qiw-xLdg" name="productCalculations" type="_YRe7oJGqEeOqh8qiw-xLdg" association="_YSdzEJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSdzEpGqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSdzE5GqEeOqh8qiw-xLdg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_YSdzFJGqEeOqh8qiw-xLdg" name="products" type="_YTFeIJGqEeOqh8qiw-xLdg" association="_YSdzEJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSdzFZGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSdzFpGqEeOqh8qiw-xLdg" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YSeaIZGqEeOqh8qiw-xLdg" name="Work">
+      <ownedAttribute xmi:id="_YSeaI5GqEeOqh8qiw-xLdg" name="name">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSeaJJGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSeaJZGqEeOqh8qiw-xLdg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YSirkJGqEeOqh8qiw-xLdg" name="Profession">
+      <ownedAttribute xmi:id="_YSirkpGqEeOqh8qiw-xLdg" name="name" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YSm9AJGqEeOqh8qiw-xLdg" name="ProfessionLeveled">
+      <generalization xmi:id="_YSm9ApGqEeOqh8qiw-xLdg" general="_YSirkJGqEeOqh8qiw-xLdg"/>
+      <ownedAttribute xmi:id="_YSm9A5GqEeOqh8qiw-xLdg" name="levelName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSm9BJGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSm9BZGqEeOqh8qiw-xLdg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YSqAUJGqEeOqh8qiw-xLdg" name="peopleResources[*]" memberEnd="_YSqAUZGqEeOqh8qiw-xLdg _YSqAVJGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YSqAVJGqEeOqh8qiw-xLdg">
+      <ownedEnd xmi:id="_YSqAUZGqEeOqh8qiw-xLdg" name="peopleResources" type="_YSZhoJGqEeOqh8qiw-xLdg" association="_YSqAUJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSqAUpGqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSqAU5GqEeOqh8qiw-xLdg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_YSqAVJGqEeOqh8qiw-xLdg" name="workers" type="_YS5Q4JGqEeOqh8qiw-xLdg" association="_YSqAUJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSqAVZGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSqAVpGqEeOqh8qiw-xLdg" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YSqnYJGqEeOqh8qiw-xLdg" name="Nomenclature">
+      <ownedAttribute xmi:id="_YSqnYZGqEeOqh8qiw-xLdg" name="Name" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YSu40JGqEeOqh8qiw-xLdg" name="unitOfMeasures[1]" memberEnd="_YSu40ZGqEeOqh8qiw-xLdg _YSu41JGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YSu41JGqEeOqh8qiw-xLdg">
+      <ownedEnd xmi:id="_YSu40ZGqEeOqh8qiw-xLdg" name="works" type="_YSeaIZGqEeOqh8qiw-xLdg" association="_YSu40JGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSu40pGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSu405GqEeOqh8qiw-xLdg" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_YSu41JGqEeOqh8qiw-xLdg" name="unitOfMeasures" type="_YS0_cJGqEeOqh8qiw-xLdg" association="_YSu40JGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSu41ZGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSu41pGqEeOqh8qiw-xLdg" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YSvf4ZGqEeOqh8qiw-xLdg" name="productCalculations[*]" memberEnd="_YSvf4pGqEeOqh8qiw-xLdg _YSvf5ZGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YSvf5ZGqEeOqh8qiw-xLdg">
+      <ownedEnd xmi:id="_YSvf4pGqEeOqh8qiw-xLdg" name="productCalculations" type="_YRe7oJGqEeOqh8qiw-xLdg" association="_YSvf4ZGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSvf45GqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSvf5JGqEeOqh8qiw-xLdg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_YSvf5ZGqEeOqh8qiw-xLdg" name="resources" type="_YS87QJGqEeOqh8qiw-xLdg" association="_YSvf4ZGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSvf5pGqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSvf55GqEeOqh8qiw-xLdg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YSwuAJGqEeOqh8qiw-xLdg" name="WorkVolume">
+      <ownedAttribute xmi:id="_YSwuAZGqEeOqh8qiw-xLdg" name="volume">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSwuApGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSwuA5GqEeOqh8qiw-xLdg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YSzxUJGqEeOqh8qiw-xLdg" name="Parcels" memberEnd="_YSzxUZGqEeOqh8qiw-xLdg _YSzxVJGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YSzxVJGqEeOqh8qiw-xLdg">
+      <ownedEnd xmi:id="_YSzxUZGqEeOqh8qiw-xLdg" name="parcels" type="_YTJIgJGqEeOqh8qiw-xLdg" association="_YSzxUJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSzxUpGqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSzxU5GqEeOqh8qiw-xLdg" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_YSzxVJGqEeOqh8qiw-xLdg" name="materialResources" type="_YTMy4JGqEeOqh8qiw-xLdg" association="_YSzxUJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YSzxVZGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YSzxVpGqEeOqh8qiw-xLdg" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YS0YYJGqEeOqh8qiw-xLdg" name="works[0..1]" memberEnd="_YS0YYpGqEeOqh8qiw-xLdg _YS0YZZGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YS0YZZGqEeOqh8qiw-xLdg">
+      <ownedComment xmi:id="_YS0YYZGqEeOqh8qiw-xLdg" annotatedElement="_YS0YYJGqEeOqh8qiw-xLdg">
+        <body>Для выполнения любой работы нужно ресурсы</body>
+      </ownedComment>
+      <ownedEnd xmi:id="_YS0YYpGqEeOqh8qiw-xLdg" name="works" type="_YSeaIZGqEeOqh8qiw-xLdg" association="_YS0YYJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YS0YY5GqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YS0YZJGqEeOqh8qiw-xLdg" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_YS0YZZGqEeOqh8qiw-xLdg" name="resources" type="_YS87QJGqEeOqh8qiw-xLdg" association="_YS0YYJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YS0YZpGqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YS0YZ5GqEeOqh8qiw-xLdg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YS0_cJGqEeOqh8qiw-xLdg" name="UnitOfMeasure">
+      <ownedAttribute xmi:id="_YS0_cZGqEeOqh8qiw-xLdg" name="Name" visibility="private">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YS5Q4JGqEeOqh8qiw-xLdg" name="Worker"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YS87QJGqEeOqh8qiw-xLdg" name="Resource"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YTBzwJGqEeOqh8qiw-xLdg" name="productCalculations[0..1]" memberEnd="_YTBzwZGqEeOqh8qiw-xLdg _YTBzxJGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YTBzxJGqEeOqh8qiw-xLdg">
+      <ownedEnd xmi:id="_YTBzwZGqEeOqh8qiw-xLdg" name="productCalculations" type="_YRe7oJGqEeOqh8qiw-xLdg" association="_YTBzwJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YTBzwpGqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YTBzw5GqEeOqh8qiw-xLdg" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_YTBzxJGqEeOqh8qiw-xLdg" name="workVolumes" type="_YSwuAJGqEeOqh8qiw-xLdg" association="_YTBzwJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YTBzxZGqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YTBzxpGqEeOqh8qiw-xLdg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YTDB4JGqEeOqh8qiw-xLdg" name="Nomenclatures" memberEnd="_YTDB4ZGqEeOqh8qiw-xLdg _YTDB5JGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YTDB5JGqEeOqh8qiw-xLdg">
+      <ownedEnd xmi:id="_YTDB4ZGqEeOqh8qiw-xLdg" name="nomenclatures" type="_YSqnYJGqEeOqh8qiw-xLdg" association="_YTDB4JGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YTDB4pGqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YTDB45GqEeOqh8qiw-xLdg" value="*"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_YTDB5JGqEeOqh8qiw-xLdg" name="unitOfMeasures" type="_YS0_cJGqEeOqh8qiw-xLdg" isReadOnly="true" association="_YTDB4JGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YTDB5ZGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YTDB5pGqEeOqh8qiw-xLdg" value="1"/>
+        <defaultValue xmi:type="uml:LiteralString" xmi:id="_YTDB55GqEeOqh8qiw-xLdg" value=""/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_YTEQAJGqEeOqh8qiw-xLdg" name="works[1]" memberEnd="_YTEQAZGqEeOqh8qiw-xLdg _YTEQBJGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YTEQBJGqEeOqh8qiw-xLdg">
+      <ownedEnd xmi:id="_YTEQAZGqEeOqh8qiw-xLdg" name="works" type="_YSeaIZGqEeOqh8qiw-xLdg" association="_YTEQAJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YTEQApGqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YTEQA5GqEeOqh8qiw-xLdg" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_YTEQBJGqEeOqh8qiw-xLdg" name="workVolumes" type="_YSwuAJGqEeOqh8qiw-xLdg" association="_YTEQAJGqEeOqh8qiw-xLdg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YTEQBZGqEeOqh8qiw-xLdg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YTEQBpGqEeOqh8qiw-xLdg" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YTFeIJGqEeOqh8qiw-xLdg" name="Product">
+      <generalization xmi:id="_YTFeIZGqEeOqh8qiw-xLdg" general="_YSqnYJGqEeOqh8qiw-xLdg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YTJIgJGqEeOqh8qiw-xLdg" name="Parcel"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YTMy4JGqEeOqh8qiw-xLdg" name="MaterialResource">
+      <generalization xmi:id="_YTMy4ZGqEeOqh8qiw-xLdg" general="_YS87QJGqEeOqh8qiw-xLdg"/>
+      <ownedAttribute xmi:id="_YTMy4pGqEeOqh8qiw-xLdg" name="volume">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YTMy45GqEeOqh8qiw-xLdg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YTMy5JGqEeOqh8qiw-xLdg" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>
