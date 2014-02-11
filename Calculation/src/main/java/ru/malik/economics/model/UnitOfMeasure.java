@@ -8,20 +8,25 @@ package ru.malik.economics.model;
 // End of user code
 
 /**
- * Единица измерения
+ * Р•РґРёРЅРёС†Р° РёР·РјРµСЂРµРЅРёСЏ
  * 
- * @author Малик
+ * @author РњР°Р»РёРє
  */
 public class UnitOfMeasure {
 	/**
-	 * Description of the property Name.
+	 * Description of the property name.
 	 */
-	private String Name = "";
-
+	private String name = "";
+	
+	/**
+	 * Description of the property id.
+	 */
+	public Long id = Long.valueOf(0L);
+	
 	// Start of user code (user defined attributes for UnitOfMeasure)
-
+	
 	// End of user code
-
+	
 	/**
 	 * The constructor.
 	 */
@@ -30,24 +35,42 @@ public class UnitOfMeasure {
 		super();
 		// End of user code
 	}
-
+	
 	// Start of user code (user defined methods for UnitOfMeasure)
-
+	
 	// End of user code
 	/**
-	 * Returns Name.
-	 * @return Name 
+	 * Returns name.
+	 * @return name 
 	 */
 	public String getName() {
-		return this.Name;
+		return this.name;
 	}
-
+	
 	/**
-	 * Sets a value to attribute Name. 
+	 * Sets a value to attribute name. 
 	 * @param newName 
 	 */
 	public void setName(String newName) {
-		this.Name = newName;
+	    this.name = newName;
 	}
+
+	/**
+	 * Returns id.
+	 * @return id 
+	 */
+	public Long getId() {
+		return this.id;
+	}
+	
+	/**
+	 * Sets a value to attribute id. 
+	 * @param newId 
+	 */
+	public void setId(Long newId) {
+	    this.id = newId;
+	}
+
+
 
 }

@@ -8,9 +8,9 @@ package ru.malik.economics.model;
 // End of user code
 
 /**
- * Партия товара
+ * ?????? ??????
  * 
- * @author Малик
+ * @author ?????
  */
 public class Parcel {
 	/**

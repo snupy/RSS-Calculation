@@ -111,8 +111,10 @@
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YSqnYJGqEeOqh8qiw-xLdg" name="Nomenclature">
-      <ownedAttribute xmi:id="_YSqnYZGqEeOqh8qiw-xLdg" name="Name" visibility="private">
+      <ownedAttribute xmi:id="_YSqnYZGqEeOqh8qiw-xLdg" name="name" visibility="private">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dKjkoJNxEeOplNHAVMldtQ" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dKpEMJNxEeOplNHAVMldtQ" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_YSu40JGqEeOqh8qiw-xLdg" name="unitOfMeasures[1]" memberEnd="_YSu40ZGqEeOqh8qiw-xLdg _YSu41JGqEeOqh8qiw-xLdg" navigableOwnedEnd="_YSu41JGqEeOqh8qiw-xLdg">
@@ -166,8 +168,13 @@
       </ownedEnd>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YS0_cJGqEeOqh8qiw-xLdg" name="UnitOfMeasure">
-      <ownedAttribute xmi:id="_YS0_cZGqEeOqh8qiw-xLdg" name="Name" visibility="private">
+      <ownedAttribute xmi:id="_YS0_cZGqEeOqh8qiw-xLdg" name="name" visibility="private">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_dsE9UJNxEeOplNHAVMldtQ" name="id">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Long"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dsKc4JNxEeOplNHAVMldtQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_dsKc4ZNxEeOplNHAVMldtQ" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_YS5Q4JGqEeOqh8qiw-xLdg" name="Worker"/>

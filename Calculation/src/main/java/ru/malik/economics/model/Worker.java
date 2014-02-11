@@ -8,9 +8,9 @@ package ru.malik.economics.model;
 // End of user code
 
 /**
- * Класс работника
+ * ????? ?????????
  * 
- * @author Малик
+ * @author ?????
  */
 public class Worker {
 	/**
