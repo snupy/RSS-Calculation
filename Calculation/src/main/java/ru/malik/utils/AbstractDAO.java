@@ -33,6 +33,7 @@ public class AbstractDAO<T> implements InterfaceDAO<T> {
 		} finally {
 			if (session != null && session.isOpen()) {
 				session.close();
+				System.out.println("HI");
 			}
 		}
 	}

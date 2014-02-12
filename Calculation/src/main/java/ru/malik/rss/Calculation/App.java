@@ -1,5 +1,6 @@
 package ru.malik.rss.Calculation;
 
+import java.awt.EventQueue;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,6 +11,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import ru.malik.economics.model.UnitOfMeasure;
+import ru.malik.rss.Calculation.mvc.view.UnitOfMeasureListWindows;
+import ru.malik.rss.Calculation.mvc.view.UnitOfMeasureWindow;
 import ru.malik.utils.UnitOfMeasureDAO;
 
 /**
@@ -41,11 +44,20 @@ public class App {
 		UnitOfMeasureDAO d = new UnitOfMeasureDAO();
 		UnitOfMeasure cm = new UnitOfMeasure();
 		cm.setName("сантиметр");
-		cm.setId(Long.valueOf(3));
-		d.add(cm);
+	//	cm.setId(Long.valueOf(3));
+	//	d.add(cm);/**/
 		List<UnitOfMeasure> unitOfMeasures = d.getAll();
-		for (UnitOfMeasure unitOfMeasure : unitOfMeasures) {
-			System.out.println(unitOfMeasure.getName());
-		}
+		/*EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					UnitOfMeasureListWindows window = new UnitOfMeasureListWindows(new ArrayList<UnitOfMeasure>());
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});*/
+		UnitOfMeasureListWindows window = new UnitOfMeasureListWindows((ArrayList<UnitOfMeasure>) unitOfMeasures);
+		System.out.println("bye!");
 	}
 }
