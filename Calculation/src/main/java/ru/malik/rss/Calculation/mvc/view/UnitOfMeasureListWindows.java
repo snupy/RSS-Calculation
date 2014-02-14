@@ -1,5 +1,6 @@
 package ru.malik.rss.Calculation.mvc.view;
 
+import java.awt.Component;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import ru.malik.economics.model.UnitOfMeasure;
 
@@ -59,49 +61,64 @@ public class UnitOfMeasureListWindows {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		table = new JTable(new UnitOfMeasureListTableModel());
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
 		table.getColumnModel().getColumn(0).setPreferredWidth(300);
 		table.addMouseListener(new MouseListener() {
-			
+
 			public void mouseReleased(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			public void mousePressed(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			public void mouseExited(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			public void mouseEntered(MouseEvent arg0) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			public void mouseClicked(MouseEvent mouseEvent) {
-				 new UnitOfMeasureWindow((UnitOfMeasure) table.getValueAt(table.rowAtPoint(mouseEvent.getPoint()), 0));
+				if (mouseEvent.getClickCount() == 2) {
+					(new UnitOfMeasureWindow((UnitOfMeasure) table.getValueAt(
+							table.rowAtPoint(mouseEvent.getPoint()), 0)))
+							.getFrame().setVisible(true);
+				}
 			}
 		});
-		
-		
+
+		table.setDefaultRenderer(UnitOfMeasure.class,
+				new DefaultTableCellRenderer() {
+
+					@Override
+					public Component getTableCellRendererComponent(
+							JTable table, Object value, boolean isSelected,
+							boolean hasFocus, int row, int column) {
+						// TODO Auto-generated method stub
+						return super.getTableCellRendererComponent(table,
+								((UnitOfMeasure) value).getName(), isSelected,
+								hasFocus, row, column);
+					}
+				});
+
 		frame.getContentPane().add(table, BorderLayout.CENTER);
 		frame.setVisible(true);
 	}
 
 	private class UnitOfMeasureListTableModel extends AbstractTableModel {
 
-		
-		
 		public UnitOfMeasureListTableModel() {
 			super();
-			
+
 		}
 
 		public int getColumnCount() {
@@ -116,8 +133,6 @@ public class UnitOfMeasureListWindows {
 		public Object getValueAt(int r, int c) {
 			return unitOfMeasures.get(r);
 		}
-		
-		
 
 		@Override
 		public String getColumnName(int column) {
@@ -139,7 +154,5 @@ public class UnitOfMeasureListWindows {
 			return (UnitOfMeasure.class);
 		}
 
-		
-		
 	}
 }

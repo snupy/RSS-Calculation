@@ -1,6 +1,7 @@
 package ru.malik.rss.Calculation.mvc.view;
 
 import java.awt.EventQueue;
+import java.awt.Frame;
 
 import javax.swing.JFrame;
 
@@ -25,26 +26,28 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.Action;
 
+import org.apache.commons.collections.set.CompositeSet.SetMutator;
+
 import ru.malik.economics.model.UnitOfMeasure;
 
-public class UnitOfMeasureWindow {
-	
+public class UnitOfMeasureWindow extends DefaultEditWindow {
+
 	private UnitOfMeasure model;
 
-	private JFrame frame;
 	private JTextField textField;
-	private final Action acOk = new SwingAction();
-	private final Action acCancel = new SwingAction_1();
 
 	/**
 	 * Launch the application.
+	 * 
+	 * @wbp.parser.entryPoint
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UnitOfMeasureWindow window = new UnitOfMeasureWindow(new UnitOfMeasure());
-					window.frame.setVisible(true);
+					UnitOfMeasureWindow window = new UnitOfMeasureWindow(
+							new UnitOfMeasure());
+					window.getFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,30 +57,37 @@ public class UnitOfMeasureWindow {
 
 	/**
 	 * Create the application.
+	 * 
+	 * @wbp.parser.entryPoint
 	 */
 	public UnitOfMeasureWindow(UnitOfMeasure model) {
-		this.model = model;
-		initialize();
+		super();
+		setModel(model);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * 
+	 * @wbp.parser.entryPoint
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		
-		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
+	@Override
+	protected void initialize() {
+		super.initialize();
+		/*
+		 * frame = new JFrame(); frame.setBounds(100, 100, 450, 300);
+		 * frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 * frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		 * 
+		 * JPanel panel = new JPanel(); frame.getContentPane().add(panel,
+		 * BorderLayout.CENTER);
+		 */
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{0, 0, 0};
-		gbl_panel.rowHeights = new int[] {0};
-		gbl_panel.columnWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
-		gbl_panel.rowWeights = new double[]{0.0};
-		panel.setLayout(gbl_panel);
-		
+		gbl_panel.columnWidths = new int[] { 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0 };
+		gbl_panel.columnWeights = new double[] { 0.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 0.0 };
+		getPanContent().setLayout(gbl_panel);
+
 		JLabel lblNewLabel = new JLabel("Наименование");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.weighty = 1.0;
@@ -86,59 +96,40 @@ public class UnitOfMeasureWindow {
 		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 0;
-		panel.add(lblNewLabel, gbc_lblNewLabel);
-		
+		getPanContent().add(lblNewLabel, gbc_lblNewLabel);
+
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.weighty = 1.0;
 		gbc_textField.fill = GridBagConstraints.BOTH;
 		gbc_textField.gridx = 1;
 		gbc_textField.gridy = 0;
-		panel.add(textField, gbc_textField);
+		getPanContent().add(textField, gbc_textField);
 		textField.setColumns(10);
-		
-		JPanel panel_1 = new JPanel();
-		frame.getContentPane().add(panel_1, BorderLayout.SOUTH);
-		GridBagLayout gbl_panel_1 = new GridBagLayout();
-		gbl_panel_1.columnWidths = new int[]{0, 0, 0};
-		gbl_panel_1.rowHeights = new int[]{0, 0};
-		gbl_panel_1.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		panel_1.setLayout(gbl_panel_1);
-		
-		JButton btnNewButton = new JButton("ОК");
-		
-		btnNewButton.setAction(acOk);
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton.gridx = 0;
-		gbc_btnNewButton.gridy = 0;
-		panel_1.add(btnNewButton, gbc_btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("Отмена");
-		btnNewButton_1.setAction(acCancel);
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.gridx = 1;
-		gbc_btnNewButton_1.gridy = 0;
-		panel_1.add(btnNewButton_1, gbc_btnNewButton_1);
-		frame.setVisible(true);
+		getFrame().pack();
 	}
 
-	private class SwingAction extends AbstractAction {
-		public SwingAction() {
-			putValue(NAME, "Ок");
-			putValue(SHORT_DESCRIPTION, "Принять");
-		}
-		public void actionPerformed(ActionEvent e) {
-			model.setName(textField.getName());
+	public UnitOfMeasure getModel() {
+		return model;
+	}
+
+	public void setModel(UnitOfMeasure model) {
+		this.model = model;
+		if (this.model != null) {
+			textField.setText(this.model.getName());
 		}
 	}
-	private class SwingAction_1 extends AbstractAction {
-		public SwingAction_1() {
-			putValue(NAME, "Отмена");
-			putValue(SHORT_DESCRIPTION, "Отмена");
+
+	/**
+	 * @wbp.parser.entryPoint
+	 */
+	@Override
+	public void okPerformed() {
+		if (this.model != null) {
+			model.setName(textField.getText());
 		}
-		public void actionPerformed(ActionEvent e) {
-		}
+		getFrame().dispose();
+		super.okPerformed();
 	}
+
 }
