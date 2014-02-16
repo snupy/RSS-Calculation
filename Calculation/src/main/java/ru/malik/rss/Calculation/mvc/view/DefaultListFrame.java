@@ -2,27 +2,20 @@ package ru.malik.rss.Calculation.mvc.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Window;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
-
 import java.awt.FlowLayout;
-
 import javax.swing.AbstractAction;
-
 import java.awt.event.ActionEvent;
-import java.security.acl.Owner;
-
 import javax.swing.Action;
 
-public class DefaultEditFrame extends JFrame {
+public class DefaultListFrame extends JFrame {
 
 	private JPanel contentPane;
-	private final Action acCLose = new SwingAction();
-	private final Action actSave = new SwingAction_1();
+	private final Action acClose = new SwingAction();
 
 	/**
 	 * Launch the application.
@@ -31,7 +24,7 @@ public class DefaultEditFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DefaultEditFrame frame = new DefaultEditFrame();
+					DefaultListFrame frame = new DefaultListFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +36,7 @@ public class DefaultEditFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DefaultEditFrame() {
+	public DefaultListFrame() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -51,51 +44,26 @@ public class DefaultEditFrame extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JPanel panControl = new JPanel();
-		FlowLayout flowLayout = (FlowLayout) panControl.getLayout();
+		JPanel panel = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
 		flowLayout.setAlignment(FlowLayout.RIGHT);
-		contentPane.add(panControl, BorderLayout.SOUTH);
+		contentPane.add(panel, BorderLayout.SOUTH);
 		
-		JButton btnSave = new JButton("Сохранить");
-		btnSave.setAction(actSave);
-		panControl.add(btnSave);
-		
-		JButton btnClose = new JButton("Закрыть");
-		btnClose.setAction(acCLose);
-		panControl.add(btnClose);
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setAction(acClose);
+		panel.add(btnNewButton);
 	}
 
 	private class SwingAction extends AbstractAction {
-		
 		public SwingAction() {
-			super();
 			putValue(NAME, "Закрыть");
 		}
-
 		public void actionPerformed(ActionEvent e) {
 			close();
 		}
 	}
 	
-	
 	public void close(){
-		Window window = getOwner();
-		if(window!=null){
-			window.setVisible(true);
-		}
-		
-		this.dispose();
-	}
-	
-	public void save(){
-		close();
-	}
-	private class SwingAction_1 extends AbstractAction {
-		public SwingAction_1() {
-			putValue(NAME, "Сохранить");
-		}
-		public void actionPerformed(ActionEvent e) {
-			save();
-		}
+		dispose();
 	}
 }
