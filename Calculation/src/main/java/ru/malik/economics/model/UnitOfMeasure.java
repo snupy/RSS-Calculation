@@ -12,7 +12,7 @@ package ru.malik.economics.model;
  * 
  * @author Малик
  */
-public class UnitOfMeasure {
+public class UnitOfMeasure implements Cloneable{
 	/**
 	 * Description of the property name.
 	 */
@@ -71,6 +71,12 @@ public class UnitOfMeasure {
 	    this.id = newId;
 	}
 
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		UnitOfMeasure unitOfMeasureClone = (UnitOfMeasure) super.clone();
+		return unitOfMeasureClone;
+	}
 
+	
 
 }

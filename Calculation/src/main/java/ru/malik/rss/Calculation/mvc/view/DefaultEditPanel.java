@@ -7,27 +7,26 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 public abstract class DefaultEditPanel extends JPanel {
 
-	public final AbstractAction acSave = new AbstractAction() {
-		{
-			putValue(NAME, DialogButtonsFactory.DB_YES);
-		}
-
+	private Component contentComponent;
+	
+	public final ActionListener aclSave = new ActionListener() {
+		
 		public void actionPerformed(ActionEvent e) {
 
 			save();
 		}
 	};
+	
 
-	public final AbstractAction acCancel = new AbstractAction() {
-		{
-			putValue(NAME, DialogButtonsFactory.DB_CANCEL);
-		}
+	public final ActionListener aclCancel = new ActionListener() {
 
 		public void actionPerformed(ActionEvent e) {
 
@@ -40,26 +39,27 @@ public abstract class DefaultEditPanel extends JPanel {
 	 */
 	public DefaultEditPanel() {
 		setLayout(new BorderLayout(0, 0));
-		ArrayList<JButton> dialogButtons = new ArrayList<JButton>();
 
-		dialogButtons.add(DialogButtonsFactory.createJButton(
-				DialogButtonsFactory.DB_YES, acSave));
+		DefaultDialogButtonsPanel defaultDialogButtonsPanel = DefaultDialogButtonsPanel
+				.createDefaultDialogButtonsOkCancelPanel(aclSave, aclCancel);
 
-		dialogButtons.add(DialogButtonsFactory.createJButton(
-				DialogButtonsFactory.DB_CANCEL, acCancel));
+		add(defaultDialogButtonsPanel, BorderLayout.SOUTH);
 		
-
-		int ss = dialogButtons
-				.size()+1;
-		DefaultDialogButtonsPanel defaultDialogButtonsPanel = new DefaultDialogButtonsPanel(
-				dialogButtons);
-		defaultDialogButtonsPanel.add(new JLabel(Integer.toString(ss)));
-		add(defaultDialogButtonsPanel, BorderLayout.CENTER);
-
+		add(contentComponent = createContentComponent(), BorderLayout.CENTER);
 	}
+	
+	
+
+	public Component getContentComponent() {
+		return contentComponent;
+	}
+
 
 	public abstract void save();
 
 	public abstract void cancel();
 
+	public Component createContentComponent(){
+		return new JPanel();
+	}
 }

@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.AbstractAction;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.Action;
@@ -19,8 +20,14 @@ public class DefaultDialogButtonsPanel extends JPanel {
 		for (int i = 0; i < buttons.size(); i++) {
 			add(buttons.get(i));
 		}
-
-		add(new JLabel(Integer.toString(buttons.size())));
-
+	}
+	
+	public static DefaultDialogButtonsPanel createDefaultDialogButtonsOkCancelPanel(ActionListener aclOk, ActionListener aclCancel) {
+		ArrayList<JButton> buttons = new ArrayList<JButton>();
+		
+		buttons.add(new DialogButtonsFactory().createJButton(DialogButtonsFactory.DB_OK, aclOk));
+		buttons.add(new DialogButtonsFactory().createJButton(DialogButtonsFactory.DB_CANCEL, aclCancel));
+		
+		return new DefaultDialogButtonsPanel(buttons);
 	}
 }
