@@ -14,9 +14,9 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public abstract class DefaultEditPanel extends JPanel {
+public abstract class DefaultEditPanel<T extends Component> extends JPanel implements EditableView, CancelableView, HasModelView<T>{
 
-	private Component contentComponent;
+	private T modelView;
 	private final JPanel contentPanel = new JPanel(new BorderLayout());
 	
 	public final ActionListener aclSave = new ActionListener() {
@@ -47,31 +47,29 @@ public abstract class DefaultEditPanel extends JPanel {
 
 		add(defaultDialogButtonsPanel, BorderLayout.SOUTH);
 		
-		contentPanel.add(contentComponent = createContentComponent());
+		//contentPanel.add(contentComponent = createContentComponent());
 		
 		add(contentPanel, BorderLayout.CENTER);
 		revalidate();
+		
 	}
 	
 	
 
-	public Component getContentComponent() {
-		return contentComponent;
+	public T getModelView() {
+		return this.modelView;
 	}
 
-	public void setContentComponent(Component contentComponent) {
-		this.contentComponent = contentComponent;
+	public boolean setModelView(T modelView) {
+		this.modelView = modelView;
 		contentPanel.removeAll();
-		contentPanel.add(this.contentComponent);
+		contentPanel.add(this.modelView);
 		revalidate();		
+		return true;
 	}
 	
 
 	public abstract void save();
 
 	public abstract void cancel();
-
-	public Component createContentComponent(){
-		return new JPanel();
-	}
 }

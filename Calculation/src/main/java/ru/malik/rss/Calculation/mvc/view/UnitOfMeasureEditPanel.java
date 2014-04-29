@@ -4,10 +4,10 @@ import java.awt.Component;
 
 import ru.malik.economics.model.UnitOfMeasure;
 
-public class UnitOfMeasureEditPanel extends DefaultEditPanel {
+public class UnitOfMeasureEditPanel extends DefaultEditPanel<UnitOfMesureViewPanel> {
 	
 	private UnitOfMeasure unitOfMeasure;
-	private UnitOfMesureViewPanel unitOfMesureViewPanel;
+	private UnitOfMesureViewPanel unitOfMesureViewPanel = new UnitOfMesureViewPanel();
 
 	@Override
 	public void save() {
@@ -29,13 +29,6 @@ public class UnitOfMeasureEditPanel extends DefaultEditPanel {
 		}
 	}
 
-	@Override
-	public Component createContentComponent() {
-		
-		return unitOfMesureViewPanel = new UnitOfMesureViewPanel();
-	}
-	
-	
 	/**
 	 * Закрываем конструктор от внешнего вызова
 	 */
@@ -46,6 +39,7 @@ public class UnitOfMeasureEditPanel extends DefaultEditPanel {
 	public UnitOfMeasureEditPanel(UnitOfMeasure unitOfMeasure) {
 		this();
 		setUnitOfMeasure(unitOfMeasure);
+		setModelView(unitOfMesureViewPanel);
 	}
 
 	public UnitOfMeasure getUnitOfMeasure() {
