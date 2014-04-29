@@ -12,7 +12,7 @@ public class UnitOfMeasureEditPanel extends DefaultEditPanel {
 	@Override
 	public void save() {
 		try {
-			unitOfMeasure = (UnitOfMeasure)unitOfMesureViewPanel.getUnitOfMeasure().clone();
+			unitOfMeasure = (UnitOfMeasure)unitOfMesureViewPanel.getModel().clone();
 		} catch (CloneNotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -22,7 +22,7 @@ public class UnitOfMeasureEditPanel extends DefaultEditPanel {
 	@Override
 	public void cancel() {
 		try {
-			unitOfMesureViewPanel.setUnitOfMeasure((UnitOfMeasure)unitOfMeasure.clone());
+			unitOfMesureViewPanel.setModel((UnitOfMeasure)unitOfMeasure.clone());
 		} catch (CloneNotSupportedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,7 +55,7 @@ public class UnitOfMeasureEditPanel extends DefaultEditPanel {
 	public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
 		this.unitOfMeasure = unitOfMeasure;
 		try {
-			unitOfMesureViewPanel.setUnitOfMeasure((UnitOfMeasure)this.unitOfMeasure.clone());
+			unitOfMesureViewPanel.setModel((UnitOfMeasure)this.unitOfMeasure.clone());
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}

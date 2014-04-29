@@ -16,6 +16,7 @@ import org.hibernate.cfg.Configuration;
 import ru.malik.economics.model.UnitOfMeasure;
 import ru.malik.rss.Calculation.mvc.view.DefaultEditPanel;
 import ru.malik.rss.Calculation.mvc.view.UnitOfMeasureEditPanel;
+import ru.malik.rss.Calculation.mvc.view.UnitOfMeasureListPanel;
 import ru.malik.rss.Calculation.mvc.view.UnitOfMesureViewPanel;
 import ru.malik.utils.HibernateUtil;
 import ru.malik.utils.UnitOfMeasureDAO;
@@ -25,18 +26,34 @@ import ru.malik.utils.UnitOfMeasureDAO;
  * 
  */
 public class App {
-	public static void main(String[] args) throws SQLException, CloneNotSupportedException {
+	public static void main(String[] args) throws SQLException,
+			CloneNotSupportedException {
 		UnitOfMeasureDAO dao = new UnitOfMeasureDAO();
 		UnitOfMeasure t3, unitOfMeasure = new UnitOfMeasure();
 		unitOfMeasure.setName("шт");
-		t3 = (UnitOfMeasure)unitOfMeasure.clone();
-		JFrame frame = new JFrame();
-		DefaultEditPanel editPanel = new UnitOfMeasureEditPanel(unitOfMeasure);
-		//frame.add(new UnitOfMesureViewPanel(unitOfMeasure));
-		frame.add(editPanel);
-		frame.setVisible(true);
-		frame.pack();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//dao.add(unitOfMeasure);/**/
+		t3 = (UnitOfMeasure) unitOfMeasure.clone();
+		{
+			JFrame frame = new JFrame();
+			DefaultEditPanel editPanel = new UnitOfMeasureEditPanel(
+					unitOfMeasure);
+			// frame.add(new UnitOfMesureViewPanel(unitOfMeasure));
+			frame.add(editPanel);
+			frame.setVisible(true);
+			frame.pack();
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+
+		ArrayList<UnitOfMeasure> list = (ArrayList<UnitOfMeasure>)dao.getAll();
+		{
+			JFrame frame = new JFrame();
+			UnitOfMeasureListPanel listPanel = new UnitOfMeasureListPanel();
+			listPanel.setModel(list);
+			frame.add(listPanel);
+			frame.setVisible(true);
+			frame.pack();
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+
+		// dao.add(unitOfMeasure);/**/
 	}
 }

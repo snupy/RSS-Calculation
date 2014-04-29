@@ -13,7 +13,9 @@ import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.beansbinding.BindingGroup;
 import org.jdesktop.beansbinding.Bindings;
 
-public class UnitOfMesureViewPanel extends JPanel {
+import ru.malik.economics.model.UnitOfMeasure;
+
+public class UnitOfMesureViewPanel extends JPanel implements ModelView<UnitOfMeasure> {
 
 	private BindingGroup m_bindingGroup;
 	private ru.malik.economics.model.UnitOfMeasure unitOfMeasure = new ru.malik.economics.model.UnitOfMeasure();
@@ -22,7 +24,7 @@ public class UnitOfMesureViewPanel extends JPanel {
 	public UnitOfMesureViewPanel(
 			ru.malik.economics.model.UnitOfMeasure newUnitOfMeasure) {
 		this();
-		setUnitOfMeasure(newUnitOfMeasure);
+		setModel(newUnitOfMeasure);
 	}
 
 	public UnitOfMesureViewPanel() {
@@ -70,16 +72,16 @@ public class UnitOfMesureViewPanel extends JPanel {
 		return bindingGroup;
 	}
 
-	public ru.malik.economics.model.UnitOfMeasure getUnitOfMeasure() {
+	public ru.malik.economics.model.UnitOfMeasure getModel() {
 		return unitOfMeasure;
 	}
 
-	public void setUnitOfMeasure(
+	public void setModel(
 			ru.malik.economics.model.UnitOfMeasure newUnitOfMeasure) {
-		setUnitOfMeasure(newUnitOfMeasure, true);
+		setModel(newUnitOfMeasure, true);
 	}
 
-	public void setUnitOfMeasure(
+	public void setModel(
 			ru.malik.economics.model.UnitOfMeasure newUnitOfMeasure,
 			boolean update) {
 		unitOfMeasure = newUnitOfMeasure;
