@@ -14,19 +14,19 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-public abstract class DefaultEditPanel<T extends Component> extends JPanel implements EditableView, CancelableView, HasModelView<T>{
+public abstract class DefaultEditPanel<T extends Component> extends
+		AbstractDialogPanel implements EditableView, CancelableView,
+		HasModelView<T> {
 
 	private T modelView;
-	private final JPanel contentPanel = new JPanel(new BorderLayout());
-	
+
 	public final ActionListener aclSave = new ActionListener() {
-		
+
 		public void actionPerformed(ActionEvent e) {
 
 			save();
 		}
 	};
-	
 
 	public final ActionListener aclCancel = new ActionListener() {
 
@@ -45,29 +45,26 @@ public abstract class DefaultEditPanel<T extends Component> extends JPanel imple
 		DefaultDialogButtonsPanel defaultDialogButtonsPanel = DefaultDialogButtonsPanel
 				.createDefaultDialogButtonsOkCancelPanel(aclSave, aclCancel);
 
-		add(defaultDialogButtonsPanel, BorderLayout.SOUTH);
-		
-		//contentPanel.add(contentComponent = createContentComponent());
-		
-		add(contentPanel, BorderLayout.CENTER);
+		setControlComponent(defaultDialogButtonsPanel);
+
+		// contentPanel.add(contentComponent = createContentComponent());
+
 		revalidate();
-		
+
 	}
 	
 	
 
+	
 	public T getModelView() {
-		return this.modelView;
+		return (T) getContentComponent();
 	}
 
-	public boolean setModelView(T modelView) {
-		this.modelView = modelView;
-		contentPanel.removeAll();
-		contentPanel.add(this.modelView);
-		revalidate();		
+
+	public boolean setModelView(T modelView){
+		setContentComponent(modelView);
 		return true;
 	}
-	
 
 	public abstract void save();
 

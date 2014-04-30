@@ -4,12 +4,13 @@ import javax.swing.JPanel;
 
 import java.util.ArrayList;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DefaultSelectPanel<T> extends JPanel implements SelectableView<T>, CancelableView {
-	private final JPanel contentPanel = new JPanel(new BorderLayout());
-
+public abstract class DefaultSelectPanel<T extends Component> extends
+		AbstractDialogPanel implements SelectableView<T>, CancelableView,
+		HasModelView<T> {
 	public final ActionListener aclOk = new ActionListener() {
 
 		public void actionPerformed(ActionEvent e) {
@@ -31,27 +32,21 @@ public class DefaultSelectPanel<T> extends JPanel implements SelectableView<T>, 
 	 */
 	public DefaultSelectPanel() {
 		setLayout(new BorderLayout(0, 0));
-		
-		DefaultDialogButtonsPanel defaultDialogButtonsPanel = DefaultDialogButtonsPanel.createDefaultDialogButtonsOkCancelPanel(aclOk, aclCancel);
-		add(defaultDialogButtonsPanel, BorderLayout.SOUTH);
 
-		add(contentPanel, BorderLayout.CENTER);
+		DefaultDialogButtonsPanel defaultDialogButtonsPanel = DefaultDialogButtonsPanel
+				.createDefaultDialogButtonsOkCancelPanel(aclOk, aclCancel);
+		setControlComponent(defaultDialogButtonsPanel);
+
 	}
 
-	public void cancel() {
-		setSelected(null);
-	}
-
-	public void setSelected(T obj) {
-				
-	}
-
-	public T getSelected() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract void select();
 	
-	public void select(){
-		
+	public T getModelView() {
+		return (T) getContentComponent();
+	}
+
+	public boolean setModelView(T modelView) {
+		setContentComponent(modelView);
+		return true;
 	}
 }
