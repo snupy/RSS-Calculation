@@ -11,6 +11,7 @@ public class UnitOfMeasureEditPanel extends DefaultEditPanel<UnitOfMesureViewPan
 
 	@Override
 	public void save() {
+		super.save();
 		try {
 			unitOfMeasure = (UnitOfMeasure)unitOfMesureViewPanel.getModel().clone();
 		} catch (CloneNotSupportedException e) {
@@ -21,6 +22,7 @@ public class UnitOfMeasureEditPanel extends DefaultEditPanel<UnitOfMesureViewPan
 
 	@Override
 	public void cancel() {
+		super.cancel();
 		try {
 			unitOfMesureViewPanel.setModel((UnitOfMeasure)unitOfMeasure.clone());
 		} catch (CloneNotSupportedException e) {

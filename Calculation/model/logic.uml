@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_2OuZoIniEeOjhrP9Cd-JLA" name="NewModel">
+<uml:Model xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xmi:id="_2OuZoIniEeOjhrP9Cd-JLA" name="NewModel">
   <packagedElement xmi:type="uml:Package" xmi:id="_irOMEJGpEeOqh8qiw-xLdg" name="ru.malik.economics.model">
     <ownedComment xmi:id="_YSdMAJGqEeOqh8qiw-xLdg" annotatedElement="_YTFeIJGqEeOqh8qiw-xLdg">
       <body>Класс продукции — изделия производимое прдприятием</body>
@@ -221,6 +221,56 @@
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YTMy45GqEeOqh8qiw-xLdg" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YTMy5JGqEeOqh8qiw-xLdg" value="1"/>
       </ownedAttribute>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_zh5sINFhEeO5wuRTPEjGGA" name="View">
+    <packagedElement xmi:type="uml:Interface" xmi:id="_t0dLsNFiEeO5wuRTPEjGGA" name="ModelView">
+      <ownedOperation xmi:id="_0tOaUNFiEeO5wuRTPEjGGA" name="setModel">
+        <ownedParameter xmi:id="_CjRkINFjEeO5wuRTPEjGGA" name="model">
+          <type xmi:type="uml:Class" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EJavaClass-_ownedElement.0-_ownedParameter.0-_ownedParameteredElement"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_PhREkNFjEeO5wuRTPEjGGA" name="getModel">
+        <ownedParameter xmi:id="_Rke5gNFjEeO5wuRTPEjGGA" name="model" direction="return">
+          <type xmi:type="uml:Class" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EJavaClass-_ownedElement.0-_ownedParameter.0-_ownedParameteredElement"/>
+        </ownedParameter>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_gLp-QNFjEeO5wuRTPEjGGA" clientDependency="_NNUyYNFrEeO5wuRTPEjGGA" name="UnitOfMeasureViewPanel">
+      <interfaceRealization xmi:id="_NNUyYNFrEeO5wuRTPEjGGA" client="_gLp-QNFjEeO5wuRTPEjGGA" supplier="_t0dLsNFiEeO5wuRTPEjGGA" contract="_t0dLsNFiEeO5wuRTPEjGGA"/>
+      <ownedOperation xmi:id="_AXb3UNFmEeO5wuRTPEjGGA" name="UnitOfMeasureViewPanel">
+        <ownedParameter xmi:id="_BEmfUNFmEeO5wuRTPEjGGA" name="UnitOfMeasure" type="_YS0_cJGqEeOqh8qiw-xLdg"/>
+      </ownedOperation>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_lnYVMNFlEeO5wuRTPEjGGA" clientDependency="_lnYVMdFlEeO5wuRTPEjGGA" name="UnitOfMeasuresListViewPanel">
+      <interfaceRealization xmi:id="_lnYVMdFlEeO5wuRTPEjGGA" client="_lnYVMNFlEeO5wuRTPEjGGA" supplier="_t0dLsNFiEeO5wuRTPEjGGA" contract="_t0dLsNFiEeO5wuRTPEjGGA">
+        <name xsi:nil="true"/>
+      </interfaceRealization>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_KlbVUNFmEeO5wuRTPEjGGA" name="Editable">
+      <generalization xmi:id="_YPajoNFnEeO5wuRTPEjGGA" general="_Op7QENFnEeO5wuRTPEjGGA"/>
+      <generalization xmi:id="_ZYbaINFnEeO5wuRTPEjGGA" general="_LzywcNFnEeO5wuRTPEjGGA"/>
+      <generalization xmi:id="_Ir12INFpEeO5wuRTPEjGGA" general="_t0dLsNFiEeO5wuRTPEjGGA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_LzywcNFnEeO5wuRTPEjGGA" name="Saveable">
+      <ownedOperation xmi:id="_aRd68NFnEeO5wuRTPEjGGA" name="save"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_Op7QENFnEeO5wuRTPEjGGA" name="Cancelable">
+      <ownedOperation xmi:id="_bgAKoNFnEeO5wuRTPEjGGA" name="cancel"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Interface" xmi:id="_hkSy4NFoEeO5wuRTPEjGGA" name="Selectable&lt;T>">
+      <generalization xmi:id="_0r_cgNFoEeO5wuRTPEjGGA" general="_Op7QENFnEeO5wuRTPEjGGA"/>
+      <ownedOperation xmi:id="_rsX2INFoEeO5wuRTPEjGGA" name="select"/>
+      <ownedOperation xmi:id="_inxMoNFpEeO5wuRTPEjGGA" name="getSelected">
+        <ownedParameter xmi:id="_mStNUNFpEeO5wuRTPEjGGA" name="selected" direction="return">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EJavaClass-_ownedElement.0-_ownedParameter.0-_ownedParameteredElement"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_wKzB4NFrEeO5wuRTPEjGGA" name="setSelected">
+        <ownedParameter xmi:id="_zF_nsNFrEeO5wuRTPEjGGA" name="selected">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/Ecore.metamodel.uml#EJavaClass-_ownedElement.0-_ownedParameter.0-_ownedParameteredElement"/>
+        </ownedParameter>
+      </ownedOperation>
     </packagedElement>
   </packagedElement>
 </uml:Model>

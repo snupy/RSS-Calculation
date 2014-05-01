@@ -3,6 +3,7 @@ package ru.malik.rss.Calculation.mvc.view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.lang.reflect.Proxy;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,6 +26,7 @@ public class UnitOfMesureViewPanel extends JPanel implements ModelView<UnitOfMea
 			ru.malik.economics.model.UnitOfMeasure newUnitOfMeasure) {
 		this();
 		setModel(newUnitOfMeasure);
+		
 	}
 
 	public UnitOfMesureViewPanel() {

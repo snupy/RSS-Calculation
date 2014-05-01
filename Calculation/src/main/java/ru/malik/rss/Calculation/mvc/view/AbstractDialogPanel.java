@@ -28,7 +28,7 @@ public abstract class AbstractDialogPanel extends JPanel {
 		}
 		this.contentComponent = contentPanel;
 		add(this.contentComponent, contentPanelLayoutCon);
-
+		revalidate();
 	}
 
 	public Component getControlComponent() {
@@ -43,7 +43,7 @@ public abstract class AbstractDialogPanel extends JPanel {
 			remove(this.controlComponent);
 		}
 		this.controlComponent = controlPanel;
-		add(this.controlComponent, contentPanelLayoutCon);
+		add(this.controlComponent, controlPanelLayoutCon);
 	}
 
 }
