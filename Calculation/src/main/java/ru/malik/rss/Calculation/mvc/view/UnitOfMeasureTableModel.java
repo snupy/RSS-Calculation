@@ -3,30 +3,24 @@ package ru.malik.rss.Calculation.mvc.view;
 import java.util.ArrayList;
 
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
 import ru.malik.economics.model.UnitOfMeasure;
+import ru.malik.economics.model.UnitOfMeasureList;
 
-public class UnitOfMeasureTableModel implements TableModel {
-	private ArrayList<UnitOfMeasure> model;
-
+public class UnitOfMeasureTableModel extends AbstractTableModel {
+	private UnitOfMeasureList model;
+	
 	private UnitOfMeasureTableModel() {
 		super();
 	}
 
-	public UnitOfMeasureTableModel(ArrayList<UnitOfMeasure> model) {
+	public UnitOfMeasureTableModel(UnitOfMeasureList model) {
 		this();
 		this.model = model;
 	}
 
-	public void addTableModelListener(TableModelListener l) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public Class<?> getColumnClass(int columnIndex) {
-		return String.class;
-	}
 
 	public int getColumnCount() {
 		return 1;
@@ -47,16 +41,6 @@ public class UnitOfMeasureTableModel implements TableModel {
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	public void removeTableModelListener(TableModelListener l) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
-
 	}
 
 }

@@ -16,17 +16,19 @@ import org.jdesktop.beansbinding.Bindings;
 
 import ru.malik.economics.model.UnitOfMeasure;
 
-public class UnitOfMesureViewPanel extends JPanel implements ModelView<UnitOfMeasure> {
+public class UnitOfMesureViewPanel extends JPanel implements
+		ModelView<UnitOfMeasure> {
 
 	private BindingGroup m_bindingGroup;
 	private ru.malik.economics.model.UnitOfMeasure unitOfMeasure = new ru.malik.economics.model.UnitOfMeasure();
 	private JTextField nameJTextField;
+	public AutoBinding<ru.malik.economics.model.UnitOfMeasure, java.lang.String, javax.swing.JTextField, java.lang.String> autoBinding;
 
 	public UnitOfMesureViewPanel(
 			ru.malik.economics.model.UnitOfMeasure newUnitOfMeasure) {
 		this();
 		setModel(newUnitOfMeasure);
-		
+
 	}
 
 	public UnitOfMesureViewPanel() {
@@ -62,11 +64,12 @@ public class UnitOfMesureViewPanel extends JPanel implements ModelView<UnitOfMea
 				.create("name");
 		BeanProperty<javax.swing.JTextField, java.lang.String> textProperty = BeanProperty
 				.create("text");
-		AutoBinding<ru.malik.economics.model.UnitOfMeasure, java.lang.String, javax.swing.JTextField, java.lang.String> autoBinding = Bindings
-				.createAutoBinding(AutoBinding.UpdateStrategy.READ_WRITE,
+		autoBinding = Bindings
+				.createAutoBinding(AutoBinding.UpdateStrategy.READ,
 						unitOfMeasure, nameProperty, nameJTextField,
 						textProperty);
 		autoBinding.bind();
+		
 		//
 		BindingGroup bindingGroup = new BindingGroup();
 		bindingGroup.addBinding(autoBinding);
@@ -78,8 +81,7 @@ public class UnitOfMesureViewPanel extends JPanel implements ModelView<UnitOfMea
 		return unitOfMeasure;
 	}
 
-	public void setModel(
-			ru.malik.economics.model.UnitOfMeasure newUnitOfMeasure) {
+	public void setModel(ru.malik.economics.model.UnitOfMeasure newUnitOfMeasure) {
 		setModel(newUnitOfMeasure, true);
 	}
 

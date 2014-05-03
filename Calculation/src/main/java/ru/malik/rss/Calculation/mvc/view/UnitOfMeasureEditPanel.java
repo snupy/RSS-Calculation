@@ -51,8 +51,10 @@ public class UnitOfMeasureEditPanel extends DefaultEditPanel<UnitOfMesureViewPan
 	public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
 		this.unitOfMeasure = unitOfMeasure;
 		try {
-			unitOfMesureViewPanel.setModel((UnitOfMeasure)this.unitOfMeasure.clone());
-		} catch (CloneNotSupportedException e) {
+			//unitOfMesureViewPanel.setModel((UnitOfMeasure)this.unitOfMeasure.clone());
+			unitOfMesureViewPanel.setModel((UnitOfMeasure)this.unitOfMeasure);
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

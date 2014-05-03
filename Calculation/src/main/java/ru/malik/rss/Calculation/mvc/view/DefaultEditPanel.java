@@ -22,14 +22,15 @@ import ru.malik.rss.Calculation.mvc.Editable;
 import ru.malik.rss.Calculation.mvc.events.listners.CancelEventListener;
 import ru.malik.rss.Calculation.mvc.events.listners.SaveEventListener;
 
-public class DefaultEditPanel<T extends Component> extends
-		AbstractDialogPanel implements Editable, Cancelable,
-		HasModelView<T> {
+public class DefaultEditPanel<T extends Component> extends AbstractDialogPanel
+		implements Editable, Cancelable, HasModelView<T> {
 
 	private T modelView;
-	private Announcer<SaveEventListener> saveAnnouncer = new Announcer<SaveEventListener>(SaveEventListener.class);
-	private Announcer<CancelEventListener> cancelAnnouncer = new Announcer<CancelEventListener>(CancelEventListener.class);
-	
+	private Announcer<SaveEventListener> saveAnnouncer = new Announcer<SaveEventListener>(
+			SaveEventListener.class);
+	private Announcer<CancelEventListener> cancelAnnouncer = new Announcer<CancelEventListener>(
+			CancelEventListener.class);
+
 	public final ActionListener aclSave = new ActionListener() {
 
 		public void actionPerformed(ActionEvent e) {
@@ -61,54 +62,35 @@ public class DefaultEditPanel<T extends Component> extends
 		revalidate();
 
 	}
-	
-	
-	
-	
+
 	public void addSaveListener(SaveEventListener listner) {
 		saveAnnouncer.addListener(listner);
 	}
 
-
-
-
-	public void addCancelListener(CancelEventListener listner) {
-		// TODO Auto-generated method stub
-		
+	public void addCancelListener(CancelEventListener listener) {
+		cancelAnnouncer.addListener(listener);
 	}
-
-
-
 
 	public T getModelView() {
 		return (T) getContentComponent();
 	}
 
-
-	public boolean setModelView(T modelView){
+	public boolean setModelView(T modelView) {
 		setContentComponent(modelView);
 		return true;
 	}
-	
-	
 
-	public void save(){
+	public void save() {
 		saveAnnouncer.announce().save(new EventObject(this));
 	}
 
-	public void cancel(){
+	public void cancel() {
 		cancelAnnouncer.announce().cancel(new EventObject(this));
 	}
-
-
-
 
 	public void removeCancelListener(CancelEventListener listener) {
 		cancelAnnouncer.removeListener(listener);
 	}
-
-
-
 
 	public void removeSaveListener(SaveEventListener listener) {
 		saveAnnouncer.removeListener(listener);

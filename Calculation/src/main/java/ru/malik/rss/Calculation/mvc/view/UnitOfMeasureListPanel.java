@@ -16,19 +16,21 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import ru.malik.economics.model.UnitOfMeasure;
+import ru.malik.economics.model.UnitOfMeasureList;
 import ru.malik.rss.Calculation.mvc.Selectable;
 import ru.malik.rss.Calculation.mvc.events.listners.CancelEventListener;
 import ru.malik.rss.Calculation.mvc.events.listners.SelectEventListener;
 
 public class UnitOfMeasureListPanel extends JPanel implements
-		ModelView<ArrayList<UnitOfMeasure>>, Selectable<UnitOfMeasure> {
-	private ArrayList<UnitOfMeasure> model;
+		ModelView<UnitOfMeasureList>, Selectable<UnitOfMeasure> {
+	private UnitOfMeasureList model;
 	private JTable table;
 	private UnitOfMeasureTableModel tableModel;
+	private ListEditorToolbar listEditorToolbar;
 	private Announcer<SelectEventListener> selectAnnouncer = new Announcer<SelectEventListener>(
 			SelectEventListener.class);
 
-	public ArrayList<UnitOfMeasure> getModel() {
+	public UnitOfMeasureList getModel() {
 		return this.model;
 	}
 
@@ -42,22 +44,22 @@ public class UnitOfMeasureListPanel extends JPanel implements
 				select();
 			}
 		});
-		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(table);
+		add(listEditorToolbar = new ListEditorToolbar(), BorderLayout.NORTH);
 		add(scrollPane, BorderLayout.CENTER);
 	}
 
-	public UnitOfMeasureListPanel(ArrayList<UnitOfMeasure> model) {
+	public UnitOfMeasureListPanel(UnitOfMeasureList model) {
 		this();
 		setModel(model);
 	}
 
-	public void setModel(ArrayList<UnitOfMeasure> model) {
+	public void setModel(UnitOfMeasureList model) {
 		setModel(model, true);
 	}
 
-	public void setModel(ArrayList<UnitOfMeasure> model, boolean update) {
+	public void setModel(UnitOfMeasureList model, boolean update) {
 		this.model = model;
 		if (update) {
 			table.setModel(tableModel = new UnitOfMeasureTableModel(this.model));

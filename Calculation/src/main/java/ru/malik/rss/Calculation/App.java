@@ -16,6 +16,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import ru.malik.economics.model.UnitOfMeasure;
+import ru.malik.economics.model.UnitOfMeasureList;
 import ru.malik.rss.Calculation.mvc.events.listners.SaveEventListener;
 import ru.malik.rss.Calculation.mvc.events.listners.SelectEventListener;
 import ru.malik.rss.Calculation.mvc.view.DefaultEditPanel;
@@ -45,16 +46,24 @@ public class App {
 			editPanel.addSaveListener(new SaveEventListener() {
 				
 				public void save(EventObject event) {
-					System.out.println("SAVE!");					
+					System.out.println("ss");					
 				}
 			});
 			frame.add(editPanel);
 			frame.setVisible(true);
 			frame.pack();
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			unitOfMeasure.setName("ssddd");
+			((UnitOfMesureViewPanel)editPanel.getModelView()).autoBinding.getSourceObject().setName("sssSd");
+			((UnitOfMesureViewPanel)editPanel.getModelView()).autoBinding.unbind();
+			((UnitOfMesureViewPanel)editPanel.getModelView()).autoBinding.bind();
+			System.out.println(((UnitOfMesureViewPanel)editPanel.getModelView()).autoBinding.getSourceObject().getName());
 		}
-
-		ArrayList<UnitOfMeasure> list = (ArrayList<UnitOfMeasure>)dao.getAll();
+		
+		System.out.println(unitOfMeasure.getName());
+		
+		UnitOfMeasureList list = new UnitOfMeasureList(dao.getAll());
 		{
 			JFrame frame = new JFrame();
 			UnitOfMeasuresListSelectPanel listPanel = new UnitOfMeasuresListSelectPanel(list);
@@ -70,7 +79,5 @@ public class App {
 			frame.pack();
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		}
-
-		// dao.add(unitOfMeasure);/**/
 	}
 }

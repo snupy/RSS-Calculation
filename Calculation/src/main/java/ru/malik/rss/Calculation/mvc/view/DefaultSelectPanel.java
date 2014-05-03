@@ -17,7 +17,6 @@ import java.awt.event.ActionListener;
 public abstract class DefaultSelectPanel<T extends Component, F> extends
 		AbstractDialogPanel implements Selectable<F>, Cancelable,
 		HasModelView<T> {
-	private ListEditorToolbar listEditorToolbar;
 	private Announcer<SelectEventListener> selectAnnouncer = new Announcer<SelectEventListener>(
 			SelectEventListener.class);
 	private Announcer<CancelEventListener> cancelAnnouncer = new Announcer<CancelEventListener>(
@@ -45,10 +44,6 @@ public abstract class DefaultSelectPanel<T extends Component, F> extends
 		DefaultDialogButtonsPanel defaultDialogButtonsPanel = DefaultDialogButtonsPanel
 				.createDefaultDialogButtonsOkCancelPanel(aclOk, aclCancel);
 		setControlComponent(defaultDialogButtonsPanel);
-
-		listEditorToolbar = new ListEditorToolbar();
-		add(listEditorToolbar, BorderLayout.NORTH);
-
 	}
 
 	public T getModelView() {
@@ -58,10 +53,6 @@ public abstract class DefaultSelectPanel<T extends Component, F> extends
 	public boolean setModelView(T modelView) {
 		setContentComponent(modelView);
 		return true;
-	}
-
-	public ListEditorToolbar getListEditorToolbar() {
-		return listEditorToolbar;
 	}
 
 	public void cancel() {
