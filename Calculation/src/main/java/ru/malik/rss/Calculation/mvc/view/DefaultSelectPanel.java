@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import ru.malik.rss.Calculation.mvc.Cancelable;
 import ru.malik.rss.Calculation.mvc.Selectable;
+import ru.malik.rss.Calculation.mvc.events.ListEventObject;
 import ru.malik.rss.Calculation.mvc.events.listners.CancelEventListener;
 import ru.malik.rss.Calculation.mvc.events.listners.SelectEventListener;
 
@@ -14,7 +15,7 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public abstract class DefaultSelectPanel<T extends Component, F> extends
+public abstract class DefaultSelectPanel<T extends Component&ModelView, F> extends
 		AbstractDialogPanel implements Selectable<F>, Cancelable,
 		HasModelView<T> {
 	private Announcer<SelectEventListener> selectAnnouncer = new Announcer<SelectEventListener>(
@@ -56,12 +57,12 @@ public abstract class DefaultSelectPanel<T extends Component, F> extends
 	}
 
 	public void cancel() {
-		cancelAnnouncer.announce().cancel(new EventObject(this));
+		cancelAnnouncer.announce().after(new EventObject(this));
 
 	}
 
 	public void select() {
-		selectAnnouncer.announce().select(new EventObject(this));
+		selectAnnouncer.announce().after(new ListEventObject(this, getModelView().getModel(), getSelected()));
 	
 	}
 

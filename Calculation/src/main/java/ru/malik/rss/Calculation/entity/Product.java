@@ -1,12 +1,11 @@
 /*******************************************************************************
  * 2014, All rights reserved.
  *******************************************************************************/
-package ru.malik.economics.model;
+package ru.malik.rss.Calculation.entity;
 
 import java.util.HashSet;
 
-import ru.malik.economics.model.Nomenclature;
-// Start of user code (user defined imports)
+import ru.malik.rss.Calculation.entity.Nomenclature;
 
 // End of user code
 

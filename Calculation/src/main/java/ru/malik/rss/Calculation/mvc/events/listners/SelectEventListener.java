@@ -5,6 +5,8 @@ import java.util.EventObject;
 
 import org.hibernate.event.EventListeners;
 
-public interface SelectEventListener extends EventListener {
-	public void select(EventObject event);
+import ru.malik.rss.Calculation.mvc.events.ListEventObject;
+
+public interface SelectEventListener extends MyEventListener<ListEventObject> {
+
 }

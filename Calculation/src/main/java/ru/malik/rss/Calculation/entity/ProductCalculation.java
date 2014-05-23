@@ -1,7 +1,7 @@
 /*******************************************************************************
  * 2014, All rights reserved.
  *******************************************************************************/
-package ru.malik.economics.model;
+package ru.malik.rss.Calculation.entity;
 
 import java.util.HashSet;
 

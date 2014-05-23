@@ -6,8 +6,8 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 
-import ru.malik.economics.model.UnitOfMeasure;
-import ru.malik.economics.model.UnitOfMeasureList;
+import ru.malik.rss.Calculation.entity.UnitOfMeasure;
+import ru.malik.rss.Calculation.entity.UnitOfMeasureList;
 
 public class UnitOfMeasureTableModel extends AbstractTableModel {
 	private UnitOfMeasureList model;

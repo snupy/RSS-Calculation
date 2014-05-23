@@ -2,7 +2,10 @@ package ru.malik.rss.Calculation.mvc.view;
 
 import java.awt.Component;
 
-import ru.malik.economics.model.UnitOfMeasure;
+import ru.malik.rss.Calculation.entity.UnitOfMeasure;
+import ru.malik.rss.Calculation.mvc.events.listners.CancelEventListener;
+import ru.malik.rss.Calculation.mvc.events.listners.SaveEventListener;
+
 
 public class UnitOfMeasureEditPanel extends DefaultEditPanel<UnitOfMesureViewPanel> {
 	
@@ -11,24 +14,14 @@ public class UnitOfMeasureEditPanel extends DefaultEditPanel<UnitOfMesureViewPan
 
 	@Override
 	public void save() {
+		unitOfMesureViewPanel.modelAutoBinding.saveAndNotify();
 		super.save();
-		try {
-			unitOfMeasure = (UnitOfMeasure)unitOfMesureViewPanel.getModel().clone();
-		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	@Override
 	public void cancel() {
 		super.cancel();
-		try {
-			unitOfMesureViewPanel.setModel((UnitOfMeasure)unitOfMeasure.clone());
-		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		unitOfMesureViewPanel.modelAutoBinding.refreshAndNotify();
 	}
 
 	/**
@@ -38,6 +31,7 @@ public class UnitOfMeasureEditPanel extends DefaultEditPanel<UnitOfMesureViewPan
 		super();
 	}
 
+		
 	public UnitOfMeasureEditPanel(UnitOfMeasure unitOfMeasure) {
 		this();
 		setUnitOfMeasure(unitOfMeasure);
@@ -57,6 +51,11 @@ public class UnitOfMeasureEditPanel extends DefaultEditPanel<UnitOfMesureViewPan
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public Object getModel() {
+		return getUnitOfMeasure();
 	}
 	
 	

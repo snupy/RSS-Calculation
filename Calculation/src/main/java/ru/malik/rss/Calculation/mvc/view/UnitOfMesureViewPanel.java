@@ -14,18 +14,18 @@ import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.beansbinding.BindingGroup;
 import org.jdesktop.beansbinding.Bindings;
 
-import ru.malik.economics.model.UnitOfMeasure;
+import ru.malik.rss.Calculation.entity.UnitOfMeasure;
 
 public class UnitOfMesureViewPanel extends JPanel implements
 		ModelView<UnitOfMeasure> {
 
 	private BindingGroup m_bindingGroup;
-	private ru.malik.economics.model.UnitOfMeasure unitOfMeasure = new ru.malik.economics.model.UnitOfMeasure();
+	private ru.malik.rss.Calculation.entity.UnitOfMeasure unitOfMeasure = new ru.malik.rss.Calculation.entity.UnitOfMeasure();
 	private JTextField nameJTextField;
-	public AutoBinding<ru.malik.economics.model.UnitOfMeasure, java.lang.String, javax.swing.JTextField, java.lang.String> autoBinding;
+	public AutoBinding<ru.malik.rss.Calculation.entity.UnitOfMeasure, java.lang.String, javax.swing.JTextField, java.lang.String> modelAutoBinding;
 
 	public UnitOfMesureViewPanel(
-			ru.malik.economics.model.UnitOfMeasure newUnitOfMeasure) {
+			ru.malik.rss.Calculation.entity.UnitOfMeasure newUnitOfMeasure) {
 		this();
 		setModel(newUnitOfMeasure);
 
@@ -60,33 +60,33 @@ public class UnitOfMesureViewPanel extends JPanel implements
 	}
 
 	protected BindingGroup initDataBindings() {
-		BeanProperty<ru.malik.economics.model.UnitOfMeasure, java.lang.String> nameProperty = BeanProperty
+		BeanProperty<ru.malik.rss.Calculation.entity.UnitOfMeasure, java.lang.String> nameProperty = BeanProperty
 				.create("name");
 		BeanProperty<javax.swing.JTextField, java.lang.String> textProperty = BeanProperty
 				.create("text");
-		autoBinding = Bindings
+		modelAutoBinding = Bindings
 				.createAutoBinding(AutoBinding.UpdateStrategy.READ,
 						unitOfMeasure, nameProperty, nameJTextField,
 						textProperty);
-		autoBinding.bind();
+		modelAutoBinding.bind();
 		
 		//
 		BindingGroup bindingGroup = new BindingGroup();
-		bindingGroup.addBinding(autoBinding);
+		bindingGroup.addBinding(modelAutoBinding);
 		//
 		return bindingGroup;
 	}
 
-	public ru.malik.economics.model.UnitOfMeasure getModel() {
+	public ru.malik.rss.Calculation.entity.UnitOfMeasure getModel() {
 		return unitOfMeasure;
 	}
 
-	public void setModel(ru.malik.economics.model.UnitOfMeasure newUnitOfMeasure) {
-		setModel(newUnitOfMeasure, true);
+	public boolean setModel(ru.malik.rss.Calculation.entity.UnitOfMeasure newUnitOfMeasure) {
+		return setModel(newUnitOfMeasure, true);
 	}
 
-	public void setModel(
-			ru.malik.economics.model.UnitOfMeasure newUnitOfMeasure,
+	public boolean setModel(
+			ru.malik.rss.Calculation.entity.UnitOfMeasure newUnitOfMeasure,
 			boolean update) {
 		unitOfMeasure = newUnitOfMeasure;
 		if (update) {
@@ -98,6 +98,7 @@ public class UnitOfMesureViewPanel extends JPanel implements
 				m_bindingGroup = initDataBindings();
 			}
 		}
+		return true;
 	}
 
 }

@@ -16,9 +16,6 @@
     <ownedComment xmi:id="_YSlu4JGqEeOqh8qiw-xLdg" annotatedElement="_YTJIgJGqEeOqh8qiw-xLdg">
       <body>Партия товара</body>
     </ownedComment>
-    <ownedComment xmi:id="_YStqsJGqEeOqh8qiw-xLdg" annotatedElement="_2OuZoIniEeOjhrP9Cd-JLA _YSqnYJGqEeOqh8qiw-xLdg">
-      <body>Номенклатура — базовый класс всех вещей.</body>
-    </ownedComment>
     <ownedComment xmi:id="_YStqsZGqEeOqh8qiw-xLdg" annotatedElement="_YSwuAJGqEeOqh8qiw-xLdg">
       <body>Работа, которая имеет объем. Например: пропилить 200мм бруса или сварить 1000мм шва.</body>
     </ownedComment>
@@ -225,6 +222,9 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_zh5sINFhEeO5wuRTPEjGGA" name="View">
     <packagedElement xmi:type="uml:Interface" xmi:id="_t0dLsNFiEeO5wuRTPEjGGA" name="ModelView">
+      <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_RIWFsNd6EeOjUPsg7Gp0mQ" name="T">
+        <parameter xmi:type="uml:ClassifierTemplateParameter" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EJavaClass-_ownedElement.0-_ownedParameter.0"/>
+      </ownedTemplateSignature>
       <ownedOperation xmi:id="_0tOaUNFiEeO5wuRTPEjGGA" name="setModel">
         <ownedParameter xmi:id="_CjRkINFjEeO5wuRTPEjGGA" name="model">
           <type xmi:type="uml:Class" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EJavaClass-_ownedElement.0-_ownedParameter.0-_ownedParameteredElement"/>
@@ -273,4 +273,90 @@
       </ownedOperation>
     </packagedElement>
   </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_evNrcN4GEeOzcIyBQCrmuw" name="UnitOfMeasure">
+    <ownedAttribute xmi:id="_i6eK8N4GEeOzcIyBQCrmuw" name="name" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#String"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_i6kRkN4GEeOzcIyBQCrmuw" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_i6k4oN4GEeOzcIyBQCrmuw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_oSKg4N-REeOI3dL5qIQWDg" name="id" isUnique="false">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/XMLPrimitiveTypes.library.uml#Long"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_oSMWEN-REeOI3dL5qIQWDg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_oSMWEd-REeOI3dL5qIQWDg" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_mUD88N4GEeOzcIyBQCrmuw" clientDependency="_7fex0N4GEeOzcIyBQCrmuw" name="UnitOfMeasureDAO">
+    <ownedOperation xmi:id="_qxcuQN4GEeOzcIyBQCrmuw" name="save">
+      <ownedParameter xmi:id="_tW9X8N4GEeOzcIyBQCrmuw" name="obj" type="_evNrcN4GEeOzcIyBQCrmuw"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_zLrIkN4GEeOzcIyBQCrmuw" name="update">
+      <ownedParameter xmi:id="_z7fb8N4GEeOzcIyBQCrmuw" name="obj" type="_evNrcN4GEeOzcIyBQCrmuw"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_TOn1oN-REeOI3dL5qIQWDg" name="findById">
+      <ownedParameter xmi:id="_VYuVsN-REeOI3dL5qIQWDg" name="id">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+      </ownedParameter>
+      <ownedParameter xmi:id="_aQOQIN-REeOI3dL5qIQWDg" type="_evNrcN4GEeOzcIyBQCrmuw" direction="return">
+        <name xsi:nil="true"/>
+      </ownedParameter>
+    </ownedOperation>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_7fex0N4GEeOzcIyBQCrmuw" client="_mUD88N4GEeOzcIyBQCrmuw" supplier="_evNrcN4GEeOzcIyBQCrmuw"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_-KAeYN4GEeOzcIyBQCrmuw" clientDependency="_mmdmUN-MEeOI3dL5qIQWDg _VGnZYN-OEeOI3dL5qIQWDg" name="UnitOfMeasureView">
+    <interfaceRealization xmi:id="_mmdmUN-MEeOI3dL5qIQWDg" client="_-KAeYN4GEeOzcIyBQCrmuw" supplier="_YXEvcN-MEeOI3dL5qIQWDg" contract="_YXEvcN-MEeOI3dL5qIQWDg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_AyXnwN4HEeOzcIyBQCrmuw" clientDependency="_UFHXoOEkEeOFKNA1I5oJjw" name="UnitOfMesaureController">
+    <ownedOperation xmi:id="_zaFfQN-LEeOI3dL5qIQWDg" name="create">
+      <ownedParameter xmi:id="_2UBg0N-LEeOI3dL5qIQWDg" type="_MsrBIN4IEeOzcIyBQCrmuw" direction="return">
+        <name xsi:nil="true"/>
+      </ownedParameter>
+    </ownedOperation>
+    <ownedOperation xmi:id="_Qxy3wN-aEeOI3dL5qIQWDg" name="cancel"/>
+    <ownedOperation xmi:id="_bCiHwN-aEeOI3dL5qIQWDg" name="save"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_MsrBIN4IEeOzcIyBQCrmuw" clientDependency="_tQeAMN-MEeOI3dL5qIQWDg _3kTyEN-NEeOI3dL5qIQWDg _oMRwwN-QEeOI3dL5qIQWDg" name="UnitOfMeasureModel">
+    <ownedOperation xmi:id="_HFIe0N-SEeOI3dL5qIQWDg" name="save"/>
+    <ownedOperation xmi:id="_uREZMN-aEeOI3dL5qIQWDg" name="setUnitOfMeasure">
+      <ownedParameter xmi:id="_xb4IUN-aEeOI3dL5qIQWDg" name="obj" type="_YS0_cJGqEeOqh8qiw-xLdg"/>
+    </ownedOperation>
+    <ownedOperation xmi:id="_2xPDcN-aEeOI3dL5qIQWDg" name="update"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_YXEvcN-MEeOI3dL5qIQWDg" name="UnitOfMeasureModelObserver">
+    <ownedOperation xmi:id="_igVecN-MEeOI3dL5qIQWDg" name="updateUnitOfMeasure"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_tQeAMN-MEeOI3dL5qIQWDg" client="_MsrBIN4IEeOzcIyBQCrmuw" supplier="_YXEvcN-MEeOI3dL5qIQWDg"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_KXq_4N-NEeOI3dL5qIQWDg" name="unitOfMesaureControllersToUnitOfMeasureViews" memberEnd="_KXrm8N-NEeOI3dL5qIQWDg _KXuqQd-NEeOI3dL5qIQWDg" navigableOwnedEnd="_KXuqQd-NEeOI3dL5qIQWDg">
+    <ownedEnd xmi:id="_KXrm8N-NEeOI3dL5qIQWDg" name="unitOfMesaureControllers" type="_AyXnwN4HEeOzcIyBQCrmuw" association="_KXq_4N-NEeOI3dL5qIQWDg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KXuDMN-NEeOI3dL5qIQWDg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KXuqQN-NEeOI3dL5qIQWDg" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_KXuqQd-NEeOI3dL5qIQWDg" name="unitOfMeasureViews" type="_-KAeYN4GEeOzcIyBQCrmuw" association="_KXq_4N-NEeOI3dL5qIQWDg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KXv4YN-NEeOI3dL5qIQWDg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KXwfcN-NEeOI3dL5qIQWDg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_p1AwgN-NEeOI3dL5qIQWDg" name="unitOfMesaureControllersToUnitOfMeasureModels" memberEnd="_p1Awgd-NEeOI3dL5qIQWDg _p1B-od-NEeOI3dL5qIQWDg" navigableOwnedEnd="_p1B-od-NEeOI3dL5qIQWDg">
+    <ownedEnd xmi:id="_p1Awgd-NEeOI3dL5qIQWDg" name="unitOfMesaureControllers" type="_AyXnwN4HEeOzcIyBQCrmuw" association="_p1AwgN-NEeOI3dL5qIQWDg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p1BXkN-NEeOI3dL5qIQWDg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p1B-oN-NEeOI3dL5qIQWDg" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_p1B-od-NEeOI3dL5qIQWDg" name="unitOfMeasureModels" type="_MsrBIN4IEeOzcIyBQCrmuw" association="_p1AwgN-NEeOI3dL5qIQWDg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p1ClsN-NEeOI3dL5qIQWDg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p1Clsd-NEeOI3dL5qIQWDg" value="1"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_3kTyEN-NEeOI3dL5qIQWDg" name="&lt;&lt;event>>" client="_MsrBIN4IEeOzcIyBQCrmuw" supplier="_AyXnwN4HEeOzcIyBQCrmuw"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_VGnZYN-OEeOI3dL5qIQWDg" client="_-KAeYN4GEeOzcIyBQCrmuw" supplier="_AyXnwN4HEeOzcIyBQCrmuw"/>
+  <packagedElement xmi:type="uml:Usage" xmi:id="_oMRwwN-QEeOI3dL5qIQWDg" client="_MsrBIN4IEeOzcIyBQCrmuw" supplier="_mUD88N4GEeOzcIyBQCrmuw"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_u6HhwN-QEeOI3dL5qIQWDg" name="unitOfMeasureModelsToUnitOfMeasures" memberEnd="_u6II0N-QEeOI3dL5qIQWDg _u6KlEN-QEeOI3dL5qIQWDg" navigableOwnedEnd="_u6KlEN-QEeOI3dL5qIQWDg">
+    <ownedEnd xmi:id="_u6II0N-QEeOI3dL5qIQWDg" name="unitOfMeasureModels" type="_MsrBIN4IEeOzcIyBQCrmuw" association="_u6HhwN-QEeOI3dL5qIQWDg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_u6Iv4N-QEeOI3dL5qIQWDg"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_u6JW8N-QEeOI3dL5qIQWDg" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_u6KlEN-QEeOI3dL5qIQWDg" name="unitOfMeasures" type="_evNrcN4GEeOzcIyBQCrmuw" association="_u6HhwN-QEeOI3dL5qIQWDg">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_u6LMIN-QEeOI3dL5qIQWDg" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_u6LzMN-QEeOI3dL5qIQWDg" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_UFHXoOEkEeOFKNA1I5oJjw" name="&lt;&lt;event>>" client="_AyXnwN4HEeOzcIyBQCrmuw" supplier="_-KAeYN4GEeOzcIyBQCrmuw"/>
 </uml:Model>

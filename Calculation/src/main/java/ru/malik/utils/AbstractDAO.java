@@ -113,5 +113,26 @@ public class AbstractDAO<T> implements InterfaceDAO<T> {
 			}
 		}
 	}
+	
+	public void saveOrUpdate(T obj) throws SQLException {
+		Session session = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			Transaction tr = session.beginTransaction();
+			try {
+				session.saveOrUpdate(obj);
+				tr.commit();
+			} catch (Exception e) {
+				tr.rollback();
+				e.printStackTrace();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+	}
 
 }

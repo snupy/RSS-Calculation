@@ -22,5 +22,5 @@
  * 
  * @author ?????
  */
-package ru.malik.economics.model;
+package ru.malik.rss.Calculation.entity;
 

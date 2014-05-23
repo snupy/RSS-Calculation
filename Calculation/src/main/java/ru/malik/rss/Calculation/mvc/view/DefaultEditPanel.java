@@ -19,10 +19,11 @@ import javax.swing.JToolBar;
 
 import ru.malik.rss.Calculation.mvc.Cancelable;
 import ru.malik.rss.Calculation.mvc.Editable;
+import ru.malik.rss.Calculation.mvc.events.SaveEventObject;
 import ru.malik.rss.Calculation.mvc.events.listners.CancelEventListener;
 import ru.malik.rss.Calculation.mvc.events.listners.SaveEventListener;
 
-public class DefaultEditPanel<T extends Component> extends AbstractDialogPanel
+public abstract class DefaultEditPanel<T extends  Component&ModelView> extends AbstractDialogPanel
 		implements Editable, Cancelable, HasModelView<T> {
 
 	private T modelView;
@@ -45,10 +46,7 @@ public class DefaultEditPanel<T extends Component> extends AbstractDialogPanel
 			cancel();
 		}
 	};
-
-	/**
-	 * Create the panel.
-	 */
+	public abstract Object getModel();
 	public DefaultEditPanel() {
 		setLayout(new BorderLayout(0, 0));
 
@@ -81,11 +79,11 @@ public class DefaultEditPanel<T extends Component> extends AbstractDialogPanel
 	}
 
 	public void save() {
-		saveAnnouncer.announce().save(new EventObject(this));
+		saveAnnouncer.announce().after(new SaveEventObject(this, getModel()));
 	}
 
 	public void cancel() {
-		cancelAnnouncer.announce().cancel(new EventObject(this));
+		cancelAnnouncer.announce().after(new EventObject(this));
 	}
 
 	public void removeCancelListener(CancelEventListener listener) {

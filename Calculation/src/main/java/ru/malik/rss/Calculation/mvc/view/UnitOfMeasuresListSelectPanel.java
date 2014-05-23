@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 
-import ru.malik.economics.model.UnitOfMeasure;
-import ru.malik.economics.model.UnitOfMeasureList;
+import ru.malik.rss.Calculation.entity.UnitOfMeasure;
+import ru.malik.rss.Calculation.entity.UnitOfMeasureList;
 import ru.malik.rss.Calculation.mvc.events.listners.CancelEventListener;
 import ru.malik.rss.Calculation.mvc.events.listners.SaveEventListener;
 import ru.malik.rss.Calculation.mvc.events.listners.SelectEventListener;

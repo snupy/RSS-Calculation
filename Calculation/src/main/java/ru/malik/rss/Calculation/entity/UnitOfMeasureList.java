@@ -1,4 +1,4 @@
-package ru.malik.economics.model;
+package ru.malik.rss.Calculation.entity;
 
 import java.util.ArrayList;
 import java.util.Collection;

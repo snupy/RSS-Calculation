@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.EventListener;
 import java.util.EventObject;
 
-public interface SaveEventListener extends EventListener{
-	public void save(EventObject event);
+import ru.malik.rss.Calculation.mvc.events.SaveEventObject;
+
+public interface SaveEventListener extends MyEventListener<SaveEventObject>{
 }
