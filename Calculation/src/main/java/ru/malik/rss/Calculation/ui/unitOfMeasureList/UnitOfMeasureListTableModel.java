@@ -1,4 +1,4 @@
-package ru.malik.rss.Calculation.ui.unitFoMeasureList;
+package ru.malik.rss.Calculation.ui.unitOfMeasureList;
 
 import java.util.ArrayList;
 import java.util.List;

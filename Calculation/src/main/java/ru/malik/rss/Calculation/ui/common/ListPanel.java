@@ -19,10 +19,12 @@ import java.awt.FlowLayout;
 import javax.swing.JTextField;
 
 import java.awt.Container;
+import java.awt.Desktop.Action;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.net.URL;
+import java.rmi.activation.ActivationGroupDesc.CommandEnvironment;
 import java.util.ArrayList;
 
 import javax.swing.border.CompoundBorder;
@@ -45,11 +47,12 @@ import javax.swing.JMenuItem;
 
 public class ListPanel extends JPanel {
 
-	public static final String COMMAND_NAME_ADD_ITEM = "ADD_ITEM",
+	public enum ActionCommands {ADD_ITEM, REMOVE_ITEM, NEXT_ITEM, PREVIOUS_ITEM, EDIT_ITEM};
+	/*public static final String COMMAND_NAME_ADD_ITEM = "ADD_ITEM",
 			COMMAND_NAME_REMOVE_ITEM = "REMOVE_ITEM",
 			COMMAND_NAME_NEXT_ITEM = "NEXT_ITEM",
-			COMMAND_NAME_PREVIOUS_ITEM = "PREVIOUS_ITEM",
-			COMMAND_NAME_EDIT_ITEM = "EDIT_ITEM";
+			COMMAND_NAME_PREVIOUS_ITEM = "",
+			COMMAND_NAME_EDIT_ITEM = "EDIT_ITEM";*/
 
 	private JTextField textFieldRowNumber;
 	private JTextField textFieldRowsCount;
@@ -87,27 +90,27 @@ public class ListPanel extends JPanel {
 		// TODO тут надо проработать моменты с кнопками
 
 		JButton btnAddItem = makeNavigationButton("/images/24_24/addItem.png",
-				COMMAND_NAME_ADD_ITEM, "Добавить запись", "Добавить",
+				ActionCommands.ADD_ITEM.name(), "Добавить запись", "Добавить",
 				actionListener);
 		toolBar.add(btnAddItem);
 
 		JButton btnRemoveItem = makeNavigationButton(
-				"/images/24_24/removeItem.png", COMMAND_NAME_REMOVE_ITEM,
+				"/images/24_24/removeItem.png", ActionCommands.REMOVE_ITEM.name(),
 				"Удалить запись", "Удалить", actionListener);
 		toolBar.add(btnRemoveItem);
 
 		JButton btnPreviousItem = makeNavigationButton(
-				"/images/24_24/previousItem.png", COMMAND_NAME_PREVIOUS_ITEM,
+				"/images/24_24/previousItem.png", ActionCommands.PREVIOUS_ITEM.name(),
 				"Перейти к прдъидущей записи", "предъидущий", actionListener);
 		toolBar.add(btnPreviousItem);
 
 		JButton btnNextItem = makeNavigationButton(
-				"/images/24_24/nextItem.png", COMMAND_NAME_NEXT_ITEM,
+				"/images/24_24/nextItem.png", ActionCommands.NEXT_ITEM.name(),
 				"Перейти к следующей записи", "следующий", actionListener);
 		toolBar.add(btnNextItem);
 
 		JButton btnEditItem = makeNavigationButton(
-				"/images/24_24/editItem.png", COMMAND_NAME_EDIT_ITEM,
+				"/images/24_24/editItem.png", ActionCommands.EDIT_ITEM.name(),
 				"Редактировать запись", "редактировать", actionListener);
 		toolBar.add(btnEditItem);
 
@@ -178,19 +181,19 @@ public class ListPanel extends JPanel {
 		popupMenu = new JPopupMenu();
 		
 		popupMenu.add(makeNavigationMenuItem("/images/24_24/addItem.png",
-				COMMAND_NAME_ADD_ITEM, "Добавить запись", "Добавить",
+				ActionCommands.ADD_ITEM.name(), "Добавить запись", "Добавить",
 				actionListener));
 		popupMenu.add(makeNavigationMenuItem("/images/24_24/removeItem.png",
-				COMMAND_NAME_REMOVE_ITEM, "Удалить запись", "Удалить",
+				ActionCommands.REMOVE_ITEM.name(), "Удалить запись", "Удалить",
 				actionListener));
 		popupMenu.add(makeNavigationMenuItem("/images/24_24/previousItem.png",
-				COMMAND_NAME_PREVIOUS_ITEM, "Перейти к прдъидущей записи",
+				ActionCommands.PREVIOUS_ITEM.name(), "Перейти к прдъидущей записи",
 				"предъидущий", actionListener));
 		popupMenu.add(makeNavigationMenuItem("/images/24_24/nextItem.png",
-				COMMAND_NAME_NEXT_ITEM, "Перейти к следующей записи",
+				ActionCommands.NEXT_ITEM.name(), "Перейти к следующей записи",
 				"следующий", actionListener));
 		popupMenu.add(makeNavigationMenuItem("/images/24_24/editItem.png",
-				COMMAND_NAME_EDIT_ITEM, "Редактировать запись",
+				ActionCommands.EDIT_ITEM.name(), "Редактировать запись",
 				"редактировать", actionListener));
 
 		addPopup(centralPanel, getPopupMenu());
