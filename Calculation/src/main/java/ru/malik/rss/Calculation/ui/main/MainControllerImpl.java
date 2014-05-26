@@ -2,12 +2,24 @@ package ru.malik.rss.Calculation.ui.main;
 
 import java.awt.Container;
 import java.beans.PropertyChangeEvent;
+import java.sql.SQLException;
 
 import javax.swing.JInternalFrame;
 
+import ru.malik.rss.Calculation.entity.UnitOfMeasureList;
+import ru.malik.rss.Calculation.entity.UnitOfMeasuresList;
 import ru.malik.rss.Calculation.ui.calculationRegister.CalcultaionRegisterViewImpl;
 import ru.malik.rss.Calculation.ui.mvc.ControllerImpl;
 import ru.malik.rss.Calculation.ui.mvc.View;
+import ru.malik.rss.Calculation.ui.test.UnitOfMesauresListView;
+import ru.malik.rss.Calculation.ui.unitFoMeasureList.UnitOfMeasureListController;
+import ru.malik.rss.Calculation.ui.unitFoMeasureList.UnitOfMeasureListControllerImpl;
+import ru.malik.rss.Calculation.ui.unitFoMeasureList.UnitOfMeasureListModel;
+import ru.malik.rss.Calculation.ui.unitFoMeasureList.UnitOfMeasureListModelImpl;
+import ru.malik.rss.Calculation.ui.unitFoMeasureList.UnitOfMeasureListTableModel;
+import ru.malik.rss.Calculation.ui.unitFoMeasureList.UnitOfMeasureListView;
+import ru.malik.rss.Calculation.ui.unitFoMeasureList.UnitOfMeasureListViewImpl;
+import ru.malik.utils.UnitOfMeasureDAO;
 
 public class MainControllerImpl extends ControllerImpl<MainModel, MainView>
 		implements MainController {
@@ -44,4 +56,30 @@ public class MainControllerImpl extends ControllerImpl<MainModel, MainView>
 		return null;
 	}
 
+	public View<?> openUnitOfMeasureList(View<?> view, Container container) {
+
+		// TODO нужно переделать
+		UnitOfMeasureListViewImpl unitOfMeasureListView = new UnitOfMeasureListViewImpl();
+		int count = container.getComponentCount();
+		unitOfMeasureListView.setLocation(count * 50, count * 50);
+		container.add(unitOfMeasureListView);
+		unitOfMeasureListView.setVisible(true);
+
+		UnitOfMeasureListModel model = new UnitOfMeasureListModelImpl();
+
+		UnitOfMeasureListController controller = new UnitOfMeasureListControllerImpl();
+		controller.addView(unitOfMeasureListView);
+		controller.setModel(model);
+
+		try {
+			model.setUnitOfMeasureListTableModel(new UnitOfMeasureListTableModel(
+					UnitOfMeasureDAO.getInstance()
+							.getAll()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return view;
+	}
 }

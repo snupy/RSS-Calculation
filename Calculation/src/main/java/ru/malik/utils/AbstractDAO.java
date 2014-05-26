@@ -82,6 +82,7 @@ public class AbstractDAO<T> implements InterfaceDAO<T> {
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
 			resList = session.createCriteria(tClass).list();
+
 		} catch (Exception e) {
 
 			e.printStackTrace();
@@ -113,7 +114,7 @@ public class AbstractDAO<T> implements InterfaceDAO<T> {
 			}
 		}
 	}
-	
+
 	public void saveOrUpdate(T obj) throws SQLException {
 		Session session = null;
 		try {

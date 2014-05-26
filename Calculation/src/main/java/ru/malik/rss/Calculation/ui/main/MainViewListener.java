@@ -7,4 +7,6 @@ import ru.malik.rss.Calculation.ui.mvc.ViewListener;
 
 public interface MainViewListener extends ViewListener {
 	public View<?> openCalculationRegister(View<?> view, Container container);
+
+	public abstract View<?> openUnitOfMeasureList(View<?> view, Container container);
 }

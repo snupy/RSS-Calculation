@@ -23,6 +23,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -35,6 +36,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JPopupMenu;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -51,6 +54,9 @@ public class ListPanel extends JPanel {
 	private JTextField textFieldRowNumber;
 	private JTextField textFieldRowsCount;
 	private JPanel centralPanel;
+	private JPopupMenu popupMenu;
+
+	private final ArrayList<ActionListener> actionListeners = new ArrayList<ActionListener>();
 
 	/**
 	 * @wbp.nonvisual location=2,329
@@ -81,27 +87,28 @@ public class ListPanel extends JPanel {
 		// TODO тут надо проработать моменты с кнопками
 
 		JButton btnAddItem = makeNavigationButton("/images/24_24/addItem.png",
-				COMMAND_NAME_ADD_ITEM, "Добавить запись", "Добавить");
+				COMMAND_NAME_ADD_ITEM, "Добавить запись", "Добавить",
+				actionListener);
 		toolBar.add(btnAddItem);
 
 		JButton btnRemoveItem = makeNavigationButton(
 				"/images/24_24/removeItem.png", COMMAND_NAME_REMOVE_ITEM,
-				"Удалить запись", "Удалить");
+				"Удалить запись", "Удалить", actionListener);
 		toolBar.add(btnRemoveItem);
 
 		JButton btnPreviousItem = makeNavigationButton(
 				"/images/24_24/previousItem.png", COMMAND_NAME_PREVIOUS_ITEM,
-				"Перейти к прдъидущей записи", "предъидущий");
+				"Перейти к прдъидущей записи", "предъидущий", actionListener);
 		toolBar.add(btnPreviousItem);
 
 		JButton btnNextItem = makeNavigationButton(
 				"/images/24_24/nextItem.png", COMMAND_NAME_NEXT_ITEM,
-				"Перейти к следующей записи", "следующий");
+				"Перейти к следующей записи", "следующий", actionListener);
 		toolBar.add(btnNextItem);
 
 		JButton btnEditItem = makeNavigationButton(
-				"/images/24_24/editItem.png", COMMAND_NAME_EDIT_ITEM, "Редактировать запись",
-				"редактировать");
+				"/images/24_24/editItem.png", COMMAND_NAME_EDIT_ITEM,
+				"Редактировать запись", "редактировать", actionListener);
 		toolBar.add(btnEditItem);
 
 		JPanel panel = new JPanel();
@@ -167,8 +174,38 @@ public class ListPanel extends JPanel {
 
 		centralPanel = new JPanel();
 		add(centralPanel, BorderLayout.CENTER);
+
+		popupMenu = new JPopupMenu();
+		
+		popupMenu.add(makeNavigationMenuItem("/images/24_24/addItem.png",
+				COMMAND_NAME_ADD_ITEM, "Добавить запись", "Добавить",
+				actionListener));
+		popupMenu.add(makeNavigationMenuItem("/images/24_24/removeItem.png",
+				COMMAND_NAME_REMOVE_ITEM, "Удалить запись", "Удалить",
+				actionListener));
+		popupMenu.add(makeNavigationMenuItem("/images/24_24/previousItem.png",
+				COMMAND_NAME_PREVIOUS_ITEM, "Перейти к прдъидущей записи",
+				"предъидущий", actionListener));
+		popupMenu.add(makeNavigationMenuItem("/images/24_24/nextItem.png",
+				COMMAND_NAME_NEXT_ITEM, "Перейти к следующей записи",
+				"следующий", actionListener));
+		popupMenu.add(makeNavigationMenuItem("/images/24_24/editItem.png",
+				COMMAND_NAME_EDIT_ITEM, "Редактировать запись",
+				"редактировать", actionListener));
+
+		addPopup(centralPanel, getPopupMenu());
 		centralPanel.setLayout(new BoxLayout(centralPanel, BoxLayout.X_AXIS));
 
+	}
+
+	
+	
+	public JPopupMenu getPopupMenu() {
+		return popupMenu;
+	}
+
+	public void setPopupMenu(JPopupMenu popupMenu) {
+		this.popupMenu = popupMenu;
 	}
 
 	public Container getContainer() {
@@ -176,12 +213,14 @@ public class ListPanel extends JPanel {
 	}
 
 	protected JButton makeNavigationButton(String imageName,
-			String actionCommand, String toolTipText, String altText) {
+			String actionCommand, String toolTipText, String altText,
+			ActionListener actionListener) {
 
 		String imgLocation = imageName;
 		URL imageURL = getClass().getResource(imgLocation);
 
 		JButton button = new JButton();
+		button.addActionListener(actionListener);
 		button.setActionCommand(actionCommand);
 		button.setToolTipText(toolTipText);
 
@@ -194,11 +233,69 @@ public class ListPanel extends JPanel {
 		return button;
 	}
 
+	protected JMenuItem makeNavigationMenuItem(String imageName,
+			String actionCommand, String toolTipText, String altText,
+			ActionListener actionListener) {
+
+		String imgLocation = imageName;
+		URL imageURL = getClass().getResource(imgLocation);
+
+		JMenuItem menuItem = new JMenuItem();
+		menuItem.addActionListener(actionListener);
+		menuItem.setActionCommand(actionCommand);
+		menuItem.setToolTipText(toolTipText);
+
+		if (imageURL != null) { // image found
+			menuItem.setIcon(new ImageIcon(imageURL, altText));
+		} else { // no image found
+			menuItem.setText(altText);
+			System.err.println("Resource not found: " + imgLocation);
+		}
+		return menuItem;
+	}
+
 	public void setRowsCount(int count) {
 		textFieldRowsCount.setText(String.valueOf(count));
 	}
 
 	public void setChangedRowIndex(int index) {
 		textFieldRowNumber.setText(String.valueOf(index));
+	}
+
+	public void addActionListner(ActionListener actionListener) {
+		actionListeners.add(actionListener);
+	}
+
+	public void removeActionListner(ActionListener actionListener) {
+		actionListeners.remove(actionListener);
+	}
+
+	private ActionListener actionListener = new ActionListener() {
+
+		public void actionPerformed(ActionEvent evt) {
+			for (ActionListener listener : actionListeners) {
+				listener.actionPerformed(evt);
+			}
+		}
+	};
+
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }

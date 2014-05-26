@@ -109,6 +109,18 @@ public class MainViewImpl extends JFrame implements MainView {
 			}
 		});
 		mnNewMenu_1.add(mntmNewMenuItem);
+		
+		mnNewMenu_1 = new JMenu("Справочники");
+		menuBar.add(mnNewMenu_1);
+		
+		mntmNewMenuItem = new JMenuItem("Единицы измерения");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openUnitOfMeasureList();
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -122,15 +134,6 @@ public class MainViewImpl extends JFrame implements MainView {
 
 		desktopPane = new JDesktopPane();
 		splitPane.setRightComponent(desktopPane);
-
-		JInternalFrame internalFrame = new JInternalFrame("New JInternalFrame");
-		internalFrame.setIconifiable(true);
-		internalFrame.setResizable(true);
-		internalFrame.setMaximizable(true);
-		internalFrame.setClosable(true);
-		internalFrame.setBounds(31, 66, 202, 93);
-		desktopPane.add(internalFrame);
-		internalFrame.setVisible(true);
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
@@ -220,6 +223,12 @@ public class MainViewImpl extends JFrame implements MainView {
 	public void openCalculationRegister() {
 		for (MainViewListener listener : viewListeners) {
 			listener.openCalculationRegister(this, desktopPane);
+		}
+	}
+	
+	public void openUnitOfMeasureList() {
+		for (MainViewListener listener : viewListeners) {
+			listener.openUnitOfMeasureList(this, desktopPane);
 		}
 	}
 
