@@ -1,5 +1,9 @@
 package ru.malik.rss.Calculation.ui.unitOfMeasure;
 
-public interface UnitOfMeasureController{
+import ru.malik.rss.Calculation.ui.mvc.Controller;
 
+public interface UnitOfMeasureController extends
+		Controller<UnitOfMeasureModel, UnitOfMeasureView>, UnitOfMeasureViewListener {
+	public void closeView(UnitOfMeasureView unitOfMeasureView);
+	public void saveModel();
 }

@@ -17,6 +17,8 @@ public class UnitOfMeasure implements Cloneable{
 	 * Description of the property name.
 	 */
 	private String name = "";
+	private String shortName = "";
+	private String codeOKEI = "";
 	
 	/**
 	 * Description of the property id.
@@ -69,6 +71,24 @@ public class UnitOfMeasure implements Cloneable{
 	 */
 	public void setId(Long newId) {
 	    this.id = newId;
+	}
+	
+	
+
+	public String getShortName() {
+		return shortName;
+	}
+
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
+
+	public String getCodeOKEI() {
+		return codeOKEI;
+	}
+
+	public void setCodeOKEI(String codeOKEI) {
+		this.codeOKEI = codeOKEI;
 	}
 
 	@Override

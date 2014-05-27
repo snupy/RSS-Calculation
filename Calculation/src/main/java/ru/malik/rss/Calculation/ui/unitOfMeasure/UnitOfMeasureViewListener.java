@@ -1,5 +1,8 @@
 package ru.malik.rss.Calculation.ui.unitOfMeasure;
 
-public interface UnitOfMeasureViewListener {
+import ru.malik.rss.Calculation.ui.mvc.ViewListener;
 
+public interface UnitOfMeasureViewListener extends ViewListener{
+	public void sendSave(UnitOfMeasureView unitOfMeasureView);
+	public void sendClose(UnitOfMeasureView unitOfMeasureView);
 }
