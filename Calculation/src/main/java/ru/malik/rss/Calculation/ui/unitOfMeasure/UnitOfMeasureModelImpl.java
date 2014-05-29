@@ -48,4 +48,6 @@ public class UnitOfMeasureModelImpl extends
 		return unitOfMeasure;
 	}
 
+	
+	
 }

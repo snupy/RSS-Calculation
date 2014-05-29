@@ -193,7 +193,7 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 		try {
 			setClosed(true);
 		} catch (PropertyVetoException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	}

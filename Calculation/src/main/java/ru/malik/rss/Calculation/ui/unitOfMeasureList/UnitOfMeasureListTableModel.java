@@ -54,4 +54,8 @@ public class UnitOfMeasureListTableModel extends AbstractTableModel {
 		super();
 		this.unitOfMeasuresList = unitOfMeasuresList;
 	}
+	
+	public UnitOfMeasure getUnitOfMeasureAt(int rowIndex){
+		return unitOfMeasuresList.get(rowIndex);
+	}
 }

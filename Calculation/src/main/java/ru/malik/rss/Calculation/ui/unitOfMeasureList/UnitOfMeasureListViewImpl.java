@@ -1,6 +1,8 @@
 package ru.malik.rss.Calculation.ui.unitOfMeasureList;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -48,6 +50,16 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 
 	public void initComponents() {
 		listPanel = new ListPanel();
+
+		listPanel.addActionListner(new ActionListener() {
+
+			public void actionPerformed(ActionEvent evt) {
+				if (evt.getActionCommand() == ListPanel.ActionCommands.EDIT_ITEM.name()) {
+					System.out.println("HI");
+				}
+			}
+		});
+
 		setContentPane(listPanel);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -85,4 +97,5 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 	public void setItemCount(int count) {
 		listPanel.setRowsCount(count);
 	}
+
 }
