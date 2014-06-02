@@ -14,4 +14,18 @@
 			</network-handler>
 		</connection>
 	</data-source>
+	<data-source id="postgresql-1401547265424--2113690816" provider="generic" driver="postgresql" name="PostgreSQL - CalculationDB" create-date="1401547325267" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="5432" server="" database="CalculationDB" url="jdbc:postgresql://localhost:5432/CalculationDB" user="postgres" password="SlxfcRcTF0dl8w==" type="dev">
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" user="" save-password="false">
+				<property name="port" value="22"/>
+				<property name="host" value=""/>
+				<property name="keyPath" value=""/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" user="" save-password="false">
+				<property name="socks-host" value=""/>
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+		</connection>
+	</data-source>
 </data-sources>

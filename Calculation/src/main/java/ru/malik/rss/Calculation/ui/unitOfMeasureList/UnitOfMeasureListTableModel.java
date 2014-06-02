@@ -43,9 +43,9 @@ public class UnitOfMeasureListTableModel extends AbstractTableModel {
 		case 0:
 			return unitOfMeasure.getName();
 		case 1:
-			return unitOfMeasure.getName();	
-		case 3:
-			return unitOfMeasure.getName();
+			return unitOfMeasure.getShortName();	
+		case 2:
+			return unitOfMeasure.getCodeOKEI();
 		}
 		return null;
 	}

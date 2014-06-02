@@ -29,14 +29,15 @@ public class UnitOfMeasureControllerImpl extends
 
 	public void closeView(UnitOfMeasureView unitOfMeasureView) {
 		unitOfMeasureView.close();
+		getModel().refresh();
 	}
 
-	public void sendSave(UnitOfMeasureView unitOfMeasureView) {
+	public void save(UnitOfMeasureView unitOfMeasureView) {
 		saveModel();
-		unitOfMeasureView.close();
+		closeView(unitOfMeasureView);
 	}
 
-	public void sendClose(UnitOfMeasureView unitOfMeasureView) {
+	public void close(UnitOfMeasureView unitOfMeasureView) {
 		closeView(unitOfMeasureView);
 	}
 

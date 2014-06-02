@@ -30,7 +30,7 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 		UnitOfMeasureView {
 	private UnitOfMeasure unitOfMeasure;
 	private EditPanel editPanel;
-	private BindingGroup bindingGroup = new BindingGroup();
+	private BindingGroup bindingGroup;
 
 	public UnitOfMeasureViewImpl() {
 		init();
@@ -70,13 +70,14 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 
 	public void sendSave() {
 		for (UnitOfMeasureViewListener viewListener : viewListeners) {
-			viewListener.sendSave(this);
+			viewListener.save(this);
 		}
 	}
 
 	public void sendClose() {
+		
 		for (UnitOfMeasureViewListener viewListener : viewListeners) {
-			viewListener.sendClose(this);
+			viewListener.close(this);
 		}
 	}
 
@@ -138,14 +139,19 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 		gbc_textField_2.gridy = 2;
 		editPanel.getContainerPanel().add(textField_2, gbc_textField_2);
 		textField_2.setColumns(10);
-		initDataBindings();
+		createDataBindings();
 	}
 
 	public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
 		if (this.unitOfMeasure != unitOfMeasure) {
 			this.unitOfMeasure = unitOfMeasure;
+			if (bindingGroup != null) {
+				bindingGroup.unbind();
+			}
 			if (this.unitOfMeasure != null) {
+				bindingGroup = createDataBindings();
 				bindingGroup.bind();
+				
 			}
 		}
 	}
@@ -154,39 +160,40 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 		return this.unitOfMeasure;
 	}
 
-	protected void initDataBindings() {
+	protected BindingGroup createDataBindings() {
+		BindingGroup resultBindingGroup = new BindingGroup();
 		BeanProperty<UnitOfMeasure, String> unitOfMeasureBeanProperty = BeanProperty
 				.create("name");
 		BeanProperty<JTextField, String> jTextFieldBeanProperty = BeanProperty
 				.create("text");
 		AutoBinding<UnitOfMeasure, String, JTextField, String> autoBinding = Bindings
-				.createAutoBinding(UpdateStrategy.READ, unitOfMeasure,
+				.createAutoBinding(UpdateStrategy.READ_WRITE, unitOfMeasure,
 						unitOfMeasureBeanProperty, textField,
 						jTextFieldBeanProperty, "unitOfMeasureNameBind");
-		bindingGroup.addBinding(autoBinding);
-		autoBinding.bind();
-		//
+		resultBindingGroup.addBinding(autoBinding);
+		
+
 		BeanProperty<UnitOfMeasure, String> unitOfMeasureBeanProperty_1 = BeanProperty
 				.create("shortName");
 		BeanProperty<JTextField, String> jTextFieldBeanProperty_1 = BeanProperty
 				.create("text");
 		AutoBinding<UnitOfMeasure, String, JTextField, String> autoBinding_1 = Bindings
-				.createAutoBinding(UpdateStrategy.READ, unitOfMeasure,
+				.createAutoBinding(UpdateStrategy.READ_WRITE, unitOfMeasure,
 						unitOfMeasureBeanProperty_1, textField_1,
 						jTextFieldBeanProperty_1);
-		bindingGroup.addBinding(autoBinding_1);
-		autoBinding_1.bind();
-		//
+		resultBindingGroup.addBinding(autoBinding_1);
+
 		BeanProperty<UnitOfMeasure, String> unitOfMeasureBeanProperty_2 = BeanProperty
 				.create("codeOKEI");
 		BeanProperty<JTextField, String> jTextFieldBeanProperty_2 = BeanProperty
 				.create("text");
 		AutoBinding<UnitOfMeasure, String, JTextField, String> autoBinding_2 = Bindings
-				.createAutoBinding(UpdateStrategy.READ, unitOfMeasure,
+				.createAutoBinding(UpdateStrategy.READ_WRITE, unitOfMeasure,
 						unitOfMeasureBeanProperty_2, textField_2,
 						jTextFieldBeanProperty_2);
-		bindingGroup.addBinding(autoBinding_2);
-		autoBinding_2.bind();
+		resultBindingGroup.addBinding(autoBinding_2);
+		
+		return resultBindingGroup;
 	}
 
 	public void close() {

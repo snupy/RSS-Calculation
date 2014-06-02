@@ -44,10 +44,16 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 		setResizable(true);
 		setClosable(true);
 
-		setSize(minimumDimension);
+		setSize(new Dimension(416, 233));
 		setMinimumSize(minimumDimension);
 	}
 
+	public void sendEditUnitOfMeasure(){
+		for (UnitOfMeasureListViewListener listener : unitOfMeasureListViewListeners) {
+			listener.editUnitOfMeasure(getUnitOfMeasureListTableModel().getUnitOfMeasureAt(table.getSelectedRow()), this);
+		}
+	}
+	
 	public void initComponents() {
 		listPanel = new ListPanel();
 
@@ -55,7 +61,7 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 
 			public void actionPerformed(ActionEvent evt) {
 				if (evt.getActionCommand() == ListPanel.ActionCommands.EDIT_ITEM.name()) {
-					System.out.println("HI");
+					sendEditUnitOfMeasure();
 				}
 			}
 		});
