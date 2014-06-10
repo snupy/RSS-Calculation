@@ -30,7 +30,14 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 		UnitOfMeasureView {
 	private UnitOfMeasure unitOfMeasure;
 	private EditPanel editPanel;
+
 	private BindingGroup bindingGroup;
+	private BeanProperty<JTextField, String> jTextFieldBeanProperty = BeanProperty
+			.create("text");
+	private BeanProperty<JTextField, String> jTextFieldBeanProperty_1 = BeanProperty
+			.create("text");
+	private BeanProperty<JTextField, String> jTextFieldBeanProperty_2 = BeanProperty
+			.create("text");
 
 	public UnitOfMeasureViewImpl() {
 		init();
@@ -75,10 +82,11 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 	}
 
 	public void sendClose() {
-		
+
 		for (UnitOfMeasureViewListener viewListener : viewListeners) {
 			viewListener.close(this);
 		}
+
 	}
 
 	public void initComponents() {
@@ -147,11 +155,13 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 			this.unitOfMeasure = unitOfMeasure;
 			if (bindingGroup != null) {
 				bindingGroup.unbind();
+				bindingGroup = null;
 			}
 			if (this.unitOfMeasure != null) {
 				bindingGroup = createDataBindings();
-				bindingGroup.bind();
 				
+				bindingGroup.bind();
+
 			}
 		}
 	}
@@ -164,19 +174,16 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 		BindingGroup resultBindingGroup = new BindingGroup();
 		BeanProperty<UnitOfMeasure, String> unitOfMeasureBeanProperty = BeanProperty
 				.create("name");
-		BeanProperty<JTextField, String> jTextFieldBeanProperty = BeanProperty
-				.create("text");
+
 		AutoBinding<UnitOfMeasure, String, JTextField, String> autoBinding = Bindings
 				.createAutoBinding(UpdateStrategy.READ_WRITE, unitOfMeasure,
 						unitOfMeasureBeanProperty, textField,
 						jTextFieldBeanProperty, "unitOfMeasureNameBind");
 		resultBindingGroup.addBinding(autoBinding);
-		
 
 		BeanProperty<UnitOfMeasure, String> unitOfMeasureBeanProperty_1 = BeanProperty
 				.create("shortName");
-		BeanProperty<JTextField, String> jTextFieldBeanProperty_1 = BeanProperty
-				.create("text");
+
 		AutoBinding<UnitOfMeasure, String, JTextField, String> autoBinding_1 = Bindings
 				.createAutoBinding(UpdateStrategy.READ_WRITE, unitOfMeasure,
 						unitOfMeasureBeanProperty_1, textField_1,
@@ -185,14 +192,13 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 
 		BeanProperty<UnitOfMeasure, String> unitOfMeasureBeanProperty_2 = BeanProperty
 				.create("codeOKEI");
-		BeanProperty<JTextField, String> jTextFieldBeanProperty_2 = BeanProperty
-				.create("text");
+
 		AutoBinding<UnitOfMeasure, String, JTextField, String> autoBinding_2 = Bindings
 				.createAutoBinding(UpdateStrategy.READ_WRITE, unitOfMeasure,
 						unitOfMeasureBeanProperty_2, textField_2,
 						jTextFieldBeanProperty_2);
 		resultBindingGroup.addBinding(autoBinding_2);
-		
+
 		return resultBindingGroup;
 	}
 

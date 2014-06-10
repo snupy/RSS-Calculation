@@ -25,8 +25,12 @@ public class UnitOfMeasureModelImpl extends
 	public void refresh() {
 		if (unitOfMeasure != null) {
 			try {
-				setUnitOfMesaure(UnitOfMeasureDAO.getInstance().getById(
-						unitOfMeasure.getId()));
+				/*UnitOfMeasure f = UnitOfMeasureDAO.getInstance().getById(
+						unitOfMeasure.getId());
+				f.setName("sdsd");
+				setUnitOfMesaure(f);*/
+				
+				UnitOfMeasureDAO.getInstance().refresh(unitOfMeasure);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -48,6 +52,4 @@ public class UnitOfMeasureModelImpl extends
 		return unitOfMeasure;
 	}
 
-	
-	
 }

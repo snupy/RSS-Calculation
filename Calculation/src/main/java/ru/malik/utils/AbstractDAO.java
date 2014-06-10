@@ -76,6 +76,23 @@ public class AbstractDAO<T> implements InterfaceDAO<T> {
 	}
 
 	@SuppressWarnings("unchecked")
+	public void refresh(T obj) throws SQLException {
+		T res = null;
+		Session session = null;
+		try {
+			session = HibernateUtil.getSessionFactory().openSession();
+			session.refresh(obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (session != null && session.isOpen()) {
+				session.close();
+			}
+		}
+
+	}
+
+	@SuppressWarnings("unchecked")
 	public List<T> getAll() throws SQLException {
 		Session session = null;
 		List<T> resList = new ArrayList<T>();
