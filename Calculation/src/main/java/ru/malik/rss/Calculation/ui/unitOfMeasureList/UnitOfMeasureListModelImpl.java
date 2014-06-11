@@ -44,5 +44,9 @@ public class UnitOfMeasureListModelImpl extends
 		unitOfMeasureController.addView(unitOfMeasureView);
 	}
 	
+	public void addUnitOfMeasure(){
+		UnitOfMeasure unitOfMeasure = new UnitOfMeasure();
+		editUnitOfMeasure(unitOfMeasure);
+	}
 	
 }

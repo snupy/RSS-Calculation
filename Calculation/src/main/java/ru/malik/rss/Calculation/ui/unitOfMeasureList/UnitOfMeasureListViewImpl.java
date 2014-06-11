@@ -30,11 +30,11 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 
 	private final ArrayList<UnitOfMeasureListViewListener> unitOfMeasureListViewListeners = new ArrayList<UnitOfMeasureListViewListener>();
 
-	public void addViewListner(UnitOfMeasureListViewListener listener) {
+	public void addViewListener(UnitOfMeasureListViewListener listener) {
 		unitOfMeasureListViewListeners.add(listener);
 	}
 
-	public void removeViewListner(UnitOfMeasureListViewListener listener) {
+	public void removeViewListener(UnitOfMeasureListViewListener listener) {
 		unitOfMeasureListViewListeners.remove(listener);
 	}
 
@@ -54,6 +54,12 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 		}
 	}
 	
+	public void sendAddUnitOfMeasure(){
+		for (UnitOfMeasureListViewListener listener : unitOfMeasureListViewListeners) {
+			listener.addUnitOfMeasure(this);
+		}
+	}
+	
 	public void initComponents() {
 		listPanel = new ListPanel();
 
@@ -62,7 +68,9 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 			public void actionPerformed(ActionEvent evt) {
 				if (evt.getActionCommand() == ListPanel.ActionCommands.EDIT_ITEM.name()) {
 					sendEditUnitOfMeasure();
-				}
+				} else if(evt.getActionCommand() == ListPanel.ActionCommands.ADD_ITEM.name()){
+					sendAddUnitOfMeasure();
+				} 
 			}
 		});
 
@@ -77,7 +85,7 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getButton() == e.BUTTON2) {
+				if (e.getButton() == e.BUTTON3) {
 					listPanel.getPopupMenu().show(e.getComponent(), e.getX(),
 							e.getY());
 				}

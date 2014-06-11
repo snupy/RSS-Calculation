@@ -49,11 +49,11 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 	private JTextField textField_1;
 	private JTextField textField_2;
 
-	public void addViewListner(UnitOfMeasureViewListener listener) {
+	public void addViewListener(UnitOfMeasureViewListener listener) {
 		viewListeners.add(listener);
 	}
 
-	public void removeViewListner(UnitOfMeasureViewListener listener) {
+	public void removeViewListener(UnitOfMeasureViewListener listener) {
 		viewListeners.remove(listener);
 	}
 
@@ -115,7 +115,7 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 		editPanel.getContainerPanel().add(textField, gbc_textField);
 		textField.setColumns(10);
 
-		JLabel lblNewLabel_1 = new JLabel("Короткое наименование");
+		JLabel lblNewLabel_1 = new JLabel("Краткое наименование");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
 		gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);

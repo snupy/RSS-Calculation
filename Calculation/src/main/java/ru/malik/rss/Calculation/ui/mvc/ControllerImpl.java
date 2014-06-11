@@ -23,12 +23,12 @@ public abstract class ControllerImpl<M extends Model, V extends View>
 
 	public void addView(V view) {
 		views.add(view);
-		view.addViewListner(this);
+		view.addViewListener(this);
 	}
 
 	public void removeView(V view) {
 		views.remove(view);
-		view.removeViewListner(this);
+		view.removeViewListener(this);
 	}
 
 	public V getView(int index) {

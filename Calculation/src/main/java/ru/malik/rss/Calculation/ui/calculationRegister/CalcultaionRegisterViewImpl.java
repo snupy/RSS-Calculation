@@ -54,11 +54,11 @@ public class CalcultaionRegisterViewImpl extends JInternalFrame implements
 	private final ArrayList<CalculationRegisterViewListener> calculationViewListeners = new ArrayList<CalculationRegisterViewListener>();
 	private JTable table;
 
-	public void addViewListner(CalculationRegisterViewListener listener) {
+	public void addViewListener(CalculationRegisterViewListener listener) {
 		calculationViewListeners.add(listener);
 	}
 
-	public void removeViewListner(CalculationRegisterViewListener listener) {
+	public void removeViewListener(CalculationRegisterViewListener listener) {
 		calculationViewListeners.remove(listener);
 	}
 

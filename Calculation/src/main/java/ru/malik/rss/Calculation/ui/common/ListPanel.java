@@ -246,6 +246,7 @@ public class ListPanel extends JPanel {
 		JMenuItem menuItem = new JMenuItem();
 		menuItem.addActionListener(actionListener);
 		menuItem.setActionCommand(actionCommand);
+		menuItem.setText(altText);
 		menuItem.setToolTipText(toolTipText);
 
 		if (imageURL != null) { // image found

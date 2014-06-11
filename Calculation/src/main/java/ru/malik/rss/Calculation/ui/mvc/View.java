@@ -4,7 +4,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public interface View<L extends ViewListener> {
-	public void addViewListner(L listener);
+	
+	
+	/**
+	 * Добавляет слушателя View
+	 * 
+	 * @param listener добавляемый слушатель
+	 */
+	public void addViewListener(L listener);
 
-	public void removeViewListner(L listener);
+	/**
+	 * Удаляет слушателя VIew
+	 * @param listener удаляемый слушатель
+	 */
+	public void removeViewListener(L listener);
 	}

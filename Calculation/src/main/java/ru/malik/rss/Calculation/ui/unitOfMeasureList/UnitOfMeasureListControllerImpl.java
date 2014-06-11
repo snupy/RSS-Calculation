@@ -75,10 +75,18 @@ public class UnitOfMeasureListControllerImpl extends
 		unitOfMeasureController.addView(unitOfMeasureView);
 		
 				
-		((UnitOfMeasureViewImpl)unitOfMeasureView).setVisible(true);
-		((UnitOfMeasureViewImpl)unitOfMeasureView).setBounds(new Rectangle(100, 100, 400, 400));
 		((JInternalFrame)sender).getDesktopPane().add((UnitOfMeasureViewImpl)unitOfMeasureView);
 		
+		
+		((UnitOfMeasureViewImpl)unitOfMeasureView).setBounds(new Rectangle(100, 100, 400, 400));
+		((UnitOfMeasureViewImpl)unitOfMeasureView).setVisible(true);
+		((UnitOfMeasureViewImpl)unitOfMeasureView).requestFocus();
+		
+	}
+
+	public void addUnitOfMeasure(UnitOfMeasureListView sender) {
+		UnitOfMeasure unitOfMeasure = new UnitOfMeasure();
+		editUnitOfMeasure(unitOfMeasure, sender);		
 	}
 
 }

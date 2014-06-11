@@ -50,11 +50,11 @@ public class MainViewImpl extends JFrame implements MainView {
 
 	private final ArrayList<MainViewListener> viewListeners = new ArrayList<MainViewListener>();
 
-	public void addViewListner(MainViewListener listener) {
+	public void addViewListener(MainViewListener listener) {
 		viewListeners.add(listener);
 	}
 
-	public void removeViewListner(MainViewListener listener) {
+	public void removeViewListener(MainViewListener listener) {
 		viewListeners.remove(listener);
 
 	}
