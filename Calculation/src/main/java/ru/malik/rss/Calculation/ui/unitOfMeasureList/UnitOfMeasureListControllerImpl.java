@@ -10,6 +10,7 @@ import javax.swing.event.TableModelListener;
 import ru.malik.rss.Calculation.entity.UnitOfMeasure;
 import ru.malik.rss.Calculation.mvc.model.Model;
 import ru.malik.rss.Calculation.mvc.view.View;
+import ru.malik.rss.Calculation.ui.Core;
 import ru.malik.rss.Calculation.ui.mvc.ControllerImpl;
 import ru.malik.rss.Calculation.ui.unitOfMeasure.UnitOfMeasureController;
 import ru.malik.rss.Calculation.ui.unitOfMeasure.UnitOfMeasureControllerImpl;
@@ -23,10 +24,19 @@ public class UnitOfMeasureListControllerImpl extends
 		UnitOfMeasureListController {
 
 	public void propertyChange(PropertyChangeEvent evt) {
-		if (PN_UNIT_OF_MEASURE_LIST_TABLE_MODEL.equals(evt.getPropertyName())) {
+		if (UnitOfMeasureListModelListener.PropertyName.UNIT_OF_MEASURE_LIST_TABLE_MODEL
+				.name().equals(evt.getPropertyName())) {
 			setTableModelToViews((UnitOfMeasureListTableModel) evt
 					.getNewValue());
+		} else if (UnitOfMeasureListModelListener.PropertyName.SELECTED_UNIT_OF_MEASURE
+				.name().equals(evt.getPropertyName())) {
+			// TODO тут необходмо обработывать сообщение модели об изменении выбранной строки
+			//int rowIndex = getModel().getUnitOfMeasureListTableModel().g
+			for (UnitOfMeasureListView unitOfMeasureListView : views) {
+				//unitOfMeasureListView.setSelectedRowIndex((Integer));
+			}
 		}
+
 	}
 
 	private TableModelListener listener = new TableModelListener() {
@@ -60,33 +70,45 @@ public class UnitOfMeasureListControllerImpl extends
 		}
 	}
 
-	public void editUnitOfMeasure(UnitOfMeasure unitOfMeasure,
-			UnitOfMeasureListView sender) {
-		UnitOfMeasureModel unitOfMeasureModel = new UnitOfMeasureModelImpl();
-		
-		
-		
-		unitOfMeasureModel.setUnitOfMesaure(unitOfMeasure);
-		
+	public void editUnitOfMeasure(UnitOfMeasureListView sender) {
+		/*UnitOfMeasureModel unitOfMeasureModel = new UnitOfMeasureModelImpl();
+
+		unitOfMeasureModel.setUnitOfMesaure(getModel().getSelectedUnitOfMeasure());
+
 		UnitOfMeasureView unitOfMeasureView = new UnitOfMeasureViewImpl();
-		
-		UnitOfMeasureController unitOfMeasureController =new UnitOfMeasureControllerImpl();
+
+		UnitOfMeasureController unitOfMeasureController = new UnitOfMeasureControllerImpl();
 		unitOfMeasureController.setModel(unitOfMeasureModel);
 		unitOfMeasureController.addView(unitOfMeasureView);
+
+		((JInternalFrame) sender).getDesktopPane().add(
+				(UnitOfMeasureViewImpl) unitOfMeasureView);
+
+		((UnitOfMeasureViewImpl) unitOfMeasureView).setBounds(new Rectangle(
+				100, 100, 400, 400));
+		((UnitOfMeasureViewImpl) unitOfMeasureView).setVisible(true);
+		((UnitOfMeasureViewImpl) unitOfMeasureView).requestFocus();*/
 		
-				
-		((JInternalFrame)sender).getDesktopPane().add((UnitOfMeasureViewImpl)unitOfMeasureView);
-		
-		
-		((UnitOfMeasureViewImpl)unitOfMeasureView).setBounds(new Rectangle(100, 100, 400, 400));
-		((UnitOfMeasureViewImpl)unitOfMeasureView).setVisible(true);
-		((UnitOfMeasureViewImpl)unitOfMeasureView).requestFocus();
-		
+		Core.getInstance().editUnitOfMeasure(getModel().getSelectedUnitOfMeasure());
 	}
 
 	public void addUnitOfMeasure(UnitOfMeasureListView sender) {
-		UnitOfMeasure unitOfMeasure = new UnitOfMeasure();
-		editUnitOfMeasure(unitOfMeasure, sender);		
+		
+		// TODO нужно переделать
+		//Core.getInstance().addUnitOfMeasure();
+		Core.getInstance().editUnitOfMeasure(new UnitOfMeasure());
 	}
 
+	public void removeUnitOfMeasure(UnitOfMeasureListView sender) {
+		// TODO Необходим запрос перед удалением
+		getModel().removeUnitOfMeasure(getModel().getSelectedUnitOfMeasure());
+	}
+
+	public void selectRow(int index, UnitOfMeasureListView sender) {
+		getModel().setSelectedUnitOfMeasure(
+				getModel().getUnitOfMeasureListTableModel().getUnitOfMeasureAt(
+						index));
+		
+		sender.setInfoSelectedRow(index+1);
+	}
 }

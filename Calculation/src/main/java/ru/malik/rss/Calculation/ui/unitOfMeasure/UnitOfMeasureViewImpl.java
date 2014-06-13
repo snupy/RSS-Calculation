@@ -42,6 +42,7 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 	public UnitOfMeasureViewImpl() {
 		init();
 		initComponents();
+		pack();
 	}
 
 	private final ArrayList<UnitOfMeasureViewListener> viewListeners = new ArrayList<UnitOfMeasureViewListener>();

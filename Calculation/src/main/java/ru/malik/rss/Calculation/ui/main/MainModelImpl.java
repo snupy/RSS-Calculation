@@ -1,9 +1,6 @@
 package ru.malik.rss.Calculation.ui.main;
 
-import ru.malik.rss.Calculation.ui.mvc.Model;
 import ru.malik.rss.Calculation.ui.mvc.ModelImpl;
-import ru.malik.rss.Calculation.ui.mvc.ModelListener;
-import ru.malik.rss.Calculation.ui.mvc.ViewImpl;
 
 public class MainModelImpl extends ModelImpl<MainModelListener> implements MainModel{
 	private CategoryTreeModel categoryTreeModel;
@@ -17,5 +14,6 @@ public class MainModelImpl extends ModelImpl<MainModelListener> implements MainM
 	public CategoryTreeModel getCategoryTreeModel() {
 		return this.categoryTreeModel;
 	}
+
 	
 }

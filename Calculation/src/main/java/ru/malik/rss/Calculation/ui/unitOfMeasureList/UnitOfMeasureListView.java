@@ -6,4 +6,6 @@ public interface UnitOfMeasureListView extends View<UnitOfMeasureListViewListene
 	public void setUnitOfMeasureListTableModel(UnitOfMeasureListTableModel unitOfMeasureListTableModel);
 	public UnitOfMeasureListTableModel getUnitOfMeasureListTableModel();
 	public void setItemCount(int count);
+	public void setInfoSelectedRow(int index);
+	
 }

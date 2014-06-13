@@ -8,6 +8,7 @@ import javax.swing.JInternalFrame;
 
 import ru.malik.rss.Calculation.entity.UnitOfMeasureList;
 import ru.malik.rss.Calculation.entity.UnitOfMeasuresList;
+import ru.malik.rss.Calculation.ui.Core;
 import ru.malik.rss.Calculation.ui.calculationRegister.CalcultaionRegisterViewImpl;
 import ru.malik.rss.Calculation.ui.mvc.ControllerImpl;
 import ru.malik.rss.Calculation.ui.mvc.View;
@@ -23,6 +24,8 @@ import ru.malik.utils.UnitOfMeasureDAO;
 
 public class MainControllerImpl extends ControllerImpl<MainModel, MainView>
 		implements MainController {
+	
+
 
 	public MainControllerImpl(MainModel model) {
 		super(model);
@@ -59,7 +62,7 @@ public class MainControllerImpl extends ControllerImpl<MainModel, MainView>
 	public View<?> openUnitOfMeasureList(View<?> view, Container container) {
 
 		// TODO нужно переделать
-		UnitOfMeasureListViewImpl unitOfMeasureListView = new UnitOfMeasureListViewImpl();
+		/*UnitOfMeasureListViewImpl unitOfMeasureListView = new UnitOfMeasureListViewImpl();
 		int count = container.getComponentCount();
 		unitOfMeasureListView.setLocation(count * 50, count * 50);
 		container.add(unitOfMeasureListView);
@@ -78,8 +81,9 @@ public class MainControllerImpl extends ControllerImpl<MainModel, MainView>
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
-		return view;
+		Core.getInstance().showUnitOfMeasureList();
+		return null;
 	}
 }

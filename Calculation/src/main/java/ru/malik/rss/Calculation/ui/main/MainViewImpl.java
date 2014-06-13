@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -41,12 +42,16 @@ import javax.swing.JMenuItem;
 import ru.malik.rss.Calculation.ui.mvc.View;
 import ru.malik.rss.Calculation.ui.mvc.ViewListener;
 
+import java.awt.CardLayout;
+import java.awt.FlowLayout;
+
 public class MainViewImpl extends JFrame implements MainView {
 
 	private JPanel contentPane;
 	private JTextField textFieldCategoryFilter;
 	private JDesktopPane desktopPane;
 	private JTree tree;
+	private Point newChildPostion = new Point(0, 0);
 
 	private final ArrayList<MainViewListener> viewListeners = new ArrayList<MainViewListener>();
 
@@ -134,6 +139,7 @@ public class MainViewImpl extends JFrame implements MainView {
 
 		desktopPane = new JDesktopPane();
 		splitPane.setRightComponent(desktopPane);
+		desktopPane.setLayout(null);
 
 		JPanel panel = new JPanel();
 		splitPane.setLeftComponent(panel);
@@ -243,5 +249,11 @@ public class MainViewImpl extends JFrame implements MainView {
 	public boolean categoryNameFilter(String name) {
 		return (textFieldCategoryFilter.getText() == null) || (name != null)
 				&& name.contains(textFieldCategoryFilter.getText());
+	}
+
+	public void addChildWindows(Component child) {
+		desktopPane.add(child);
+		child.setLocation(newChildPostion);
+		newChildPostion.setLocation(newChildPostion.x+20, newChildPostion.y+20);
 	}
 }

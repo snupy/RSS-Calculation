@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
@@ -50,13 +53,25 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 
 	public void sendEditUnitOfMeasure(){
 		for (UnitOfMeasureListViewListener listener : unitOfMeasureListViewListeners) {
-			listener.editUnitOfMeasure(getUnitOfMeasureListTableModel().getUnitOfMeasureAt(table.getSelectedRow()), this);
+			listener.editUnitOfMeasure(this);
+		}
+	}
+	
+	public void sendRowSelected(int rowIndex){
+		for (UnitOfMeasureListViewListener listener : unitOfMeasureListViewListeners) {
+			listener.selectRow(rowIndex, this);
 		}
 	}
 	
 	public void sendAddUnitOfMeasure(){
 		for (UnitOfMeasureListViewListener listener : unitOfMeasureListViewListeners) {
 			listener.addUnitOfMeasure(this);
+		}
+	}
+	
+	public void sendRemoveUnitOfMeasure(){
+		for (UnitOfMeasureListViewListener listener : unitOfMeasureListViewListeners) {
+			listener.removeUnitOfMeasure(this);
 		}
 	}
 	
@@ -70,7 +85,9 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 					sendEditUnitOfMeasure();
 				} else if(evt.getActionCommand() == ListPanel.ActionCommands.ADD_ITEM.name()){
 					sendAddUnitOfMeasure();
-				} 
+				} else if(evt.getActionCommand() == ListPanel.ActionCommands.REMOVE_ITEM.name()){
+					sendRemoveUnitOfMeasure();
+				}					
 			}
 		});
 
@@ -92,6 +109,18 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 				super.mouseClicked(e);
 			}
 		});
+		
+		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		//table.setCellSelectionEnabled(false);
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			
+			public void valueChanged(ListSelectionEvent event) {
+				ListSelectionModel lsm = (ListSelectionModel) event.getSource();
+				int selRowIndx = lsm.getAnchorSelectionIndex();
+				sendRowSelected(selRowIndx);
+				
+			}
+		});
 
 		listPanel.getContainer().add(scrollPane);
 
@@ -111,5 +140,10 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 	public void setItemCount(int count) {
 		listPanel.setRowsCount(count);
 	}
-
+	
+	
+	public void setInfoSelectedRow(int index){
+		listPanel.setListRowIndex(index);
+	}
+	
 }

@@ -144,7 +144,7 @@ public class ListPanel extends JPanel {
 		panel_1.add(textFieldRowNumber);
 		textFieldRowNumber.setText("1");
 		textFieldRowNumber.setEditable(false);
-		textFieldRowNumber.setColumns(10);
+		textFieldRowNumber.setColumns(5);
 
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
@@ -173,7 +173,7 @@ public class ListPanel extends JPanel {
 		textFieldRowsCount = new JTextField();
 		panel_2.add(textFieldRowsCount);
 		textFieldRowsCount.setEditable(false);
-		textFieldRowsCount.setColumns(10);
+		textFieldRowsCount.setColumns(5);
 
 		centralPanel = new JPanel();
 		add(centralPanel, BorderLayout.CENTER);
@@ -262,7 +262,7 @@ public class ListPanel extends JPanel {
 		textFieldRowsCount.setText(String.valueOf(count));
 	}
 
-	public void setChangedRowIndex(int index) {
+	public void setListRowIndex(int index) {
 		textFieldRowNumber.setText(String.valueOf(index));
 	}
 

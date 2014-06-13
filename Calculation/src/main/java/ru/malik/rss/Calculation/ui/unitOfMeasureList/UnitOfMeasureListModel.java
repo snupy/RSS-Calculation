@@ -12,5 +12,11 @@ public interface UnitOfMeasureListModel extends
 	public UnitOfMeasureListTableModel getUnitOfMeasureListTableModel();
 	
 	public void editUnitOfMeasure(UnitOfMeasure unitOfMeasure);
-
+	
+	public UnitOfMeasure getSelectedUnitOfMeasure();
+	
+	public void setSelectedUnitOfMeasure(UnitOfMeasure unitOfMeasure);
+	
+	public void removeUnitOfMeasure(UnitOfMeasure unitOfMeasure);
+	
 }
