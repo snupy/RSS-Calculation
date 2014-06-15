@@ -12,7 +12,23 @@ package ru.malik.rss.Calculation.entity;
  * 
  * @author ?????
  */
+/**
+ * @author Малик
+ *
+ */
 public class Nomenclature {
+	private Long id = Long.valueOf(0L);
+	private NomenclatureCategory nomenclatureCategory;
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	/**
 	 * Description of the property unitOfMeasures.
 	 */
@@ -71,4 +87,14 @@ public class Nomenclature {
 		this.Name = newName;
 	}
 
+	public NomenclatureCategory getNomenclatureCategory() {
+		return nomenclatureCategory;
+	}
+
+	public void setNomenclatureCategory(NomenclatureCategory nomenclatureCategory) {
+		this.nomenclatureCategory = nomenclatureCategory;
+	}
+
+	
+	
 }

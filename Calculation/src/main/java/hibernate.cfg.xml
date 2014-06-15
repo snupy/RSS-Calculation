@@ -10,5 +10,7 @@
   <property name="hibernate.connection.username">postgres</property>
   <property name="hibernate.connection.password">98916031</property>
   <mapping class="ru.malik.economics.model.UnitOfMeasure" resource="ru/malik/rss/Calculation/entity/UnitOfMeasure.hbm.xml"/>
+  <mapping resource="ru/malik/rss/Calculation/entity/Nomenclature.hbm.xml"/>
+  <mapping resource="ru/malik/rss/Calculation/entity/NomenclatureCategory.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

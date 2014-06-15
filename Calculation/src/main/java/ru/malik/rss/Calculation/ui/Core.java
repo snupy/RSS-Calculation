@@ -2,7 +2,11 @@ package ru.malik.rss.Calculation.ui;
 
 import java.awt.Component;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import ru.malik.rss.Calculation.entity.Nomenclature;
+import ru.malik.rss.Calculation.entity.NomenclatureCategory;
 import ru.malik.rss.Calculation.entity.UnitOfMeasure;
 import ru.malik.rss.Calculation.ui.main.CategoryTreeModel;
 import ru.malik.rss.Calculation.ui.main.MainController;
@@ -10,6 +14,13 @@ import ru.malik.rss.Calculation.ui.main.MainControllerImpl;
 import ru.malik.rss.Calculation.ui.main.MainModel;
 import ru.malik.rss.Calculation.ui.main.MainModelImpl;
 import ru.malik.rss.Calculation.ui.main.MainViewImpl;
+import ru.malik.rss.Calculation.ui.nomenclatureList.NomenclatureListController;
+import ru.malik.rss.Calculation.ui.nomenclatureList.NomenclatureListControllerImpl;
+import ru.malik.rss.Calculation.ui.nomenclatureList.NomenclatureListModel;
+import ru.malik.rss.Calculation.ui.nomenclatureList.NomenclatureListModelImpl;
+import ru.malik.rss.Calculation.ui.nomenclatureList.NomenclatureListTreeTableModel;
+import ru.malik.rss.Calculation.ui.nomenclatureList.NomenclatureListView;
+import ru.malik.rss.Calculation.ui.nomenclatureList.NomenclatureListViewImpl;
 import ru.malik.rss.Calculation.ui.unitOfMeasure.UnitOfMeasureController;
 import ru.malik.rss.Calculation.ui.unitOfMeasure.UnitOfMeasureControllerImpl;
 import ru.malik.rss.Calculation.ui.unitOfMeasure.UnitOfMeasureModel;
@@ -23,6 +34,8 @@ import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListModelImpl;
 import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListTableModel;
 import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListView;
 import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListViewImpl;
+import ru.malik.utils.NomenclatureCategoryDAO;
+import ru.malik.utils.NomenclatureDAO;
 import ru.malik.utils.UnitOfMeasureDAO;
 
 public class Core {
@@ -60,8 +73,8 @@ public class Core {
 		unitOfMeasureModel.setUnitOfMesaure(unitOfMeasure);
 
 		UnitOfMeasureView unitOfMeasureView = new UnitOfMeasureViewImpl();
-		mainView.addChildWindows((Component)unitOfMeasureView);
-		((Component)unitOfMeasureView).setVisible(true);
+		mainView.addChildWindows((Component) unitOfMeasureView);
+		((Component) unitOfMeasureView).setVisible(true);
 
 		UnitOfMeasureController unitOfMeasureController = new UnitOfMeasureControllerImpl();
 		unitOfMeasureController.setModel(unitOfMeasureModel);
@@ -69,25 +82,25 @@ public class Core {
 
 		return unitOfMeasure;
 	}
-	
+
 	public void editUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
 		UnitOfMeasureModel unitOfMeasureModel = new UnitOfMeasureModelImpl();
 		unitOfMeasureModel.setUnitOfMesaure(unitOfMeasure);
 
 		UnitOfMeasureView unitOfMeasureView = new UnitOfMeasureViewImpl();
-		mainView.addChildWindows((Component)unitOfMeasureView);
-		((Component)unitOfMeasureView).setVisible(true);
+		mainView.addChildWindows((Component) unitOfMeasureView);
+		((Component) unitOfMeasureView).setVisible(true);
 
 		UnitOfMeasureController unitOfMeasureController = new UnitOfMeasureControllerImpl();
 		unitOfMeasureController.setModel(unitOfMeasureModel);
 		unitOfMeasureController.addView(unitOfMeasureView);
 
 	}
-	
-	public void showUnitOfMeasureList(){
+
+	public void showUnitOfMeasureList() {
 		UnitOfMeasureListView unitOfMeasureListView = new UnitOfMeasureListViewImpl();
-		mainView.addChildWindows((UnitOfMeasureListViewImpl)unitOfMeasureListView);
-		((UnitOfMeasureListViewImpl)unitOfMeasureListView).setVisible(true);
+		mainView.addChildWindows((UnitOfMeasureListViewImpl) unitOfMeasureListView);
+		((UnitOfMeasureListViewImpl) unitOfMeasureListView).setVisible(true);
 
 		UnitOfMeasureListModel model = new UnitOfMeasureListModelImpl();
 
@@ -97,11 +110,29 @@ public class Core {
 
 		try {
 			model.setUnitOfMeasureListTableModel(new UnitOfMeasureListTableModel(
-					UnitOfMeasureDAO.getInstance()
-							.getAll()));
+					UnitOfMeasureDAO.getInstance().getAll()));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void showNomenclatureList() {
+		NomenclatureListView nomenclatureListView = new NomenclatureListViewImpl();
+		mainView.addChildWindows((NomenclatureListViewImpl) nomenclatureListView);
+		((NomenclatureListViewImpl) nomenclatureListView).setVisible(true);
+
+		NomenclatureListModel nomenclatureListModel = new NomenclatureListModelImpl();
+
+		NomenclatureListController nomenclatureListController = new NomenclatureListControllerImpl();
+		nomenclatureListController.setModel(nomenclatureListModel);
+		nomenclatureListController.addView(nomenclatureListView);
+
+		List<Nomenclature> nomenclatures;
+
+		List<NomenclatureCategory> tt = NomenclatureCategoryDAO.getInstance()
+				.findAll(null);
+		System.out.println(tt.get(0).getName());
+
 	}
 }

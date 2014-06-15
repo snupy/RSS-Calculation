@@ -86,4 +86,9 @@ public class MainControllerImpl extends ControllerImpl<MainModel, MainView>
 		Core.getInstance().showUnitOfMeasureList();
 		return null;
 	}
+
+	public View<?> openNomenclatureList(View<?> view, Container container) {
+		Core.getInstance().showNomenclatureList();
+		return null;
+	}
 }

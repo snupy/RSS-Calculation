@@ -39,6 +39,7 @@ import javax.swing.JTextField;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
+import ru.malik.rss.Calculation.ui.common.Announcer;
 import ru.malik.rss.Calculation.ui.mvc.View;
 import ru.malik.rss.Calculation.ui.mvc.ViewListener;
 
@@ -53,14 +54,18 @@ public class MainViewImpl extends JFrame implements MainView {
 	private JTree tree;
 	private Point newChildPostion = new Point(0, 0);
 
-	private final ArrayList<MainViewListener> viewListeners = new ArrayList<MainViewListener>();
+	// private final ArrayList<MainViewListener> viewListeners = new
+	// ArrayList<MainViewListener>();
+	private final Announcer<MainViewListener> announcer = new Announcer<MainViewListener>(
+			MainViewListener.class);
+	private JMenu mnNewMenu_2;
 
 	public void addViewListener(MainViewListener listener) {
-		viewListeners.add(listener);
+		announcer.addListener(listener);
 	}
 
 	public void removeViewListener(MainViewListener listener) {
-		viewListeners.remove(listener);
+		announcer.removeListener(listener);
 
 	}
 
@@ -86,7 +91,6 @@ public class MainViewImpl extends JFrame implements MainView {
 		});
 	}
 
-	
 	public MainViewImpl() {
 		init();
 		initComponents();
@@ -111,21 +115,32 @@ public class MainViewImpl extends JFrame implements MainView {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				openCalculationRegister();
+
 			}
 		});
 		mnNewMenu_1.add(mntmNewMenuItem);
-		
-		mnNewMenu_1 = new JMenu("Справочники");
-		menuBar.add(mnNewMenu_1);
-		
+
+		mnNewMenu_2 = new JMenu("Справочники");
+		menuBar.add(mnNewMenu_2);
+
 		mntmNewMenuItem = new JMenuItem("Единицы измерения");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				openUnitOfMeasureList();
 			}
 		});
-		mnNewMenu_1.add(mntmNewMenuItem);
-		
+		mnNewMenu_2.add(mntmNewMenuItem);
+
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Номенклатура");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				openNomenclatureList();
+
+			}
+		});
+		mnNewMenu_2.add(mntmNewMenuItem_1);
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -147,7 +162,7 @@ public class MainViewImpl extends JFrame implements MainView {
 
 		JScrollPane scrollPane = new JScrollPane();
 		panel.add(scrollPane, BorderLayout.CENTER);
-		
+
 		textFieldCategoryFilter = new JTextField();
 		panel.add(textFieldCategoryFilter, BorderLayout.NORTH);
 
@@ -161,7 +176,7 @@ public class MainViewImpl extends JFrame implements MainView {
 
 		});
 
-		tree = new JTree();		
+		tree = new JTree();
 
 		// добавляем реакцию на нажатие по узнам дерева категорий
 		// TODO мне не нравиться как я это сделал
@@ -195,11 +210,13 @@ public class MainViewImpl extends JFrame implements MainView {
 
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
 				if (categoryNameFilter(node.toString())) {
-					
-					c.setFont(new Font(c.getFont().getName(), Font.BOLD, c.getFont().getSize()));
+
+					c.setFont(new Font(c.getFont().getName(), Font.BOLD, c
+							.getFont().getSize()));
 					return c;
 				} else if (containsMatchingChild(node)) {
-					c.setFont(new Font(c.getFont().getName(), 0, c.getFont().getSize()));
+					c.setFont(new Font(c.getFont().getName(), 0, c.getFont()
+							.getSize()));
 					return c;
 				} else {
 					return lblNull;
@@ -227,15 +244,18 @@ public class MainViewImpl extends JFrame implements MainView {
 	}
 
 	public void openCalculationRegister() {
-		for (MainViewListener listener : viewListeners) {
-			listener.openCalculationRegister(this, desktopPane);
-		}
+
+		announcer.announce().openCalculationRegister(this, desktopPane);
+
 	}
-	
+
 	public void openUnitOfMeasureList() {
-		for (MainViewListener listener : viewListeners) {
-			listener.openUnitOfMeasureList(this, desktopPane);
-		}
+		announcer.announce().openUnitOfMeasureList(this, desktopPane);
+
+	}
+
+	public void openNomenclatureList() {
+		announcer.announce().openNomenclatureList(this, desktopPane);
 	}
 
 	public void setCategoryTreeModel(CategoryTreeModel categoryTreeModel) {
@@ -254,6 +274,7 @@ public class MainViewImpl extends JFrame implements MainView {
 	public void addChildWindows(Component child) {
 		desktopPane.add(child);
 		child.setLocation(newChildPostion);
-		newChildPostion.setLocation(newChildPostion.x+20, newChildPostion.y+20);
+		newChildPostion.setLocation(newChildPostion.x + 20,
+				newChildPostion.y + 20);
 	}
 }

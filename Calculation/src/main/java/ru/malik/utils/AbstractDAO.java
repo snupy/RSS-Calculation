@@ -153,4 +153,9 @@ public class AbstractDAO<T> implements InterfaceDAO<T> {
 		}
 	}
 
+	public Class<T> getTClass() {
+		return tClass;
+	}
+
+	
 }
