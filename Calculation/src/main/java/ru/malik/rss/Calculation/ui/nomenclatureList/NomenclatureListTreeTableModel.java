@@ -11,7 +11,8 @@ import ru.malik.rss.Calculation.entity.NomenclatureCategory;
 import ru.malik.rss.Calculation.ui.common.AbstractTreeTableModel;
 import ru.malik.rss.Calculation.ui.common.TreeTableModel;
 
-public class NomenclatureListTreeTableModel extends AbstractTreeTableModel implements TreeTableModel{
+public class NomenclatureListTreeTableModel extends AbstractTreeTableModel
+		implements TreeTableModel {
 	private MutableTreeNode treeNode;
 
 	public NomenclatureListTreeTableModel(Object root) {
@@ -34,22 +35,33 @@ public class NomenclatureListTreeTableModel extends AbstractTreeTableModel imple
 	}
 
 	public String getColumnName(int column) {
-		// TODO Auto-generated method stub
-		return "Наименование";
+		switch (column) {
+		case 0:
+			return "Наименование";
+		case 1:
+			return "Ед. изм.";
+		default:
+			return null;
+
+		}
+
 	}
+	
+	
 
 	public Object getValueAt(Object node, int column) {
 		Object obj = ((DefaultMutableTreeNode) node).getUserObject();
 		if (obj instanceof Nomenclature) {
-			return ((Nomenclature) ((DefaultMutableTreeNode) node)
-					.getUserObject()).getName();
-		} else if (obj instanceof NomenclatureCategory) {
+			if (column == 0) {
+				return ((Nomenclature) obj).getName();
+			} else if (column == 1) {
+				return ((Nomenclature) obj).getUnitOfMeasures().getShortName();
+			}
+		} else if ((obj instanceof NomenclatureCategory) && (column == 0)) {
 			return ((NomenclatureCategory) ((DefaultMutableTreeNode) node)
 					.getUserObject()).getName();
-		} else {
-			
-			return null;
 		}
+		return null;
 
 	}
 
@@ -66,12 +78,12 @@ public class NomenclatureListTreeTableModel extends AbstractTreeTableModel imple
 	@Override
 	public Class getColumnClass(int column) {
 		// TODO Auto-generated method stub
-		if (column == 0){
+		if (column == 0) {
 			return TreeTableModel.class;
-		} else{
-		return super.getColumnClass(column);
+		} else {
+			return super.getColumnClass(column);
 		}
-		
+
 	}
-	
+
 }

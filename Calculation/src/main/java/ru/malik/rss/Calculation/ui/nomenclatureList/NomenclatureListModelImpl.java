@@ -51,20 +51,43 @@ public class NomenclatureListModelImpl extends
 	public MutableTreeNode getSelectedNode() {
 		return this.selectedNomeclatureTreeNode;
 	}
-	
-	public static class NomenclaturesCollector{
 
-		
-		static public DefaultMutableTreeNode buld(NomenclatureCategory obj){
-			DefaultMutableTreeNode node = new DefaultMutableTreeNode(obj);
-			
-			List<NomenclatureCategory> childs = NomenclatureCategoryDAO.getInstance().findAll(obj);
-			for(int i = 0; i < childs.size(); i++){
+	public static class NomenclaturesCollector {
+
+		static public DefaultMutableTreeNode buld(NomenclatureCategory obj) {
+			DefaultMutableTreeNode node = new DefaultMutableTreeNode(obj) {
+
+				@Override
+				public String toString() {
+					if (getUserObject() != null) {
+						return ((NomenclatureCategory) getUserObject())
+								.getName();
+					} else {
+						return "";
+					}
+				}
+			};
+
+			List<NomenclatureCategory> childs = NomenclatureCategoryDAO
+					.getInstance().findAll(obj);
+			for (int i = 0; i < childs.size(); i++) {
 				System.out.println(childs.get(i).getName());
 				node.add(buld(childs.get(i)));
-				
+
 			}
-			
+
+			List<Nomenclature> childNomenclatures = NomenclatureDAO
+					.getInstance().findByOwner(obj);
+			for (int i = 0; i < childNomenclatures.size(); i++) {
+				node.add(new DefaultMutableTreeNode(childNomenclatures.get(i)) {
+
+					@Override
+					public String toString() {
+						return ((Nomenclature) getUserObject()).getName();
+					}
+				});
+			}
+
 			return node;
 		}
 	}
