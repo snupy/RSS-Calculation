@@ -7,7 +7,7 @@ import javax.swing.tree.MutableTreeNode;
 
 import ru.malik.rss.Calculation.entity.Nomenclature;
 import ru.malik.rss.Calculation.entity.NomenclatureCategory;
-import ru.malik.rss.Calculation.ui.common.TreeTableModel;
+import ru.malik.rss.Calculation.ui.common.treeTable.TreeTableModel;
 import ru.malik.rss.Calculation.ui.mvc.ModelImpl;
 import ru.malik.utils.NomenclatureCategoryDAO;
 import ru.malik.utils.NomenclatureDAO;
@@ -36,15 +36,16 @@ public class NomenclatureListModelImpl extends
 	}
 
 	public void setSelectedNode(MutableTreeNode treeNode) {
-		if ((treeNode != null)
-				&& (!treeNode.equals(selectedNomeclatureTreeNode))
-				|| ((treeNode == null) && (selectedNomeclatureTreeNode != null))) {
-			getPropertyChangeSupport()
-					.firePropertyChange(
-							NomenclatureListModelListener.PropertyName.SELECTED_NOMENCLATURE
-									.name(), this.selectedNomeclatureTreeNode,
-							this.selectedNomeclatureTreeNode = treeNode);
+		// проверка на действительность изменения
+		if (this.selectedNomeclatureTreeNode == treeNode) {
+			return;
 		}
+		
+		getPropertyChangeSupport()
+				.firePropertyChange(
+						NomenclatureListModelListener.PropertyName.SELECTED_NOMENCLATURE
+								.name(), this.selectedNomeclatureTreeNode,
+						this.selectedNomeclatureTreeNode = treeNode);
 
 	}
 

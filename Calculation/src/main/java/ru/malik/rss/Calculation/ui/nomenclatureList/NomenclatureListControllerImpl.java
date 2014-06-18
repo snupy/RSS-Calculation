@@ -2,9 +2,12 @@ package ru.malik.rss.Calculation.ui.nomenclatureList;
 
 import java.beans.PropertyChangeEvent;
 
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
 
-import ru.malik.rss.Calculation.ui.common.TreeTableModel;
+import ru.malik.rss.Calculation.entity.Nomenclature;
+import ru.malik.rss.Calculation.ui.Core;
+import ru.malik.rss.Calculation.ui.common.treeTable.TreeTableModel;
 import ru.malik.rss.Calculation.ui.mvc.ControllerImpl;
 
 public class NomenclatureListControllerImpl extends
@@ -21,7 +24,9 @@ public class NomenclatureListControllerImpl extends
 			}
 		} else if (propertyName.equals(PropertyName.SELECTED_NOMENCLATURE
 				.name())) {
-			// TODO нужно тут что то сделать
+			for(NomenclatureListView view: views){
+				view.setNomenclatureListSelected(evt.getNewValue().toString());
+			}
 		}
 	}
 
@@ -32,7 +37,7 @@ public class NomenclatureListControllerImpl extends
 
 	public void editNomenclature(NomenclatureListView sender) {
 		// TODO Auto-generated method stub
-
+		Core.getInstance().editNomenclature((Nomenclature)((DefaultMutableTreeNode)getModel().getSelectedNode()).getUserObject());
 	}
 
 	public void removeNomenclature(NomenclatureListView sender) {

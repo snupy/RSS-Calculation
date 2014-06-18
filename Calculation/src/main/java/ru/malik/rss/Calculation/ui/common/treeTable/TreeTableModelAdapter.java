@@ -1,4 +1,4 @@
-package ru.malik.rss.Calculation.ui.common;
+package ru.malik.rss.Calculation.ui.common.treeTable;
 import javax.swing.JTree;
 import javax.swing.event.TreeExpansionEvent;
 import javax.swing.event.TreeExpansionListener;

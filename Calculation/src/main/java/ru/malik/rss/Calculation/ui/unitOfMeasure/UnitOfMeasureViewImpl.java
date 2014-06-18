@@ -148,7 +148,9 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 		gbc_textField_2.gridy = 2;
 		editPanel.getContainerPanel().add(textField_2, gbc_textField_2);
 		textField_2.setColumns(10);
-		createDataBindings();
+		
+		
+		bindingGroup = createDataBindings();
 	}
 
 	public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {

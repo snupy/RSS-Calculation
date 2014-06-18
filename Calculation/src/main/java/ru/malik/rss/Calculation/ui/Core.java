@@ -14,6 +14,12 @@ import ru.malik.rss.Calculation.ui.main.MainControllerImpl;
 import ru.malik.rss.Calculation.ui.main.MainModel;
 import ru.malik.rss.Calculation.ui.main.MainModelImpl;
 import ru.malik.rss.Calculation.ui.main.MainViewImpl;
+import ru.malik.rss.Calculation.ui.nomenclature.NomenclatureController;
+import ru.malik.rss.Calculation.ui.nomenclature.NomenclatureModel;
+import ru.malik.rss.Calculation.ui.nomenclature.NomenclatureModelImpl;
+import ru.malik.rss.Calculation.ui.nomenclature.NomenclatureView;
+import ru.malik.rss.Calculation.ui.nomenclature.NomenclatureViewImpl;
+import ru.malik.rss.Calculation.ui.nomenclature.NomenclauteControllerImpl;
 import ru.malik.rss.Calculation.ui.nomenclatureList.NomenclatureListController;
 import ru.malik.rss.Calculation.ui.nomenclatureList.NomenclatureListControllerImpl;
 import ru.malik.rss.Calculation.ui.nomenclatureList.NomenclatureListModel;
@@ -97,6 +103,20 @@ public class Core {
 
 	}
 
+	public void editNomenclature(Nomenclature nomenclature){
+		NomenclatureModel model = new NomenclatureModelImpl();
+		NomenclatureView view = new NomenclatureViewImpl();
+		NomenclatureController controller = new NomenclauteControllerImpl();
+		
+		controller.setModel(model);
+		controller.addView(view);
+		
+		model.setNomenclature(nomenclature);
+		
+		mainView.addChildWindows((Component) view);
+		((Component) view).setVisible(true);
+	}
+	
 	public void showUnitOfMeasureList() {
 		UnitOfMeasureListView unitOfMeasureListView = new UnitOfMeasureListViewImpl();
 		mainView.addChildWindows((UnitOfMeasureListViewImpl) unitOfMeasureListView);

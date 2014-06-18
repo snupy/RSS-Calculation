@@ -117,34 +117,47 @@ public class ListPanel extends JPanel {
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.SOUTH);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 0, 0, 1, 0 };
+		gbl_panel.columnWidths = new int[] {0, 0};
 		gbl_panel.rowHeights = new int[] { 0 };
-		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0,
-				Double.MIN_VALUE };
+		gbl_panel.columnWeights = new double[] { 0.0, 0.0 };
 		gbl_panel.rowWeights = new double[] { 0.0 };
 		panel.setLayout(gbl_panel);
 
 		JPanel panel_1 = new JPanel();
-		FlowLayout flowLayout_1 = (FlowLayout) panel_1.getLayout();
-		flowLayout_1.setHgap(0);
-		flowLayout_1.setVgap(0);
 		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null,
 				null, null));
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_panel_1.anchor = GridBagConstraints.WEST;
 		gbc_panel_1.insets = new Insets(0, 0, 0, 5);
 		gbc_panel_1.gridx = 0;
 		gbc_panel_1.gridy = 0;
 		panel.add(panel_1, gbc_panel_1);
-
-		JLabel lblNewLabel = new JLabel("Выбрана строка:");
-		panel_1.add(lblNewLabel);
-
-		textFieldRowNumber = new JTextField();
-		panel_1.add(textFieldRowNumber);
-		textFieldRowNumber.setText("1");
-		textFieldRowNumber.setEditable(false);
-		textFieldRowNumber.setColumns(5);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[] {0, 0};
+		gbl_panel_1.rowHeights = new int[] {0};
+		gbl_panel_1.columnWeights = new double[]{0.0, 0.0};
+		gbl_panel_1.rowWeights = new double[]{0.0};
+		panel_1.setLayout(gbl_panel_1);
+		
+				JLabel lblNewLabel = new JLabel("Выбрана строка:");
+				GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+				gbc_lblNewLabel.anchor = GridBagConstraints.NORTH;
+				gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
+				gbc_lblNewLabel.gridx = 0;
+				gbc_lblNewLabel.gridy = 0;
+				panel_1.add(lblNewLabel, gbc_lblNewLabel);
+		
+				textFieldRowNumber = new JTextField();
+				textFieldRowNumber.setColumns(10);
+				GridBagConstraints gbc_textFieldRowNumber = new GridBagConstraints();
+				gbc_textFieldRowNumber.fill = GridBagConstraints.HORIZONTAL;
+				gbc_textFieldRowNumber.anchor = GridBagConstraints.NORTHWEST;
+				gbc_textFieldRowNumber.gridx = 1;
+				gbc_textFieldRowNumber.gridy = 0;
+				panel_1.add(textFieldRowNumber, gbc_textFieldRowNumber);
+				textFieldRowNumber.setText("1");
+				textFieldRowNumber.setEditable(false);
 
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
@@ -163,7 +176,7 @@ public class ListPanel extends JPanel {
 				null, null));
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.anchor = GridBagConstraints.EAST;
-		gbc_panel_2.gridx = 2;
+		gbc_panel_2.gridx = 1;
 		gbc_panel_2.gridy = 0;
 		panel.add(panel_2, gbc_panel_2);
 
@@ -262,8 +275,8 @@ public class ListPanel extends JPanel {
 		textFieldRowsCount.setText(String.valueOf(count));
 	}
 
-	public void setListRowIndex(int index) {
-		textFieldRowNumber.setText(String.valueOf(index));
+	public void setSelectedCaption(String caption) {
+		textFieldRowNumber.setText(caption);
 	}
 
 	public void addActionListner(ActionListener actionListener) {

@@ -8,15 +8,18 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeSelectionModel;
 import javax.swing.tree.MutableTreeNode;
 
+import ru.malik.rss.Calculation.entity.Nomenclature;
 import ru.malik.rss.Calculation.ui.common.Announcer;
 import ru.malik.rss.Calculation.ui.common.JMdiFrame;
-import ru.malik.rss.Calculation.ui.common.JTreeTable;
 import ru.malik.rss.Calculation.ui.common.ListPanel;
-import ru.malik.rss.Calculation.ui.common.TreeTableModel;
+import ru.malik.rss.Calculation.ui.common.treeTable.JTreeTable;
+import ru.malik.rss.Calculation.ui.common.treeTable.TreeTableModel;
 
 public class NomenclatureListViewImpl extends JMdiFrame implements
 		NomenclatureListView {
@@ -71,25 +74,19 @@ public class NomenclatureListViewImpl extends JMdiFrame implements
 		JScrollPane scrollPane;
 		listPanel.getContainer().add(
 				scrollPane = new JScrollPane(treeTable = new JTreeTable()));
+		treeTable.setCellSelectionEnabled(true);
+		treeTable.getSelectionModel().setSelectionMode(
+				ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-		treeTable.getSelectionModel().addListSelectionListener(
-				new ListSelectionListener() {
+		
+		treeTable.getTreeSelectionModel().addTreeSelectionListener(
+				new TreeSelectionListener() {
 
-					public void valueChanged(ListSelectionEvent event) {
-						ListSelectionModel lsm = (ListSelectionModel) event
-								.getSource();
-						int selRowIndx = lsm.getAnchorSelectionIndex();
-						// treeTable.getTreeTableModel().getRoot().
-						// DefaultMutableTreeNode dd = new
-						// DefaultMutableTreeNode();
-
-						announcer
-								.announce()
-								.selectRow(
-										(MutableTreeNode) (((DefaultMutableTreeNode) treeTable
-												.getTreeTableModel().getRoot())
-												.getChildAt(selRowIndx)),
-										NomenclatureListViewImpl.this);
+					public void valueChanged(TreeSelectionEvent event) {
+						MutableTreeNode selected = (MutableTreeNode) (event
+								.getPath().getLastPathComponent());
+						announcer.announce().selectRow(selected,
+								NomenclatureListViewImpl.this);
 					}
 				});
 
@@ -99,4 +96,9 @@ public class NomenclatureListViewImpl extends JMdiFrame implements
 	public void setNomenclatureListTreeModel(TreeTableModel treeTableModel) {
 		treeTable.setTreeTableModel(treeTableModel);
 	}
+
+	public void setNomenclatureListSelected(String selectedName) {
+		listPanel.setSelectedCaption(selectedName);
+	}
+	
 }

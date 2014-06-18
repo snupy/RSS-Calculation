@@ -143,7 +143,7 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 	
 	
 	public void setInfoSelectedRow(int index){
-		listPanel.setListRowIndex(index);
+		listPanel.setSelectedCaption(Integer.toString(index));
 	}
 	
 }

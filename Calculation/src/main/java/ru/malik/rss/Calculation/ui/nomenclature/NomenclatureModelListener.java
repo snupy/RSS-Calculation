@@ -1,5 +1,7 @@
 package ru.malik.rss.Calculation.ui.nomenclature;
 
-public interface NomenclatureModelListener {
+import ru.malik.rss.Calculation.ui.mvc.ModelListener;
 
+public interface NomenclatureModelListener extends ModelListener{
+	enum PropertyName {NOMENCLATURE};
 }

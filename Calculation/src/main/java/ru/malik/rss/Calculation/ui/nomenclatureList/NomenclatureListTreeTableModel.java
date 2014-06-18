@@ -8,8 +8,8 @@ import javax.swing.tree.TreeNode;
 
 import ru.malik.rss.Calculation.entity.Nomenclature;
 import ru.malik.rss.Calculation.entity.NomenclatureCategory;
-import ru.malik.rss.Calculation.ui.common.AbstractTreeTableModel;
-import ru.malik.rss.Calculation.ui.common.TreeTableModel;
+import ru.malik.rss.Calculation.ui.common.treeTable.AbstractTreeTableModel;
+import ru.malik.rss.Calculation.ui.common.treeTable.TreeTableModel;
 
 public class NomenclatureListTreeTableModel extends AbstractTreeTableModel
 		implements TreeTableModel {

@@ -2,7 +2,7 @@ package ru.malik.rss.Calculation.ui.nomenclatureList;
 
 import javax.swing.tree.MutableTreeNode;
 
-import ru.malik.rss.Calculation.ui.common.TreeTableModel;
+import ru.malik.rss.Calculation.ui.common.treeTable.TreeTableModel;
 import ru.malik.rss.Calculation.ui.mvc.Model;
 
 /**
