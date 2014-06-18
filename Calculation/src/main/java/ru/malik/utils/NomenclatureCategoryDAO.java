@@ -32,7 +32,8 @@ public class NomenclatureCategoryDAO extends AbstractDAO<NomenclatureCategory> {
 			session = HibernateUtil.getSessionFactory().openSession();
 			if (owner != null) {
 				result = session.createCriteria(getTClass())
-						.add(Restrictions.eq("owner", owner.getId())).list();
+						.add(Restrictions.eq("owner", owner)).list();
+				
 			} else {
 				result = session.createCriteria(getTClass())
 						.add(Restrictions.isNull("owner")).list();

@@ -128,11 +128,17 @@ public class Core {
 		nomenclatureListController.setModel(nomenclatureListModel);
 		nomenclatureListController.addView(nomenclatureListView);
 
-		List<Nomenclature> nomenclatures;
-
-		List<NomenclatureCategory> tt = NomenclatureCategoryDAO.getInstance()
-				.findAll(null);
-		System.out.println(tt.get(0).getName());
+		nomenclatureListModel
+				.setNomenclatureListTreeModel(new NomenclatureListTreeTableModel(
+						NomenclatureListModelImpl.NomenclaturesCollector
+								.buld(null)));
+		;
+		/*
+		 * List<Nomenclature> nomenclatures;
+		 * 
+		 * List<NomenclatureCategory> tt = NomenclatureCategoryDAO.getInstance()
+		 * .findAll(null); System.out.println(tt.get(0).getName());
+		 */
 
 	}
 }

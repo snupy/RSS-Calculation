@@ -1,9 +1,16 @@
 package ru.malik.rss.Calculation.ui.nomenclatureList;
 
+import java.util.List;
+
+import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
 
+import ru.malik.rss.Calculation.entity.Nomenclature;
+import ru.malik.rss.Calculation.entity.NomenclatureCategory;
 import ru.malik.rss.Calculation.ui.common.TreeTableModel;
 import ru.malik.rss.Calculation.ui.mvc.ModelImpl;
+import ru.malik.utils.NomenclatureCategoryDAO;
+import ru.malik.utils.NomenclatureDAO;
 
 public class NomenclatureListModelImpl extends
 		ModelImpl<NomenclatureListModelListener> implements
@@ -44,5 +51,21 @@ public class NomenclatureListModelImpl extends
 	public MutableTreeNode getSelectedNode() {
 		return this.selectedNomeclatureTreeNode;
 	}
+	
+	public static class NomenclaturesCollector{
 
+		
+		static public DefaultMutableTreeNode buld(NomenclatureCategory obj){
+			DefaultMutableTreeNode node = new DefaultMutableTreeNode(obj);
+			
+			List<NomenclatureCategory> childs = NomenclatureCategoryDAO.getInstance().findAll(obj);
+			for(int i = 0; i < childs.size(); i++){
+				System.out.println(childs.get(i).getName());
+				node.add(buld(childs.get(i)));
+				
+			}
+			
+			return node;
+		}
+	}
 }
