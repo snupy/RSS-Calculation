@@ -17,6 +17,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 
+import ru.malik.rss.Calculation.ui.common.Announcer;
 import ru.malik.rss.Calculation.ui.common.ListPanel;
 
 public class UnitOfMeasureListViewImpl extends JInternalFrame implements
@@ -31,14 +32,14 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 		initComponents();
 	}
 
-	private final ArrayList<UnitOfMeasureListViewListener> unitOfMeasureListViewListeners = new ArrayList<UnitOfMeasureListViewListener>();
+	private final Announcer<UnitOfMeasureListViewListener> announcer = new Announcer<UnitOfMeasureListViewListener>(UnitOfMeasureListViewListener.class);
 
 	public void addViewListener(UnitOfMeasureListViewListener listener) {
-		unitOfMeasureListViewListeners.add(listener);
+		announcer.addListener(listener);
 	}
 
 	public void removeViewListener(UnitOfMeasureListViewListener listener) {
-		unitOfMeasureListViewListeners.remove(listener);
+		announcer.removeListener(listener);
 	}
 
 	public void init() {
@@ -52,27 +53,19 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 	}
 
 	public void sendEditUnitOfMeasure(){
-		for (UnitOfMeasureListViewListener listener : unitOfMeasureListViewListeners) {
-			listener.editUnitOfMeasure(this);
-		}
+		announcer.announce().editUnitOfMeasure(this);
 	}
 	
 	public void sendRowSelected(int rowIndex){
-		for (UnitOfMeasureListViewListener listener : unitOfMeasureListViewListeners) {
-			listener.selectRow(rowIndex, this);
-		}
+		announcer.announce().selectRow(rowIndex, this);
 	}
 	
 	public void sendAddUnitOfMeasure(){
-		for (UnitOfMeasureListViewListener listener : unitOfMeasureListViewListeners) {
-			listener.addUnitOfMeasure(this);
-		}
+		announcer.announce().addUnitOfMeasure(this);
 	}
 	
 	public void sendRemoveUnitOfMeasure(){
-		for (UnitOfMeasureListViewListener listener : unitOfMeasureListViewListeners) {
-			listener.removeUnitOfMeasure(this);
-		}
+		announcer.announce().removeUnitOfMeasure(this);
 	}
 	
 	public void initComponents() {
@@ -90,8 +83,8 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 				}					
 			}
 		});
-
-		setContentPane(listPanel);
+		getContentPane().add(listPanel);
+		
 
 		JScrollPane scrollPane = new JScrollPane();
 
@@ -144,6 +137,10 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 	
 	public void setInfoSelectedRow(int index){
 		listPanel.setSelectedCaption(Integer.toString(index));
+	}
+
+	public void close() {
+		this.dispose();
 	}
 	
 }

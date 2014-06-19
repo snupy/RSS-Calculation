@@ -111,4 +111,16 @@ public class UnitOfMeasureListControllerImpl extends
 		
 		sender.setInfoSelectedRow(index+1);
 	}
+
+	public void okActionPerform(UnitOfMeasureListView sender) {
+		// TODO
+	}
+
+	public void cancelActionPerform(UnitOfMeasureListView sender) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }
+

@@ -7,6 +7,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import ru.malik.rss.Calculation.entity.Nomenclature;
+
 public class AbstractDAO<T> implements InterfaceDAO<T> {
 	private Class<T> tClass;
 
@@ -79,13 +81,17 @@ public class AbstractDAO<T> implements InterfaceDAO<T> {
 	public void refresh(T obj) throws SQLException {
 		T res = null;
 		Session session = null;
+
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
+
 			session.refresh(obj);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (session != null && session.isOpen()) {
+
 				session.close();
 			}
 		}
@@ -157,5 +163,4 @@ public class AbstractDAO<T> implements InterfaceDAO<T> {
 		return tClass;
 	}
 
-	
 }

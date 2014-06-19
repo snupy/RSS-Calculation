@@ -18,6 +18,7 @@ public class UnitOfMeasureListModelImpl extends
 		UnitOfMeasureListModel {
 	private UnitOfMeasureListTableModel unitOfMeasureListTableModel;
 	private UnitOfMeasure selectedUnitOfMeasure;
+	private UnitOfMeasure applyedSelectedUnitOfMeasure;
 
 	public void setUnitOfMeasureListTableModel(
 			UnitOfMeasureListTableModel unitOfMeasureListTableModel) {

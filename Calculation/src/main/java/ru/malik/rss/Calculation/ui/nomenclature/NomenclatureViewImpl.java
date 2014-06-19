@@ -4,6 +4,7 @@ import ru.malik.rss.Calculation.entity.Nomenclature;
 import ru.malik.rss.Calculation.ui.common.Announcer;
 import ru.malik.rss.Calculation.ui.common.EditPanel;
 import ru.malik.rss.Calculation.ui.common.JMdiFrame;
+import ru.malik.rss.Calculation.ui.common.JRichTextField;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
@@ -19,6 +20,8 @@ import java.awt.GridBagConstraints;
 import javax.swing.JTextField;
 
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,6 +31,8 @@ import org.jdesktop.beansbinding.AutoBinding;
 import org.jdesktop.beansbinding.BindingGroup;
 import org.jdesktop.beansbinding.Bindings;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
+
+import javax.swing.JScrollPane;
 
 public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView {
 
@@ -39,8 +44,8 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 			NomenclatureViewListener.class);
 
 	private EditPanel editPanel;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField textFieldName;
+	private JRichTextField richTextFieldUnitOfMeasure;
 
 	public void addViewListener(NomenclatureViewListener listener) {
 		announcer.addListener(listener);
@@ -60,34 +65,33 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 	}
 
 	public void initComponents() {
-		editPanel = new EditPanel(){
+		editPanel = new EditPanel() {
 
 			@Override
 			public void sendOk() {
-				announcer.announce().okActionPerform();
+				announcer.announce().okActionPerform(NomenclatureViewImpl.this);
 				super.sendOk();
 			}
 
 			@Override
 			public void sendCancel() {
-				announcer.announce().cancelActionPerform();
+				announcer.announce().cancelActionPerform(NomenclatureViewImpl.this);
 				super.sendCancel();
 			}
 		};
 		getContentPane().add(editPanel);
 		editPanel.getContainerPanel().setLayout(new BorderLayout(0, 0));
-		
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		editPanel.getContainerPanel().add(tabbedPane);
 
 		JPanel panel = new JPanel();
-		tabbedPane.addTab("New tab", null, panel, null);
+		tabbedPane.addTab("Основное", null, panel, null);
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 0, 0, 0 };
-		gbl_panel.rowHeights = new int[] { 0, 0 };
-		gbl_panel.columnWeights = new double[] { 0.0, 1.0, 0.0 };
-		gbl_panel.rowWeights = new double[] { 0.0, 0.0 };
+		gbl_panel.columnWidths = new int[] {0, 0};
+		gbl_panel.rowHeights = new int[] { 0, 0, 0};
+		gbl_panel.columnWeights = new double[] { 0.0, 1.0 };
+		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 1};
 		panel.setLayout(gbl_panel);
 
 		JLabel lblNewLabel = new JLabel("Наименование");
@@ -98,15 +102,15 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 		gbc_lblNewLabel.gridy = 0;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.gridwidth = 2;
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 0;
-		panel.add(textField, gbc_textField);
-		textField.setColumns(10);
+		textFieldName = new JTextField();
+		GridBagConstraints gbc_textFieldName = new GridBagConstraints();
+		gbc_textFieldName.weightx = 1.0;
+		gbc_textFieldName.insets = new Insets(0, 0, 5, 0);
+		gbc_textFieldName.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textFieldName.gridx = 1;
+		gbc_textFieldName.gridy = 0;
+		panel.add(textFieldName, gbc_textFieldName);
+		textFieldName.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("Ед. изм.");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
@@ -116,24 +120,30 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 		gbc_lblNewLabel_1.gridy = 1;
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
-		textField_1 = new JTextField();
+		richTextFieldUnitOfMeasure = new JRichTextField();
+		richTextFieldUnitOfMeasure.getButton().addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				announcer.announce().openUnitOfMeasuresList(NomenclatureViewImpl.this);
+			}
+		});
+		
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
+		gbc_textField_1.weightx = 1.0;
 		gbc_textField_1.insets = new Insets(0, 0, 5, 5);
 		gbc_textField_1.fill = GridBagConstraints.HORIZONTAL;
 		gbc_textField_1.gridx = 1;
 		gbc_textField_1.gridy = 1;
-		panel.add(textField_1, gbc_textField_1);
-		textField_1.setColumns(10);
+		panel.add(richTextFieldUnitOfMeasure, gbc_textField_1);
 
-		JButton btnNewButton = new JButton("New button");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 2;
-		gbc_btnNewButton.gridy = 1;
-		panel.add(btnNewButton, gbc_btnNewButton);
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("Ед. изм.", null, panel_1, null);
+
+		JScrollPane scrollPane = new JScrollPane();
+		panel_1.add(scrollPane);
 
 		bindingGroup = createDataBindings();
-	
+
 		pack();
 	}
 
@@ -146,17 +156,17 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 				.create("text");
 		AutoBinding<Nomenclature, String, JTextField, String> autoBinding = Bindings
 				.createAutoBinding(UpdateStrategy.READ_WRITE, nomenclature,
-						nomenclatureBeanProperty, textField,
+						nomenclatureBeanProperty, textFieldName,
 						jTextFieldBeanProperty);
 		resultBindingGroup.addBinding(autoBinding);
 		//
 		BeanProperty<Nomenclature, String> nomenclatureBeanProperty_1 = BeanProperty
 				.create("unitOfMeasures.name");
-		BeanProperty<JTextField, String> jTextFieldBeanProperty_1 = BeanProperty
-				.create("text");
-		AutoBinding<Nomenclature, String, JTextField, String> autoBinding_1 = Bindings
+		BeanProperty<JRichTextField, String> jTextFieldBeanProperty_1 = BeanProperty
+				.create("textField.text");
+		AutoBinding<Nomenclature, String, JRichTextField, String> autoBinding_1 = Bindings
 				.createAutoBinding(UpdateStrategy.READ_WRITE, nomenclature,
-						nomenclatureBeanProperty_1, textField_1,
+						nomenclatureBeanProperty_1, richTextFieldUnitOfMeasure,
 						jTextFieldBeanProperty_1);
 		resultBindingGroup.addBinding(autoBinding_1);
 
@@ -174,7 +184,6 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 			bindingGroup.unbind();
 			bindingGroup = null;
 		}
-		
 
 		// обновлеяем нашу сущность
 		this.nomenclature = nomenclature;
@@ -187,5 +196,9 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 
 	public Nomenclature getNomenclature() {
 		return this.nomenclature;
+	}
+
+	public void close() {
+		this.dispose();
 	}
 }

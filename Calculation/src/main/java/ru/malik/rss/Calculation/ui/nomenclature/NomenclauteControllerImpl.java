@@ -3,6 +3,7 @@ package ru.malik.rss.Calculation.ui.nomenclature;
 import java.beans.PropertyChangeEvent;
 
 import ru.malik.rss.Calculation.entity.Nomenclature;
+import ru.malik.rss.Calculation.ui.Core;
 import ru.malik.rss.Calculation.ui.mvc.ControllerImpl;
 
 public class NomenclauteControllerImpl extends ControllerImpl<NomenclatureModel, NomenclatureView> implements NomenclatureController{
@@ -19,13 +20,18 @@ public class NomenclauteControllerImpl extends ControllerImpl<NomenclatureModel,
 		}
 	}
 
-	public void okActionPerform() {
+	public void okActionPerform(NomenclatureView sender) {
 		getModel().save();
 	}
 
-	public void cancelActionPerform() {
+	public void cancelActionPerform(NomenclatureView sender) {
 		getModel().refresh();
-		
+		sender.close();
+	}
+
+	public void openUnitOfMeasuresList(NomenclatureView sender) {
+		// TODO Auto-generated method stub
+		Core.getInstance().showUnitOfMeasureList();
 	}
 
 }

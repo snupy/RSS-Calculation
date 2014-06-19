@@ -6,4 +6,5 @@ import ru.malik.rss.Calculation.ui.mvc.View;
 public interface NomenclatureView extends View<NomenclatureViewListener>{
 	public void setNomenclature(Nomenclature nomenclature);
 	public Nomenclature getNomenclature();
+	public void close();	
 }

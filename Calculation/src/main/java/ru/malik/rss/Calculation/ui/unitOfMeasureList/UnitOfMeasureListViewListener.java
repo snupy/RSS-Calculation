@@ -29,4 +29,7 @@ public interface UnitOfMeasureListViewListener extends ViewListener {
 	 * @param index выбранная строка
 	 */
 	public void selectRow(int index, UnitOfMeasureListView sender);
+	
+	public void okActionPerform(UnitOfMeasureListView sender);
+	public void cancelActionPerform(UnitOfMeasureListView sender);
 }
