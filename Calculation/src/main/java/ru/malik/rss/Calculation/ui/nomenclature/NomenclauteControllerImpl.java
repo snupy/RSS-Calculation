@@ -5,6 +5,8 @@ import java.beans.PropertyChangeEvent;
 import ru.malik.rss.Calculation.entity.Nomenclature;
 import ru.malik.rss.Calculation.ui.Core;
 import ru.malik.rss.Calculation.ui.mvc.ControllerImpl;
+import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListModel;
+import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListModelListener;
 
 public class NomenclauteControllerImpl extends ControllerImpl<NomenclatureModel, NomenclatureView> implements NomenclatureController{
 
@@ -31,7 +33,23 @@ public class NomenclauteControllerImpl extends ControllerImpl<NomenclatureModel,
 
 	public void openUnitOfMeasuresList(NomenclatureView sender) {
 		// TODO Auto-generated method stub
-		Core.getInstance().showUnitOfMeasureList();
+		final UnitOfMeasureListModel listModel = Core.getInstance().showUnitOfMeasureSelectList();
+		listModel.addModelListener(new UnitOfMeasureListModelListener() {
+			
+			public void propertyChange(PropertyChangeEvent evt) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void cancelChanges() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void applyChanges() {
+				getModel().getNomenclature().setUnitOfMeasures(listModel.getSelectedUnitOfMeasure());				
+			}
+		});
 	}
 
 }

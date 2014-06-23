@@ -11,6 +11,13 @@ public class UnitOfMeasureModelImpl extends
 
 	private UnitOfMeasure unitOfMeasure;
 
+	
+	
+	
+	public UnitOfMeasureModelImpl() {
+		super(UnitOfMeasureModelListener.class);
+	}
+
 	// TODO пока и так пойдет но потом нужно будет переделать, ибо не гибко
 	public void save() {
 		try {

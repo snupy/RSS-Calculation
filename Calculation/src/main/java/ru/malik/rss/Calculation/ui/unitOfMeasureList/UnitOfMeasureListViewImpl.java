@@ -32,7 +32,8 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 		initComponents();
 	}
 
-	private final Announcer<UnitOfMeasureListViewListener> announcer = new Announcer<UnitOfMeasureListViewListener>(UnitOfMeasureListViewListener.class);
+	private final Announcer<UnitOfMeasureListViewListener> announcer = new Announcer<UnitOfMeasureListViewListener>(
+			UnitOfMeasureListViewListener.class);
 
 	public void addViewListener(UnitOfMeasureListViewListener listener) {
 		announcer.addListener(listener);
@@ -52,39 +53,49 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 		setMinimumSize(minimumDimension);
 	}
 
-	public void sendEditUnitOfMeasure(){
+	public void sendEditUnitOfMeasure() {
 		announcer.announce().editUnitOfMeasure(this);
 	}
-	
-	public void sendRowSelected(int rowIndex){
+
+	public void sendRowSelected(int rowIndex) {
 		announcer.announce().selectRow(rowIndex, this);
 	}
-	
-	public void sendAddUnitOfMeasure(){
+
+	public void sendAddUnitOfMeasure() {
 		announcer.announce().addUnitOfMeasure(this);
 	}
-	
-	public void sendRemoveUnitOfMeasure(){
+
+	public void sendRemoveUnitOfMeasure() {
 		announcer.announce().removeUnitOfMeasure(this);
 	}
-	
+
+	public void sendOkActionUnitOfMeasure() {
+		announcer.announce().okActionPerform(this);
+	}
+
+	public void sendCancelActionUnitOfMeasure() {
+		announcer.announce().cancelActionPerform(this);
+	}
+
 	public void initComponents() {
 		listPanel = new ListPanel();
 
 		listPanel.addActionListner(new ActionListener() {
 
 			public void actionPerformed(ActionEvent evt) {
-				if (evt.getActionCommand() == ListPanel.ActionCommands.EDIT_ITEM.name()) {
+				if (evt.getActionCommand() == ListPanel.ActionCommands.EDIT_ITEM
+						.name()) {
 					sendEditUnitOfMeasure();
-				} else if(evt.getActionCommand() == ListPanel.ActionCommands.ADD_ITEM.name()){
+				} else if (evt.getActionCommand() == ListPanel.ActionCommands.ADD_ITEM
+						.name()) {
 					sendAddUnitOfMeasure();
-				} else if(evt.getActionCommand() == ListPanel.ActionCommands.REMOVE_ITEM.name()){
+				} else if (evt.getActionCommand() == ListPanel.ActionCommands.REMOVE_ITEM
+						.name()) {
 					sendRemoveUnitOfMeasure();
-				}					
+				}
 			}
 		});
 		getContentPane().add(listPanel);
-		
 
 		JScrollPane scrollPane = new JScrollPane();
 
@@ -102,18 +113,21 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 				super.mouseClicked(e);
 			}
 		});
-		
-		table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		//table.setCellSelectionEnabled(false);
-		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			
-			public void valueChanged(ListSelectionEvent event) {
-				ListSelectionModel lsm = (ListSelectionModel) event.getSource();
-				int selRowIndx = lsm.getAnchorSelectionIndex();
-				sendRowSelected(selRowIndx);
-				
-			}
-		});
+
+		table.getSelectionModel().setSelectionMode(
+				ListSelectionModel.SINGLE_SELECTION);
+		// table.setCellSelectionEnabled(false);
+		table.getSelectionModel().addListSelectionListener(
+				new ListSelectionListener() {
+
+					public void valueChanged(ListSelectionEvent event) {
+						ListSelectionModel lsm = (ListSelectionModel) event
+								.getSource();
+						int selRowIndx = lsm.getAnchorSelectionIndex();
+						sendRowSelected(selRowIndx);
+
+					}
+				});
 
 		listPanel.getContainer().add(scrollPane);
 
@@ -133,14 +147,13 @@ public class UnitOfMeasureListViewImpl extends JInternalFrame implements
 	public void setItemCount(int count) {
 		listPanel.setRowsCount(count);
 	}
-	
-	
-	public void setInfoSelectedRow(int index){
+
+	public void setInfoSelectedRow(int index) {
 		listPanel.setSelectedCaption(Integer.toString(index));
 	}
 
 	public void close() {
 		this.dispose();
 	}
-	
+
 }

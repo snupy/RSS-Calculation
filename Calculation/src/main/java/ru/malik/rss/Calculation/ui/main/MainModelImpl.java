@@ -4,6 +4,11 @@ import ru.malik.rss.Calculation.ui.mvc.ModelImpl;
 
 public class MainModelImpl extends ModelImpl<MainModelListener> implements MainModel{
 	private CategoryTreeModel categoryTreeModel;
+	
+	public MainModelImpl() {
+		super(MainModelListener.class);
+	}
+
 	public void setCategoryTreeModel(CategoryTreeModel categoryTreeModel) {
 		if((this.categoryTreeModel==null)||(!this.categoryTreeModel.equals(categoryTreeModel))){
 			getPropertyChangeSupport().firePropertyChange(MainModelListener.PN_CATEGORY_TREE_MODEL, this.categoryTreeModel, categoryTreeModel);

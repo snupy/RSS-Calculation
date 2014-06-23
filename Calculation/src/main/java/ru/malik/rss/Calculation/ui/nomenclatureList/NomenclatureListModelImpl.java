@@ -17,6 +17,13 @@ public class NomenclatureListModelImpl extends
 		NomenclatureListModel {
 	private TreeTableModel nomenclatureListTreeTableModel;
 	private MutableTreeNode selectedNomeclatureTreeNode;
+	
+	
+	
+
+	public NomenclatureListModelImpl() {
+		super(NomenclatureListModelListener.class);
+	}
 
 	public void setNomenclatureListTreeModel(TreeTableModel treeTableModel) {
 		if (((treeTableModel != null) && (!treeTableModel

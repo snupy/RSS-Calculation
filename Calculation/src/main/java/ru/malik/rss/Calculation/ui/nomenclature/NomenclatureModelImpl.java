@@ -11,6 +11,10 @@ public class NomenclatureModelImpl extends ModelImpl<NomenclatureModelListener>
 
 	private Nomenclature nomenclature;
 
+	public NomenclatureModelImpl() {
+		super(NomenclatureModelListener.class);
+	}
+
 	public void setNomenclature(Nomenclature nomenclature) {
 		if (this.nomenclature == nomenclature) {
 			return;

@@ -18,5 +18,8 @@ public interface UnitOfMeasureListModel extends
 	public void setSelectedUnitOfMeasure(UnitOfMeasure unitOfMeasure);
 
 	public void removeUnitOfMeasure(UnitOfMeasure unitOfMeasure);
+	
+	public void applyChanges();
+	public void cancelChanges();
 
 }

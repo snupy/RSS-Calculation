@@ -113,12 +113,23 @@ public class UnitOfMeasureListControllerImpl extends
 	}
 
 	public void okActionPerform(UnitOfMeasureListView sender) {
-		// TODO
+		getModel().applyChanges();
 	}
 
 	public void cancelActionPerform(UnitOfMeasureListView sender) {
-		// TODO Auto-generated method stub
-		
+		getModel().cancelChanges();
+	}
+
+	public void applyChanges() {
+		for(UnitOfMeasureListView view: views){
+			view.close();
+		}		
+	}
+
+	public void cancelChanges() {
+		for(UnitOfMeasureListView view: views){
+			view.close();
+		}
 	}
 	
 	

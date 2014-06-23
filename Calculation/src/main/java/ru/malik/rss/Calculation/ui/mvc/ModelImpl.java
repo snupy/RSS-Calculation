@@ -3,18 +3,29 @@ package ru.malik.rss.Calculation.ui.mvc;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import ru.malik.rss.Calculation.ui.common.Announcer;
+
 public class ModelImpl<L extends ModelListener> implements Model<L> {
 	private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+	protected final Announcer<L> announcer;
 	
-	public void addPropertyChangeListener(
-			L propertyChangeListener) {
-		propertyChangeSupport.addPropertyChangeListener(propertyChangeListener);
+	public ModelImpl(Class<L> modelListenerClass) {
+		super();
+		announcer = new Announcer<L>(modelListenerClass);
+	}
+	
+
+	public void addModelListener(
+			L listener) {
+		propertyChangeSupport.addPropertyChangeListener(listener);
+		announcer.addListener(listener);
 
 	}
 
-	public void removePropertyChangeListener(
-			L propertyChangeListener) {
-		propertyChangeSupport.removePropertyChangeListener(propertyChangeListener);
+	public void removeModelListener(
+			L listener) {
+		propertyChangeSupport.removePropertyChangeListener(listener);
+		announcer.removeListener(listener);
 	}
 
 	public PropertyChangeSupport getPropertyChangeSupport() {

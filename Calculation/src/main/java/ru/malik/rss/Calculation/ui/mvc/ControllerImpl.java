@@ -10,10 +10,10 @@ public abstract class ControllerImpl<M extends Model, V extends View>
 	public void setModel(M model) {
 		if ((this.model == null) || !this.model.equals(model)) {
 			if (this.model != null) {
-				this.model.removePropertyChangeListener(this);
+				this.model.removeModelListener(this);
 			}
 			this.model = model;
-			this.model.addPropertyChangeListener(this);
+			this.model.addModelListener(this);
 		}
 	}
 

@@ -40,6 +40,7 @@ import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListModelImpl;
 import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListTableModel;
 import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListView;
 import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListViewImpl;
+import ru.malik.rss.Calculation.ui.unitOfMeasureListSelect.unitOfMeasureListSelectViewImpl;
 import ru.malik.utils.NomenclatureCategoryDAO;
 import ru.malik.utils.NomenclatureDAO;
 import ru.malik.utils.UnitOfMeasureDAO;
@@ -135,6 +136,28 @@ public class Core {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public UnitOfMeasureListModel showUnitOfMeasureSelectList() {
+		UnitOfMeasureListView unitOfMeasureListView = new unitOfMeasureListSelectViewImpl();
+		mainView.addChildWindows((UnitOfMeasureListViewImpl) unitOfMeasureListView);
+		((unitOfMeasureListSelectViewImpl) unitOfMeasureListView).setVisible(true);
+
+		UnitOfMeasureListModel model = new UnitOfMeasureListModelImpl();
+
+		UnitOfMeasureListController controller = new UnitOfMeasureListControllerImpl();
+		controller.addView(unitOfMeasureListView);
+		controller.setModel(model);
+
+		try {
+			model.setUnitOfMeasureListTableModel(new UnitOfMeasureListTableModel(
+					UnitOfMeasureDAO.getInstance().getAll()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return model;
 	}
 
 	public void showNomenclatureList() {

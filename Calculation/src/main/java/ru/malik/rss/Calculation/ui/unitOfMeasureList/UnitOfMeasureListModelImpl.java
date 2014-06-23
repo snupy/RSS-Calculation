@@ -20,6 +20,12 @@ public class UnitOfMeasureListModelImpl extends
 	private UnitOfMeasure selectedUnitOfMeasure;
 	private UnitOfMeasure applyedSelectedUnitOfMeasure;
 
+	
+	
+	public UnitOfMeasureListModelImpl() {
+		super(UnitOfMeasureListModelListener.class);
+	}
+
 	public void setUnitOfMeasureListTableModel(
 			UnitOfMeasureListTableModel unitOfMeasureListTableModel) {
 		if ((getUnitOfMeasureListTableModel() == null)
@@ -79,4 +85,14 @@ public class UnitOfMeasureListModelImpl extends
 		}
 	}
 
+	public void applyChanges() {
+		announcer.announce().applyChanges();
+	}
+
+	public void cancelChanges() {
+		announcer.announce().cancelChanges();
+		
+	}
+
+	
 }
