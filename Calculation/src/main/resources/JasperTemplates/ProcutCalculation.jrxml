@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version last-->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProcutCalculation" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0e50b3d6-20b5-4832-b854-69863eddced7">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="numberField" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nameField" class="java.lang.String"/>
+	<field name="unitOfMeasureField" class="java.lang.String"/>
+	<field name="priceField" class="java.lang.Double"/>
+	<field name="volumeField" class="java.lang.Double"/>
+	<field name="resultPriceField" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="f4672b29-0674-4403-aa74-00f61ca2b08f"/>
+				<text><![CDATA[Калькуляция]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="95" height="20" uuid="bc0e8e8c-f5b1-4b62-87a8-35f767f9f17f"/>
+				<text><![CDATA[numberField]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="0" width="92" height="20" uuid="45d107a6-78d4-4560-a8c3-1e7848966464"/>
+				<text><![CDATA[nameField]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="0" width="92" height="20" uuid="dc7b8853-a481-4327-a0bc-0130a79ef8eb"/>
+				<text><![CDATA[unitOfMeasureField]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="92" height="20" uuid="394e1aa3-e241-440d-81f2-ab8c73dbc9bc"/>
+				<text><![CDATA[priceField]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="0" width="92" height="20" uuid="da7aae93-a89e-43ea-b64f-5fe37d94d20f"/>
+				<text><![CDATA[volumeField]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="0" width="92" height="20" uuid="037796e3-db52-47da-b652-7009a2442f66"/>
+				<text><![CDATA[resultPriceField]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="17" width="95" height="20" uuid="c74685ab-ff5c-483f-862d-e6844638b673"/>
+				<textFieldExpression><![CDATA[$F{numberField}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="17" width="92" height="20" uuid="8a4b3c03-7ef3-4275-ab30-060818e73110"/>
+				<textFieldExpression><![CDATA[$F{nameField}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="17" width="92" height="20" uuid="dad965ef-7ef6-4da5-8c2f-223ab9b2fe21"/>
+				<textFieldExpression><![CDATA[$F{unitOfMeasureField}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="17" width="92" height="20" uuid="2c8fb6fc-129e-4276-b43c-16afad7cdda5"/>
+				<textFieldExpression><![CDATA[$F{priceField}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="371" y="17" width="92" height="20" uuid="c7a4fa02-fa1a-46d4-8e2d-8b29473e47c7"/>
+				<textFieldExpression><![CDATA[$F{volumeField}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="463" y="17" width="92" height="20" uuid="8198cd4e-164d-419d-b341-108d1ba2db4a"/>
+				<textFieldExpression><![CDATA[$F{resultPriceField}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

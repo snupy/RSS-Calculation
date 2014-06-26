@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27.06.2014 2:27:16 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="ru.malik.rss.Calculation.entity.ProductCalculation" table="PRODUCTCALCULATION">
+        <id name="id" type="java.lang.Long">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <list name="resources" inverse="false" table="RESOURCE" lazy="true">
+            <key>
+                <column name="ID" />
+            </key>
+            <list-index></list-index>
+            <one-to-many class="ru.malik.rss.Calculation.entity.Resource" />
+        </list>
+        <property name="number" type="java.lang.String">
+            <column name="NUMBER" />
+        </property>
+        <property name="date" type="java.sql.Date">
+            <column name="DATE" />
+        </property>
+        <many-to-one name="product" class="ru.malik.rss.Calculation.entity.Product" fetch="join">
+            <column name="PRODUCT" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

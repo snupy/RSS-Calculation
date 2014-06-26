@@ -3,31 +3,21 @@
  *******************************************************************************/
 package ru.malik.rss.Calculation.entity;
 
-// Start of user code (user defined imports)
-
-// End of user code
-
-/**
- * ????? "??????". ?????? ??????? "????????????? ??????". ????????, ??????? ??????? ??? ???????????? ???????.
- * 
- * @author ?????
- */
 public class Resource {
-	// Start of user code (user defined attributes for Resource)
-
-	// End of user code
-
-	/**
-	 * The constructor.
-	 */
-	public Resource() {
-		// Start of user code constructor for Resource)
-		super();
-		// End of user code
+	private Long id;
+	private Double volume;
+	public Long getId() {
+		return id;
 	}
-
-	// Start of user code (user defined methods for Resource)
-
-	// End of user code
-
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Double getVolume() {
+		return volume;
+	}
+	public void setVolume(Double volume) {
+		this.volume = volume;
+	}
+	
+	
 }

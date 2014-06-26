@@ -29,6 +29,11 @@ public class Nomenclature {
 		this.id = id;
 	}
 
+	public void test(){
+		System.out.println(unitOfMeasures);
+		System.out.println(getUnitOfMeasures());
+	}
+	
 	/**
 	 * Description of the property unitOfMeasures.
 	 */

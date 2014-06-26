@@ -12,5 +12,9 @@
   <mapping class="ru.malik.economics.model.UnitOfMeasure" resource="ru/malik/rss/Calculation/entity/UnitOfMeasure.hbm.xml"/>
   <mapping resource="ru/malik/rss/Calculation/entity/Nomenclature.hbm.xml"/>
   <mapping resource="ru/malik/rss/Calculation/entity/NomenclatureCategory.hbm.xml"/>
+  <mapping resource="ru/malik/rss/Calculation/entity/Resource.hbm.xml"/>
+  <mapping resource="ru/malik/rss/Calculation/entity/MaterialResource.hbm.xml"/>
+  <mapping resource="ru/malik/rss/Calculation/entity/Product.hbm.xml"/>
+  <mapping resource="ru/malik/rss/Calculation/entity/ProductCalculation.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

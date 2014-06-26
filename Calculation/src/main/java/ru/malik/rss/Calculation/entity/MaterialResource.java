@@ -5,70 +5,36 @@ package ru.malik.rss.Calculation.entity;
 
 import ru.malik.rss.Calculation.entity.Resource;
 
-// End of user code
-
-/**
- * ????????????? ??????. ?.?. ??? ????? ????? ? ?????-?? ??????
- * 
- * @author ?????
- */
 public class MaterialResource extends Resource {
-	/**
-	 * Description of the property volume.
-	 */
-	public double volume = 0D;
+	/*public Double volume;
+	
+	public Long id;*/
 
-	/**
-	 * Description of the property nomenclatures.
-	 */
-	public Nomenclature nomenclatures = null;
+	public Nomenclature nomenclatures;
 
-	// Start of user code (user defined attributes for MaterialResource)
-
-	// End of user code
-
-	/**
-	 * The constructor.
-	 */
-	public MaterialResource() {
-		// Start of user code constructor for MaterialResource)
-		super();
-		// End of user code
+	/*public Double getVolume() {
+		return volume;
 	}
 
-	// Start of user code (user defined methods for MaterialResource)
+	public void setVolume(Double volume) {
+		this.volume = volume;
+	}*/
 
-	// End of user code
-	/**
-	 * Returns volume.
-	 * @return volume 
-	 */
-	public double getVolume() {
-		return this.volume;
-	}
-
-	/**
-	 * Sets a value to attribute volume. 
-	 * @param newVolume 
-	 */
-	public void setVolume(double newVolume) {
-		this.volume = newVolume;
-	}
-
-	/**
-	 * Returns nomenclatures.
-	 * @return nomenclatures 
-	 */
 	public Nomenclature getNomenclatures() {
-		return this.nomenclatures;
+		return nomenclatures;
 	}
 
-	/**
-	 * Sets a value to attribute nomenclatures. 
-	 * @param newNomenclatures 
-	 */
-	public void setNomenclatures(Nomenclature newNomenclatures) {
-		this.nomenclatures = newNomenclatures;
+	public void setNomenclatures(Nomenclature nomenclatures) {
+		this.nomenclatures = nomenclatures;
 	}
+
+	/*public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}*/
+
 
 }

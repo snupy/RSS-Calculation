@@ -30,7 +30,7 @@ public class UnitOfMeasureListTableModel extends AbstractTableModel {
 		}
 		return null;
 	}
-
+	
 	public int getRowCount() {
 		return unitOfMeasuresList.size();
 	}

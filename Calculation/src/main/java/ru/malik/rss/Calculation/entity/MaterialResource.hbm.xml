@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27.06.2014 2:28:14 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<union-subclass name="ru.malik.rss.Calculation.entity.MaterialResource"
+		extends="ru.malik.rss.Calculation.entity.Resource" table="MATERIALRESOURCE"
+		lazy="false">
+
+		<many-to-one name="nomenclatures"
+			class="ru.malik.rss.Calculation.entity.Nomenclature" fetch="join">
+			<column name="NOMENCLATURES" />
+		</many-to-one>
+	</union-subclass>
+</hibernate-mapping>

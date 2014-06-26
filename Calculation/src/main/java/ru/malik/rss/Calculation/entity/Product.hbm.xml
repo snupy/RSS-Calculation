@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 27.06.2014 2:27:16 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <joined-subclass name="ru.malik.rss.Calculation.entity.Product" extends="ru.malik.rss.Calculation.entity.Nomenclature" table="PRODUCT" lazy="false">
+        <key>
+            <column name="ID" />
+        </key>
+        <list name="productCalculations" inverse="false" table="PRODUCTCALCULATION" lazy="true">
+            <key></key>
+            <list-index></list-index>
+            <one-to-many class="ru.malik.rss.Calculation.entity.ProductCalculation" />
+        </list>
+    </joined-subclass>
+</hibernate-mapping>

@@ -1,5 +1,6 @@
 package ru.malik.rss.Calculation.ui.calculationRegister;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JInternalFrame;
@@ -7,6 +8,8 @@ import javax.swing.JInternalFrame;
 import ru.malik.rss.Calculation.ui.common.ListPanel;
 import ru.malik.rss.Calculation.ui.mvc.View;
 import ru.malik.rss.Calculation.ui.test.JTreeTable;
+import ru.malik.utils.HibernateUtil;
+import ru.malik.utils.ProductCalculcationDAO;
 
 import javax.swing.JScrollPane;
 
@@ -46,7 +49,12 @@ public class CalcultaionRegisterViewImpl extends JInternalFrame implements
 		JScrollPane jScrollPane = new JScrollPane();
 		listPanel.getContainer().add(jScrollPane);
 		
-		table = new JTable(new CalculationRegisterTableModel());
+		try {
+			table = new JTable(new CalculationRegisterTableModel(ProductCalculcationDAO.getInstance().getAll()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		jScrollPane.setViewportView(table);
 	}

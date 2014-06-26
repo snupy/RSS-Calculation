@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 15.06.2014 23:05:55 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 27.06.2014 2:28:14 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
     <class name="ru.malik.rss.Calculation.entity.NomenclatureCategory" table="NOMENCLATURECATEGORY">
         <id name="id" type="java.lang.Long">
             <column name="ID" />
-            <generator class="increment" />
+            <generator class="assigned" />
         </id>
         <property name="name" type="java.lang.String">
             <column name="NAME" />
@@ -14,20 +14,19 @@
         <many-to-one name="owner" class="ru.malik.rss.Calculation.entity.NomenclatureCategory" fetch="join">
             <column name="OWNER" />
         </many-to-one>
-        <list name="childrens" inverse="true" table="NOMENCLATURECATEGORY" lazy="true">
+        <list name="childrens" inverse="false" table="NOMENCLATURECATEGORY" lazy="true">
             <key>
                 <column name="ID" />
             </key>
             <list-index></list-index>
             <one-to-many class="ru.malik.rss.Calculation.entity.NomenclatureCategory" />
         </list>
-        <list name="nomenclatures" inverse="true" table="NOMENCLATURE" lazy="true">
+        <list name="nomenclatures" inverse="false" table="NOMENCLATURE" lazy="true">
             <key>
                 <column name="ID" />
             </key>
             <list-index></list-index>
-            <one-to-many  class="ru.malik.rss.Calculation.entity.Nomenclature" />
-           	 
+            <one-to-many class="ru.malik.rss.Calculation.entity.Nomenclature" />
         </list>
     </class>
 </hibernate-mapping>

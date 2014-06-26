@@ -3,45 +3,22 @@
  *******************************************************************************/
 package ru.malik.rss.Calculation.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import ru.malik.rss.Calculation.entity.Nomenclature;
 
-// End of user code
 
-/**
- * ????? ????????? ? ??????? ???????????? ???????????
- * 
- * @author ?????
- */
 public class Product extends Nomenclature {
-	/**
-	 * Description of the property productCalculations.
-	 */
-	public HashSet<ProductCalculation> productCalculations = new HashSet<ProductCalculation>();
+	private List<ProductCalculation> productCalculations = new ArrayList<ProductCalculation>();
 
-	// Start of user code (user defined attributes for Product)
-
-	// End of user code
-
-	/**
-	 * The constructor.
-	 */
-	public Product() {
-		// Start of user code constructor for Product)
-		super();
-		// End of user code
+	public List<ProductCalculation> getProductCalculations() {
+		return productCalculations;
 	}
 
-	// Start of user code (user defined methods for Product)
-
-	// End of user code
-	/**
-	 * Returns productCalculations.
-	 * @return productCalculations 
-	 */
-	public HashSet<ProductCalculation> getProductCalculations() {
-		return this.productCalculations;
+	public void setProductCalculations(List<ProductCalculation> productCalculations) {
+		this.productCalculations = productCalculations;
 	}
 
 }

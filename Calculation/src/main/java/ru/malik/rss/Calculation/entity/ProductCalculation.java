@@ -3,7 +3,10 @@
  *******************************************************************************/
 package ru.malik.rss.Calculation.entity;
 
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 // Start of user code (user defined imports)
 
@@ -15,46 +18,41 @@ import java.util.HashSet;
  * @author ?????
  */
 public class ProductCalculation {
-	/**
-	 * Description of the property workVolumes.
-	 */
-	public HashSet<WorkVolume> workVolumes = new HashSet<WorkVolume>();
-
-	/**
-	 * Description of the property resources.
-	 */
-	public HashSet<Resource> resources = new HashSet<Resource>();
-
-	// Start of user code (user defined attributes for ProductCalculation)
-
-	// End of user code
-
-	/**
-	 * The constructor.
-	 */
-	public ProductCalculation() {
-		// Start of user code constructor for ProductCalculation)
-		super();
-		// End of user code
+	/* public List<WorkVolume> workVolumes = new ArrayList<WorkVolume>(); */
+	private List<Resource> resources = new ArrayList<Resource>();
+	private String number;
+	private Date date;
+	private Long id;
+	private Product product;
+	public List<Resource> getResources() {
+		return resources;
 	}
-
-	// Start of user code (user defined methods for ProductCalculation)
-
-	// End of user code
-	/**
-	 * Returns workVolumes.
-	 * @return workVolumes 
-	 */
-	public HashSet<WorkVolume> getWorkVolumes() {
-		return this.workVolumes;
+	public void setResources(List<Resource> resources) {
+		this.resources = resources;
 	}
-
-	/**
-	 * Returns resources.
-	 * @return resources 
-	 */
-	public HashSet<Resource> getResources() {
-		return this.resources;
+	public String getNumber() {
+		return number;
 	}
-
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	
 }
