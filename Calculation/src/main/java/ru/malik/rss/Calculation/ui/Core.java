@@ -8,6 +8,13 @@ import java.util.List;
 import ru.malik.rss.Calculation.entity.Nomenclature;
 import ru.malik.rss.Calculation.entity.NomenclatureCategory;
 import ru.malik.rss.Calculation.entity.UnitOfMeasure;
+import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterController;
+import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterControllerImpl;
+import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterModel;
+import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterModelImpl;
+import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterTableModel;
+import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterView;
+import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterViewImpl;
 import ru.malik.rss.Calculation.ui.main.CategoryTreeModel;
 import ru.malik.rss.Calculation.ui.main.MainController;
 import ru.malik.rss.Calculation.ui.main.MainControllerImpl;
@@ -43,6 +50,7 @@ import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListViewImpl;
 import ru.malik.rss.Calculation.ui.unitOfMeasureListSelect.unitOfMeasureListSelectViewImpl;
 import ru.malik.utils.NomenclatureCategoryDAO;
 import ru.malik.utils.NomenclatureDAO;
+import ru.malik.utils.ProductCalculcationDAO;
 import ru.malik.utils.UnitOfMeasureDAO;
 
 public class Core {
@@ -132,6 +140,26 @@ public class Core {
 		try {
 			model.setUnitOfMeasureListTableModel(new UnitOfMeasureListTableModel(
 					UnitOfMeasureDAO.getInstance().getAll()));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void showCalculationRegister() {
+		CalculationRegisterView view = new CalculationRegisterViewImpl();
+		mainView.addChildWindows((CalculationRegisterViewImpl) view);
+		((CalculationRegisterViewImpl) view).setVisible(true);
+
+		CalculationRegisterModel model = new CalculationRegisterModelImpl();
+
+		CalculationRegisterController controller = new CalculationRegisterControllerImpl();
+		controller.addView(view);
+		controller.setModel(model);
+
+		try {
+			model.setCalculationRegisterTableModel(new CalculationRegisterTableModel(
+					ProductCalculcationDAO.getInstance().getAll()));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

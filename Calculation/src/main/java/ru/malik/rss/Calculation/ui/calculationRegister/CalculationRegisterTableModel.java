@@ -22,9 +22,9 @@ public class CalculationRegisterTableModel extends AbstractTableModel {
 		// TODO Нужно будет потом переделать
 		switch (index) {
 		case 0:
-			return "Дата";
-		case 1:
 			return "Номер";
+		case 1:
+			return "Дата";
 		case 2:
 			return "Продукт";
 		default:
@@ -56,4 +56,8 @@ public class CalculationRegisterTableModel extends AbstractTableModel {
 		this.calculations = calculations;
 	}
 
+	public ProductCalculation getCalculationAt(int index){
+		return calculations.get(index);
+	}
+	
 }

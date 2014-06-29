@@ -9,7 +9,7 @@ import javax.swing.JInternalFrame;
 import ru.malik.rss.Calculation.entity.UnitOfMeasureList;
 import ru.malik.rss.Calculation.entity.UnitOfMeasuresList;
 import ru.malik.rss.Calculation.ui.Core;
-import ru.malik.rss.Calculation.ui.calculationRegister.CalcultaionRegisterViewImpl;
+import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterViewImpl;
 import ru.malik.rss.Calculation.ui.mvc.ControllerImpl;
 import ru.malik.rss.Calculation.ui.mvc.View;
 import ru.malik.rss.Calculation.ui.test.UnitOfMesauresListView;
@@ -24,8 +24,6 @@ import ru.malik.utils.UnitOfMeasureDAO;
 
 public class MainControllerImpl extends ControllerImpl<MainModel, MainView>
 		implements MainController {
-	
-
 
 	public MainControllerImpl(MainModel model) {
 		super(model);
@@ -44,44 +42,33 @@ public class MainControllerImpl extends ControllerImpl<MainModel, MainView>
 	}
 
 	public View<?> openCalculationRegister(View<?> view, Container container) {
-
-		// TODO нужно переделать
-		JInternalFrame internalFrame = new CalcultaionRegisterViewImpl();
-		/*
-		 * internalFrame.setIconifiable(true); internalFrame.setResizable(true);
-		 * internalFrame.setMaximizable(true); internalFrame.setClosable(true);
-		 */
-		// internalFrame.setBounds(31, 66, 202, 93);
-		int count = container.getComponentCount();
-		internalFrame.setLocation(count * 50, count * 50);
-		container.add(internalFrame);
-		internalFrame.setVisible(true);
+		Core.getInstance().showCalculationRegister();
 		return null;
 	}
 
 	public View<?> openUnitOfMeasureList(View<?> view, Container container) {
 
 		// TODO нужно переделать
-		/*UnitOfMeasureListViewImpl unitOfMeasureListView = new UnitOfMeasureListViewImpl();
-		int count = container.getComponentCount();
-		unitOfMeasureListView.setLocation(count * 50, count * 50);
-		container.add(unitOfMeasureListView);
-		unitOfMeasureListView.setVisible(true);
-
-		UnitOfMeasureListModel model = new UnitOfMeasureListModelImpl();
-
-		UnitOfMeasureListController controller = new UnitOfMeasureListControllerImpl();
-		controller.addView(unitOfMeasureListView);
-		controller.setModel(model);
-
-		try {
-			model.setUnitOfMeasureListTableModel(new UnitOfMeasureListTableModel(
-					UnitOfMeasureDAO.getInstance()
-							.getAll()));
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		/*
+		 * UnitOfMeasureListViewImpl unitOfMeasureListView = new
+		 * UnitOfMeasureListViewImpl(); int count =
+		 * container.getComponentCount();
+		 * unitOfMeasureListView.setLocation(count * 50, count * 50);
+		 * container.add(unitOfMeasureListView);
+		 * unitOfMeasureListView.setVisible(true);
+		 * 
+		 * UnitOfMeasureListModel model = new UnitOfMeasureListModelImpl();
+		 * 
+		 * UnitOfMeasureListController controller = new
+		 * UnitOfMeasureListControllerImpl();
+		 * controller.addView(unitOfMeasureListView);
+		 * controller.setModel(model);
+		 * 
+		 * try { model.setUnitOfMeasureListTableModel(new
+		 * UnitOfMeasureListTableModel( UnitOfMeasureDAO.getInstance()
+		 * .getAll())); } catch (SQLException e) { // TODO Auto-generated catch
+		 * block e.printStackTrace(); }
+		 */
 
 		Core.getInstance().showUnitOfMeasureList();
 		return null;
