@@ -5,6 +5,9 @@ import java.beans.PropertyChangeEvent;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
+import ru.malik.rss.Calculation.entity.ProductCalculation;
+import ru.malik.rss.Calculation.ui.Core;
+import ru.malik.rss.Calculation.ui.calculation.CalculationView;
 import ru.malik.rss.Calculation.ui.mvc.ControllerImpl;
 import ru.malik.rss.Calculation.ui.mvc.ModelListener;
 
@@ -33,4 +36,20 @@ public class CalculationRegisterControllerImpl extends
 				getModel().getCalculationRegisterTableModel().getCalculationAt(
 						index));
 	}
+
+	public void addCalculation(CalculationRegisterView sender) {
+		Core.getInstance().editCalculation(new ProductCalculation());
+	}
+
+	public void removeCalculation(CalculationRegisterView sender) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void editCalculation(CalculationRegisterView sender) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

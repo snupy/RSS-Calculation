@@ -22,13 +22,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import ru.malik.rss.Calculation.ui.common.ListPanel;
+import ru.malik.rss.Calculation.ui.materialResourceList.MaterialResourceListTableModel;
+import ru.malik.rss.Calculation.ui.materialResourceList.MaterialResourceListView;
+import ru.malik.rss.Calculation.ui.materialResourceList.MaterialResourceListViewImpl;
 
 import javax.swing.JTable;
 
 public class CalculationViewImpl extends JPanel implements CalculationView {
 	private final Announcer<CalculationViewListener> announcer = new Announcer<CalculationViewListener>(
 	CalculationViewListener.class);
-	private JTable materialResourceListTable;
+	private MaterialResourceListViewImpl materialResourceListView;
 	
 	private ProductCalculation calculation;
 
@@ -73,26 +76,9 @@ public class CalculationViewImpl extends JPanel implements CalculationView {
 		gbc_richTextField.gridy = 0;
 		panel.add(richTextField, gbc_richTextField);
 
-		ListPanel listPanel = new ListPanel();
-		tabbedPane.addTab("Сырье", null, listPanel, null);
-		listPanel.addActionListner(new ActionListener() {
-
-			public void actionPerformed(ActionEvent evnt) {
-				if (ListPanel.ActionCommands.ADD_ITEM.name().equals(
-						evnt.getActionCommand())) {
-					// TODO тут добавление в спискок материавльных ресурсов
-				} else if (ListPanel.ActionCommands.EDIT_ITEM.name().equals(
-						evnt.getActionCommand())) {
-					// TODO тут редактирование списка материавльных ресурсов
-				} else if (ListPanel.ActionCommands.REMOVE_ITEM.name().equals(
-						evnt.getActionCommand())) {
-					// TODO тут удаление из спискока материавльных ресурсов
-				}
-			}
-		});
-
-		materialResourceListTable = new JTable();
-		listPanel.getContainer().add(materialResourceListTable);
+		materialResourceListView = new MaterialResourceListViewImpl();
+		tabbedPane.addTab("Сырье", null, materialResourceListView, null);
+		
 	}
 
 	public void addViewListener(CalculationViewListener listener) {
@@ -103,17 +89,13 @@ public class CalculationViewImpl extends JPanel implements CalculationView {
 		announcer.removeListener(listener);
 	}
 
-	public void setMaterialResourceListTableModel(
-			MaterialResourceListTableModel tableModel) {
-		materialResourceListTable.setModel(tableModel);
-	}
-
-	public MaterialResourceListTableModel getMaterialResourceListTableModel() {
-		return (MaterialResourceListTableModel) materialResourceListTable
-				.getModel();
-	}
-
 	public void setCalculation(ProductCalculation calculation) {
 		this.calculation = calculation;
 	}
+
+	public MaterialResourceListView getMaterialResourceListView() {
+		return this.materialResourceListView;
+	}
+	
+	
 }

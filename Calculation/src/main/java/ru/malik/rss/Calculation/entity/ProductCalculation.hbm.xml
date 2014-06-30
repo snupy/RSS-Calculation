@@ -8,12 +8,12 @@
             <column name="ID" />
             <generator class="assigned" />
         </id>
-        <list name="resources" inverse="false" table="RESOURCE" lazy="true">
+        <list name="resources" inverse="false" table="MATERIALRESOURCE" lazy="false">
             <key>
                 <column name="ID" />
             </key>
             <list-index></list-index>
-            <one-to-many class="ru.malik.rss.Calculation.entity.Resource" />
+            <one-to-many class="ru.malik.rss.Calculation.entity.MaterialResource" />
         </list>
         <property name="number" type="java.lang.String">
             <column name="NUMBER" />

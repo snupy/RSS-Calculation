@@ -8,27 +8,21 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-// Start of user code (user defined imports)
-
-// End of user code
-
-/**
- * ??????????? ????????
- * 
- * @author ?????
- */
 public class ProductCalculation {
 	/* public List<WorkVolume> workVolumes = new ArrayList<WorkVolume>(); */
-	private List<Resource> resources = new ArrayList<Resource>();
+	private List<MaterialResource> materialResource = new ArrayList<MaterialResource>();
 	private String number;
 	private Date date;
 	private Long id;
 	private Product product;
-	public List<Resource> getResources() {
-		return resources;
+
+	
+	
+	public List<MaterialResource> getMaterialResource() {
+		return materialResource;
 	}
-	public void setResources(List<Resource> resources) {
-		this.resources = resources;
+	public void setMaterialResource(List<MaterialResource> materialResource) {
+		this.materialResource = materialResource;
 	}
 	public String getNumber() {
 		return number;

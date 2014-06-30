@@ -1,13 +1,21 @@
 package ru.malik.rss.Calculation.ui;
 
 import java.awt.Component;
+import java.awt.Container;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import ru.malik.rss.Calculation.entity.Nomenclature;
 import ru.malik.rss.Calculation.entity.NomenclatureCategory;
+import ru.malik.rss.Calculation.entity.ProductCalculation;
 import ru.malik.rss.Calculation.entity.UnitOfMeasure;
+import ru.malik.rss.Calculation.ui.calculation.CalculationController;
+import ru.malik.rss.Calculation.ui.calculation.CalculationControllerImpl;
+import ru.malik.rss.Calculation.ui.calculation.CalculationModel;
+import ru.malik.rss.Calculation.ui.calculation.CalculationModelImpl;
+import ru.malik.rss.Calculation.ui.calculation.CalculationView;
+import ru.malik.rss.Calculation.ui.calculation.CalculationViewImpl;
 import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterController;
 import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterControllerImpl;
 import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterModel;
@@ -15,6 +23,7 @@ import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterModelI
 import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterTableModel;
 import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterView;
 import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterViewImpl;
+import ru.malik.rss.Calculation.ui.common.JMdiFrame;
 import ru.malik.rss.Calculation.ui.main.CategoryTreeModel;
 import ru.malik.rss.Calculation.ui.main.MainController;
 import ru.malik.rss.Calculation.ui.main.MainControllerImpl;
@@ -109,6 +118,23 @@ public class Core {
 		UnitOfMeasureController unitOfMeasureController = new UnitOfMeasureControllerImpl();
 		unitOfMeasureController.setModel(unitOfMeasureModel);
 		unitOfMeasureController.addView(unitOfMeasureView);
+
+	}
+	
+	public void editCalculation(ProductCalculation productCalculation) {
+		CalculationModel model = new CalculationModelImpl();
+		model.setCalculation(productCalculation);
+
+		CalculationView  view= new CalculationViewImpl();
+		
+		JMdiFrame frame = new JMdiFrame();
+		frame.setContentPane((Container)view);
+		mainView.addChildWindows(frame);
+		(frame).setVisible(true);
+		
+		CalculationController controller = new CalculationControllerImpl();
+		controller.setModel(model);
+		controller.addView(view);
 
 	}
 

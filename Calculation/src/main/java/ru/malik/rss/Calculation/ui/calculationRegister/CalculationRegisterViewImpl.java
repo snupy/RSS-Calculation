@@ -16,6 +16,8 @@ import javax.swing.JScrollPane;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JTable;
@@ -57,6 +59,15 @@ public class CalculationRegisterViewImpl extends JInternalFrame implements
 
 		JScrollPane jScrollPane = new JScrollPane();
 		listPanel.getContainer().add(jScrollPane);
+		listPanel.addActionListner(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent event) {
+				if(ListPanel.ActionCommands.ADD_ITEM.name().equals(event.getActionCommand())){
+					announcer.announce().addCalculation(CalculationRegisterViewImpl.this);
+				}
+			}
+		});
+		
 
 		table = new JTable();
 		table.getSelectionModel().addListSelectionListener(
