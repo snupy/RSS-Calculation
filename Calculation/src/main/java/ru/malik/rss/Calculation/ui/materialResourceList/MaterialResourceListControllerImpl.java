@@ -20,5 +20,23 @@ public class MaterialResourceListControllerImpl extends
 			}
 		}
 	}
+	
 
+	@Override
+	public void setModel(MaterialResourceListModel model) {
+		for (MaterialResourceListView view : views) {
+			view.setMaterialResourceListTableModel(model.getMaterialResourceListTableModel());
+		}
+		super.setModel(model);
+	}
+
+
+	@Override
+	public void addView(MaterialResourceListView view) {
+		view.setMaterialResourceListTableModel(getModel().getMaterialResourceListTableModel());
+		super.addView(view);
+	}
+
+	
+	
 }

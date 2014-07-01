@@ -47,8 +47,8 @@ public class CalculationRegisterControllerImpl extends
 	}
 
 	public void editCalculation(CalculationRegisterView sender) {
-		// TODO Auto-generated method stub
-		
+		Core.getInstance().editCalculation(getModel().getSelectedCalculation());
+				
 	}
 	
 	

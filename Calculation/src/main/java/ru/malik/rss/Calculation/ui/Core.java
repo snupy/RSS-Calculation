@@ -130,7 +130,8 @@ public class Core {
 		JMdiFrame frame = new JMdiFrame();
 		frame.setContentPane((Container)view);
 		mainView.addChildWindows(frame);
-		(frame).setVisible(true);
+		frame.setVisible(true);
+		frame.pack();
 		
 		CalculationController controller = new CalculationControllerImpl();
 		controller.setModel(model);

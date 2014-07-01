@@ -28,4 +28,6 @@ public class MaterialResourceListModelImpl extends
 							this.materialResourceListTableModel = materialResourceListTableModel);
 		}
 	}
+	
+	
 }

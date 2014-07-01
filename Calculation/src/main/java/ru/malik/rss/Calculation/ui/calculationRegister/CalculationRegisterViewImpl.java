@@ -64,6 +64,8 @@ public class CalculationRegisterViewImpl extends JInternalFrame implements
 			public void actionPerformed(ActionEvent event) {
 				if(ListPanel.ActionCommands.ADD_ITEM.name().equals(event.getActionCommand())){
 					announcer.announce().addCalculation(CalculationRegisterViewImpl.this);
+				}else if(ListPanel.ActionCommands.EDIT_ITEM.name().equals(event.getActionCommand())){
+					announcer.announce().editCalculation(CalculationRegisterViewImpl.this);
 				}
 			}
 		});

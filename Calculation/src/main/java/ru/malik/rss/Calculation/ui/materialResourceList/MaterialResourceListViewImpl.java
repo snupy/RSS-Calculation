@@ -8,6 +8,8 @@ import javax.swing.JTable;
 
 import ru.malik.rss.Calculation.ui.common.Announcer;
 import ru.malik.rss.Calculation.ui.common.ListPanel;
+import javax.swing.BoxLayout;
+import javax.swing.JScrollPane;
 
 public class MaterialResourceListViewImpl extends JPanel implements
 		MaterialResourceListView {
@@ -22,6 +24,7 @@ public class MaterialResourceListViewImpl extends JPanel implements
 	}
 
 	public void init() {
+		setVisible(true);
 	}
 
 	public void initComponents() {
@@ -34,9 +37,15 @@ public class MaterialResourceListViewImpl extends JPanel implements
 				}
 			}
 		});
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		listPanel.getContainer().add(scrollPane);
 		
 		jTable = new JTable();
-		listPanel.getContainer().add(jTable);
+		scrollPane.setViewportView(jTable);
+		
+		add(listPanel);
 	}
 
 	private final Announcer<MaterialResourceListViewListener> announcer = new Announcer<MaterialResourceListViewListener>(

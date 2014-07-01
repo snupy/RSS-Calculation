@@ -33,12 +33,16 @@ public class CalculationControllerImpl extends
 	@Override
 	public void setModel(CalculationModel model) {
 		materialResourceListController.setModel(model.getMaterialResourceListModel());
+		for (CalculationView view : views) {
+			view.setCalculation(model.getCalculation());
+		}
 		super.setModel(model);
 	}
 
 	@Override
 	public void addView(CalculationView view) {
 		materialResourceListController.addView(view.getMaterialResourceListView());
+		view.setCalculation(getModel().getCalculation());
 		super.addView(view);
 	}
 
