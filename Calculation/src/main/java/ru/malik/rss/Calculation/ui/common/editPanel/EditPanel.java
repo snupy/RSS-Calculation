@@ -1,9 +1,11 @@
-package ru.malik.rss.Calculation.ui.common;
+package ru.malik.rss.Calculation.ui.common.editPanel;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import ru.malik.rss.Calculation.ui.common.Announcer;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -13,9 +15,19 @@ public class EditPanel extends JPanel {
 	private JPanel southPanel;
 	private JPanel containerPanel;
 	private JButton okButton, cancelButton;
+	final private Announcer<EditPanelListener> announcer = new Announcer<EditPanelListener>(
+			EditPanelListener.class);
 
 	public enum ActionCommand {
 		OK, CANCEL
+	}
+
+	public void addEditPanelListener(EditPanelListener listener) {
+		announcer.addListener(listener);
+	}
+
+	public void removeEditPanelListener(EditPanelListener listener) {
+		announcer.removeListener(listener);
 	}
 
 	public EditPanel() {
@@ -43,7 +55,7 @@ public class EditPanel extends JPanel {
 		okButton.setActionCommand(ActionCommand.OK.name());
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sendOk();
+				announcer.announce().okActionPerformed(EditPanel.this);
 			}
 		});
 
@@ -53,7 +65,7 @@ public class EditPanel extends JPanel {
 		cancelButton.setActionCommand(ActionCommand.CANCEL.name());
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				sendCancel();
+				announcer.announce().cancelActionPerformed(EditPanel.this);
 			}
 		});
 
@@ -63,13 +75,5 @@ public class EditPanel extends JPanel {
 
 	public JPanel getContainerPanel() {
 		return containerPanel;
-	}
-
-	public void sendOk() {
-
-	}
-
-	public void sendCancel() {
-
 	}
 }

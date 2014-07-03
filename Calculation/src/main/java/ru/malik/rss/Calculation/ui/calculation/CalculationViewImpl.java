@@ -34,8 +34,11 @@ import javax.swing.JTextField;
 import org.jdesktop.swingx.JXDatePicker;
 import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.beansbinding.AutoBinding;
+import org.jdesktop.beansbinding.Binding;
 import org.jdesktop.beansbinding.BindingGroup;
 import org.jdesktop.beansbinding.Bindings;
+import org.jdesktop.beansbinding.Converter;
+import org.jdesktop.beansbinding.ObjectProperty;
 import org.jdesktop.beansbinding.PropertyStateEvent;
 import org.jdesktop.beansbinding.PropertyStateListener;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
@@ -168,7 +171,7 @@ public class CalculationViewImpl extends JPanel implements CalculationView {
 	private BeanProperty<ProductCalculation, Product> productCalculationProductBeanProperty;
 	private BeanProperty<JTextField, String> jTextFieldBeanProperty;
 	private BeanProperty<ProductCalculation, Date> productCalculationDateBeanProperty;
-	private BeanProperty<JFormattedTextField, Object> jFormattedTextFieldBeanProperty;
+	private BeanProperty<JFormattedTextField, java.util.Date> jFormattedTextFieldBeanProperty;
 	private BindingGroup bindingGroup;
 
 	protected void initBeanProperties() {
@@ -177,6 +180,9 @@ public class CalculationViewImpl extends JPanel implements CalculationView {
 		productCalculationDateBeanProperty = BeanProperty.create("date");
 		jFormattedTextFieldBeanProperty = BeanProperty.create("value");
 		productCalculationProductBeanProperty = BeanProperty.create("product");
+		
+		
+
 	}
 
 	protected void initBindingGroup() {
@@ -188,20 +194,54 @@ public class CalculationViewImpl extends JPanel implements CalculationView {
 						jTextFieldBeanProperty);
 		bindingGroup.addBinding(autoBinding);
 
-		AutoBinding<ProductCalculation, Date, JFormattedTextField, Object> autoBinding_1 = Bindings
+		AutoBinding<ProductCalculation, Date, JFormattedTextField, java.util.Date> autoBinding_1 = Bindings
 				.createAutoBinding(UpdateStrategy.READ, calculation,
 						productCalculationDateBeanProperty,
 						datePicker.getEditor(), jFormattedTextFieldBeanProperty);
+		autoBinding_1.setConverter(new Converter<Date, java.util.Date>() {
+
+			@Override
+			public Date convertReverse(java.util.Date date) {
+
+				return new Date(date.getTime());
+			}
+
+			@Override
+			public java.util.Date convertForward(Date date) {
+
+				return new java.util.Date(date.getDate());
+			}
+		});
+
 		bindingGroup.addBinding(autoBinding_1);
 
-		/*
-		 * productCalculationProductBeanProperty.addPropertyStateListener(
-		 * calculation, new PropertyStateListener() {
-		 * 
-		 * public void propertyStateChanged(PropertyStateEvent event) {
-		 * richTextField.getTextField().setText( ((Product)
-		 * event.getNewValue()).getName()); } });
-		 * productCalculationProductBeanProperty.
-		 */
+		AutoBinding<ProductCalculation, Product, JTextField, String> autoBinding2 = Bindings
+				.createAutoBinding(UpdateStrategy.READ, calculation,
+						productCalculationProductBeanProperty,
+						richTextField.getTextField(), jTextFieldBeanProperty);
+		
+		autoBinding2.setConverter(new Converter<Product, String>() {
+
+			@Override
+			public Product convertReverse(String s) {
+
+				return null;
+			}
+
+			@Override
+			public String convertForward(Product product) {
+				// TODO Auto-generated method stub
+				return product.getName();
+			}
+		});
+		BindingGroupBean 
+		bindingGroup.addBinding(autoBinding2);
 	}
+
+	public void save() {
+		for (Binding binding : bindingGroup.getBindings()) {
+			binding.saveAndNotify();
+		}
+	}
+
 }

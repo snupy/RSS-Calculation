@@ -24,6 +24,8 @@ import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterTableM
 import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterView;
 import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterViewImpl;
 import ru.malik.rss.Calculation.ui.common.JMdiFrame;
+import ru.malik.rss.Calculation.ui.common.editPanel.EditPanel;
+import ru.malik.rss.Calculation.ui.common.editPanel.EditPanelListener;
 import ru.malik.rss.Calculation.ui.main.CategoryTreeModel;
 import ru.malik.rss.Calculation.ui.main.MainController;
 import ru.malik.rss.Calculation.ui.main.MainControllerImpl;
@@ -120,39 +122,66 @@ public class Core {
 		unitOfMeasureController.addView(unitOfMeasureView);
 
 	}
-	
+
 	public void editCalculation(ProductCalculation productCalculation) {
-		CalculationModel model = new CalculationModelImpl();
+		final CalculationModel model = new CalculationModelImpl();
 		model.setCalculation(productCalculation);
 
-		CalculationView  view= new CalculationViewImpl();
+		final CalculationView  view= new CalculationViewImpl();
 		
-		JMdiFrame frame = new JMdiFrame();
-		frame.setContentPane((Container)view);
+		final CalculationController controller = new CalculationControllerImpl();
+		 controller.setModel(model);
+		controller.addView(view);
+		
+		final JMdiFrame frame = new JMdiFrame();
+		EditPanel editPanel= new EditPanel();
+		
+		editPanel.addEditPanelListener(new EditPanelListener() {
+			
+			public void okActionPerformed(Object sender) {
+				controller.applyChanges(view);
+				try {
+					ProductCalculcationDAO.getInstance().saveOrUpdate(model.getCalculation());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			public void cancelActionPerformed(Object sender) {
+				controller.cancel(view);
+				frame.dispose();
+			}
+		});
+		
+		editPanel.getContainerPanel().add((Container)view);
+		
+		
+		
+		frame.setContentPane(editPanel);
+		
 		mainView.addChildWindows(frame);
 		frame.setVisible(true);
 		frame.pack();
 		
-		CalculationController controller = new CalculationControllerImpl();
-		controller.setModel(model);
-		controller.addView(view);
+		
 
 	}
 
-	public void editNomenclature(Nomenclature nomenclature){
+	public void editNomenclature(Nomenclature nomenclature) {
 		NomenclatureModel model = new NomenclatureModelImpl();
 		NomenclatureView view = new NomenclatureViewImpl();
 		NomenclatureController controller = new NomenclauteControllerImpl();
-		
+
 		controller.setModel(model);
 		controller.addView(view);
-		
+
 		model.setNomenclature(nomenclature);
-		
+
 		mainView.addChildWindows((Component) view);
 		((Component) view).setVisible(true);
 	}
-	
+
 	public void showUnitOfMeasureList() {
 		UnitOfMeasureListView unitOfMeasureListView = new UnitOfMeasureListViewImpl();
 		mainView.addChildWindows((UnitOfMeasureListViewImpl) unitOfMeasureListView);
@@ -172,7 +201,7 @@ public class Core {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void showCalculationRegister() {
 		CalculationRegisterView view = new CalculationRegisterViewImpl();
 		mainView.addChildWindows((CalculationRegisterViewImpl) view);
@@ -192,11 +221,12 @@ public class Core {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public UnitOfMeasureListModel showUnitOfMeasureSelectList() {
 		UnitOfMeasureListView unitOfMeasureListView = new unitOfMeasureListSelectViewImpl();
 		mainView.addChildWindows((UnitOfMeasureListViewImpl) unitOfMeasureListView);
-		((unitOfMeasureListSelectViewImpl) unitOfMeasureListView).setVisible(true);
+		((unitOfMeasureListSelectViewImpl) unitOfMeasureListView)
+				.setVisible(true);
 
 		UnitOfMeasureListModel model = new UnitOfMeasureListModelImpl();
 
@@ -211,7 +241,7 @@ public class Core {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return model;
 	}
 

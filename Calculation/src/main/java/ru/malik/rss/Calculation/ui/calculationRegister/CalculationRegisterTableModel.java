@@ -45,7 +45,7 @@ public class CalculationRegisterTableModel extends AbstractTableModel {
 		case 1:
 			return calculation.getDate();
 		case 2:
-			return calculation.getProduct().getName();
+			return calculation.getProduct()!=null?calculation.getProduct().getName():"";
 		default:
 			return null;
 		}

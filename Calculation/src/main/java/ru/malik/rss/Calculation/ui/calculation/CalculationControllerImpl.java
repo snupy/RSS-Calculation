@@ -51,6 +51,16 @@ public class CalculationControllerImpl extends
 		materialResourceListController.removeView(view.getMaterialResourceListView());
 		super.removeView(view);
 	}
-	
+
+	public void applyChanges(CalculationView sender) {
+		sender.save();
+	}
+
+	public void cancel(CalculationView sender) {
+		// TODO Auto-generated method stub
+		
+	}
+
+		
 	
 }

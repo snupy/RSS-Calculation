@@ -3,8 +3,9 @@ package ru.malik.rss.Calculation.ui.unitOfMeasure;
 import java.util.ArrayList;
 
 import ru.malik.rss.Calculation.entity.UnitOfMeasure;
-import ru.malik.rss.Calculation.ui.common.EditPanel;
 import ru.malik.rss.Calculation.ui.common.JMdiFrame;
+import ru.malik.rss.Calculation.ui.common.editPanel.EditPanel;
+import ru.malik.rss.Calculation.ui.common.editPanel.EditPanelListener;
 import ru.malik.rss.Calculation.ui.mvc.ViewListener;
 
 import java.awt.GridBagLayout;
@@ -59,20 +60,18 @@ public class UnitOfMeasureViewImpl extends JMdiFrame implements
 	}
 
 	public void init() {
-		editPanel = new EditPanel() {
-
-			@Override
-			public void sendOk() {
+		editPanel = new EditPanel();
+		editPanel.addEditPanelListener(new EditPanelListener() {
+			
+			public void okActionPerformed(Object sender) {
 				sendSave();
-				super.sendOk();
+				
 			}
-
-			@Override
-			public void sendCancel() {
+			
+			public void cancelActionPerformed(Object sender) {
 				sendClose();
-				super.sendCancel();
 			}
-		};
+		});
 		setContentPane(editPanel);
 	}
 

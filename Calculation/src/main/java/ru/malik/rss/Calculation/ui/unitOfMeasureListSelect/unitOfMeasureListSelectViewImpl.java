@@ -1,6 +1,7 @@
 package ru.malik.rss.Calculation.ui.unitOfMeasureListSelect;
 
-import ru.malik.rss.Calculation.ui.common.EditPanel;
+import ru.malik.rss.Calculation.ui.common.editPanel.EditPanel;
+import ru.malik.rss.Calculation.ui.common.editPanel.EditPanelListener;
 import ru.malik.rss.Calculation.ui.unitOfMeasureList.UnitOfMeasureListViewImpl;
 
 public class unitOfMeasureListSelectViewImpl extends UnitOfMeasureListViewImpl {
@@ -11,21 +12,17 @@ public class unitOfMeasureListSelectViewImpl extends UnitOfMeasureListViewImpl {
 
 	@Override
 	public void initComponents() {
-		editPanel = new EditPanel() {
-
-			@Override
-			public void sendOk() {
-				sendOkActionUnitOfMeasure();
-				super.sendOk();
+		editPanel =  new EditPanel();
+		editPanel.addEditPanelListener(new EditPanelListener() {
+			
+			public void okActionPerformed(Object sender) {
+				sendOkActionUnitOfMeasure();				
 			}
-
-			@Override
-			public void sendCancel() {
+			
+			public void cancelActionPerformed(Object sender) {
 				sendCancelActionUnitOfMeasure();
-				super.sendCancel();
 			}
-
-		};
+		});
 		setContentPane(editPanel);
 		super.initComponents();
 	}

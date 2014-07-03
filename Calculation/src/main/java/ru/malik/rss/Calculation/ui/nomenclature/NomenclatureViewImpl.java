@@ -3,9 +3,10 @@ package ru.malik.rss.Calculation.ui.nomenclature;
 import ru.malik.rss.Calculation.entity.Nomenclature;
 import ru.malik.rss.Calculation.entity.UnitOfMeasure;
 import ru.malik.rss.Calculation.ui.common.Announcer;
-import ru.malik.rss.Calculation.ui.common.EditPanel;
 import ru.malik.rss.Calculation.ui.common.JMdiFrame;
 import ru.malik.rss.Calculation.ui.common.JRichTextField;
+import ru.malik.rss.Calculation.ui.common.editPanel.EditPanel;
+import ru.malik.rss.Calculation.ui.common.editPanel.EditPanelListener;
 
 import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
@@ -74,21 +75,18 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 	}
 
 	public void initComponents() {
-		editPanel = new EditPanel() {
-
-			@Override
-			public void sendOk() {
+		editPanel = new EditPanel();
+		editPanel.addEditPanelListener(new EditPanelListener() {
+			
+			public void okActionPerformed(Object sender) {
 				announcer.announce().okActionPerform(NomenclatureViewImpl.this);
-				super.sendOk();
 			}
-
-			@Override
-			public void sendCancel() {
+			
+			public void cancelActionPerformed(Object sender) {
 				announcer.announce().cancelActionPerform(
 						NomenclatureViewImpl.this);
-				super.sendCancel();
 			}
-		};
+		});
 		getContentPane().add(editPanel);
 		editPanel.getContainerPanel().setLayout(new BorderLayout(0, 0));
 
