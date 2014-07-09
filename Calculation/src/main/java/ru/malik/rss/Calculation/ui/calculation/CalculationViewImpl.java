@@ -2,6 +2,7 @@ package ru.malik.rss.Calculation.ui.calculation;
 
 import javax.swing.JPanel;
 
+import ru.malik.rss.Calculation.entity.Nomenclature;
 import ru.malik.rss.Calculation.entity.Product;
 import ru.malik.rss.Calculation.entity.ProductCalculation;
 import ru.malik.rss.Calculation.ui.common.Announcer;
@@ -55,7 +56,7 @@ public class CalculationViewImpl extends JPanel implements CalculationView {
 	private ProductCalculation calculation;
 	private JTextField textField;
 	private JXDatePicker datePicker;
-	private JRichTextField richTextField;
+	private JRichTextField<Product> richTextField;
 
 	public CalculationViewImpl() {
 		init();
@@ -170,18 +171,18 @@ public class CalculationViewImpl extends JPanel implements CalculationView {
 	private BeanProperty<ProductCalculation, String> productCalculationNumberBeanProperty;
 	private BeanProperty<ProductCalculation, Product> productCalculationProductBeanProperty;
 	private BeanProperty<JTextField, String> jTextFieldBeanProperty;
+	private BeanProperty<JRichTextField<Product>, Product> jRichTextFieldBeanProperty;
 	private BeanProperty<ProductCalculation, Date> productCalculationDateBeanProperty;
 	private BeanProperty<JFormattedTextField, java.util.Date> jFormattedTextFieldBeanProperty;
 	private BindingGroup bindingGroup;
 
 	protected void initBeanProperties() {
 		productCalculationNumberBeanProperty = BeanProperty.create("number");
-		jTextFieldBeanProperty = BeanProperty.create("text");
+		jTextFieldBeanProperty = BeanProperty.create("value");
 		productCalculationDateBeanProperty = BeanProperty.create("date");
 		jFormattedTextFieldBeanProperty = BeanProperty.create("value");
 		productCalculationProductBeanProperty = BeanProperty.create("product");
-		
-		
+		jRichTextFieldBeanProperty =  BeanProperty.create("value");
 
 	}
 
@@ -215,27 +216,13 @@ public class CalculationViewImpl extends JPanel implements CalculationView {
 
 		bindingGroup.addBinding(autoBinding_1);
 
-		AutoBinding<ProductCalculation, Product, JTextField, String> autoBinding2 = Bindings
+		AutoBinding<ProductCalculation, Product, JRichTextField<Product>, Product> autoBinding_2 = Bindings
 				.createAutoBinding(UpdateStrategy.READ, calculation,
-						productCalculationProductBeanProperty,
-						richTextField.getTextField(), jTextFieldBeanProperty);
-		
-		autoBinding2.setConverter(new Converter<Product, String>() {
+						productCalculationProductBeanProperty, richTextField,
+						jRichTextFieldBeanProperty);
 
-			@Override
-			public Product convertReverse(String s) {
+		bindingGroup.addBinding(autoBinding_2);
 
-				return null;
-			}
-
-			@Override
-			public String convertForward(Product product) {
-				// TODO Auto-generated method stub
-				return product.getName();
-			}
-		});
-		BindingGroupBean 
-		bindingGroup.addBinding(autoBinding2);
 	}
 
 	public void save() {

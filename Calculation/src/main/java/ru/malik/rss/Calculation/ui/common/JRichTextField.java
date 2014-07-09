@@ -8,10 +8,24 @@ import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class JRichTextField extends JPanel {
+public class JRichTextField<T> extends JPanel{
 	private JButton button;
 	private JTextField textField;
+	private T value;
 
+	public T getValue() {
+		return value;
+	}
+
+	public void setValue(T value) {
+		textField.setText(getValueStringView(value));
+		this.value = value;
+	}
+
+	public String getValueStringView(T value){
+		return (value!=null)?value.toString():"";
+	}
+	
 	public JRichTextField() {
 		super();
 		init();

@@ -55,7 +55,7 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 
 	private EditPanel editPanel;
 	private JTextField textFieldName;
-	private JRichTextField richTextFieldUnitOfMeasure;
+	private JRichTextField<UnitOfMeasure> richTextFieldUnitOfMeasure;
 
 	public void addViewListener(NomenclatureViewListener listener) {
 		announcer.addListener(listener);
@@ -167,7 +167,7 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 		this.unitOfMeasure = unitOfMeasure;
 	}
 
-	private AutoBinding<Nomenclature, UnitOfMeasure, NomenclatureViewImpl, UnitOfMeasure> unitOfMeasureAutoBinding;
+	private AutoBinding<Nomenclature, UnitOfMeasure, JRichTextField<UnitOfMeasure>, UnitOfMeasure> unitOfMeasureAutoBinding;
 	private AutoBinding<Nomenclature, String, JTextField, String> nameAutoBinding;
 
 	protected BindingGroup createDataBindings() {
@@ -189,16 +189,8 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 				.create("unitOfMeasures");
 		BeanProperty<JRichTextField, String> jTextFieldBeanProperty_1 = BeanProperty
 				.create("textField.text");
-		BeanProperty<NomenclatureViewImpl, UnitOfMeasure> jTextFieldBeanProperty_2 = BeanProperty
+		BeanProperty<JRichTextField<UnitOfMeasure>, UnitOfMeasure> jTextFieldBeanProperty_2 = BeanProperty
 				.create("unitOfMeasure");
-		jTextFieldBeanProperty_2.addPropertyStateListener(this,
-				new PropertyStateListener() {
-
-					public void propertyStateChanged(PropertyStateEvent arg0) {
-						richTextFieldUnitOfMeasure.getTextField().setText(
-								((UnitOfMeasure) arg0.getNewValue()).getName());
-					}
-				});
 		/*
 		 * unitOfMeasureAutoBinding = Bindings.createAutoBinding(
 		 * UpdateStrategy.READ, nomenclature,
@@ -214,7 +206,7 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 		 */
 		unitOfMeasureAutoBinding = Bindings.createAutoBinding(
 				UpdateStrategy.READ, nomenclature,
-				nomenclatureUnitOfMeasureBeanProperty, this,
+				nomenclatureUnitOfMeasureBeanProperty, richTextFieldUnitOfMeasure,
 				jTextFieldBeanProperty_2);
 		resultBindingGroup.addBinding(unitOfMeasureAutoBinding);
 
