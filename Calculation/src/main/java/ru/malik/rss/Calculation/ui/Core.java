@@ -247,7 +247,11 @@ public class Core {
 
 	public void showNomenclatureList() {
 		NomenclatureListView nomenclatureListView = new NomenclatureListViewImpl();
-		mainView.addChildWindows((NomenclatureListViewImpl) nomenclatureListView);
+		JMdiFrame frame = new JMdiFrame();
+		frame.setContentPane((NomenclatureListViewImpl) nomenclatureListView);
+		frame.pack();
+		frame.setVisible(true);
+		mainView.addChildWindows(frame);
 		((NomenclatureListViewImpl) nomenclatureListView).setVisible(true);
 
 		NomenclatureListModel nomenclatureListModel = new NomenclatureListModelImpl();

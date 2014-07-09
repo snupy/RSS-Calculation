@@ -119,7 +119,13 @@ public class CalculationViewImpl extends JPanel implements CalculationView {
 		gbc_lblNewLabel.gridy = 1;
 		panel.add(lblNewLabel, gbc_lblNewLabel);
 
-		richTextField = new JRichTextField();
+		richTextField = new JRichTextField<Product>() {
+
+			@Override
+			public String getValueStringView(Product value) {
+				return value.getName();
+			}
+		};
 		GridBagConstraints gbc_richTextField = new GridBagConstraints();
 		gbc_richTextField.gridwidth = 3;
 		gbc_richTextField.insets = new Insets(0, 0, 5, 0);
@@ -182,7 +188,7 @@ public class CalculationViewImpl extends JPanel implements CalculationView {
 		productCalculationDateBeanProperty = BeanProperty.create("date");
 		jFormattedTextFieldBeanProperty = BeanProperty.create("value");
 		productCalculationProductBeanProperty = BeanProperty.create("product");
-		jRichTextFieldBeanProperty =  BeanProperty.create("value");
+		jRichTextFieldBeanProperty = BeanProperty.create("value");
 
 	}
 

@@ -46,10 +46,6 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 
 	private BindingGroup bindingGroup;
 
-	private BeanProperty<Nomenclature, String> nomenclatureNameBeanProperty;
-
-	private BeanProperty<Nomenclature, UnitOfMeasure> nomenclatureUnitOfMeasureBeanProperty;
-
 	private final Announcer<NomenclatureViewListener> announcer = new Announcer<NomenclatureViewListener>(
 			NomenclatureViewListener.class);
 
@@ -128,7 +124,13 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 		gbc_lblNewLabel_1.gridy = 1;
 		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
-		richTextFieldUnitOfMeasure = new JRichTextField();
+		richTextFieldUnitOfMeasure = new JRichTextField<UnitOfMeasure>(){
+
+			@Override
+			public String getValueStringView(UnitOfMeasure value) {
+				return value.getName();
+			}
+		};
 		richTextFieldUnitOfMeasure.getButton().addActionListener(
 				new ActionListener() {
 
@@ -170,6 +172,10 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 	private AutoBinding<Nomenclature, UnitOfMeasure, JRichTextField<UnitOfMeasure>, UnitOfMeasure> unitOfMeasureAutoBinding;
 	private AutoBinding<Nomenclature, String, JTextField, String> nameAutoBinding;
 
+	private BeanProperty<Nomenclature, String> nomenclatureNameBeanProperty;
+
+	private BeanProperty<Nomenclature, UnitOfMeasure> nomenclatureUnitOfMeasureBeanProperty;
+
 	protected BindingGroup createDataBindings() {
 
 		BindingGroup resultBindingGroup = new BindingGroup();
@@ -187,29 +193,14 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 
 		nomenclatureUnitOfMeasureBeanProperty = BeanProperty
 				.create("unitOfMeasures");
-		BeanProperty<JRichTextField, String> jTextFieldBeanProperty_1 = BeanProperty
-				.create("textField.text");
-		BeanProperty<JRichTextField<UnitOfMeasure>, UnitOfMeasure> jTextFieldBeanProperty_2 = BeanProperty
-				.create("unitOfMeasure");
-		/*
-		 * unitOfMeasureAutoBinding = Bindings.createAutoBinding(
-		 * UpdateStrategy.READ, nomenclature,
-		 * nomenclatureUnitOfMeasureBeanProperty, richTextFieldUnitOfMeasure,
-		 * jTextFieldBeanProperty_1); unitOfMeasureAutoBinding.setConverter(new
-		 * Converter<UnitOfMeasure, String>() {
-		 * 
-		 * @Override public UnitOfMeasure convertReverse(String arg0) { // TODO
-		 * Auto-generated method stub return null; }
-		 * 
-		 * @Override public String convertForward(UnitOfMeasure arg0) { return
-		 * arg0.getName(); } });
-		 */
-		unitOfMeasureAutoBinding = Bindings.createAutoBinding(
-				UpdateStrategy.READ, nomenclature,
-				nomenclatureUnitOfMeasureBeanProperty, richTextFieldUnitOfMeasure,
-				jTextFieldBeanProperty_2);
-		resultBindingGroup.addBinding(unitOfMeasureAutoBinding);
+		BeanProperty<JRichTextField<UnitOfMeasure>, UnitOfMeasure> jRichTextValueFieldBeanProperty = BeanProperty
+				.create("value");
 
+		unitOfMeasureAutoBinding = Bindings.createAutoBinding(
+				UpdateStrategy.READ_ONCE, nomenclature,
+				nomenclatureUnitOfMeasureBeanProperty, richTextFieldUnitOfMeasure,
+				jRichTextValueFieldBeanProperty);
+		resultBindingGroup.addBinding(unitOfMeasureAutoBinding);
 		return resultBindingGroup;
 	}
 
@@ -248,13 +239,12 @@ public class NomenclatureViewImpl extends JMdiFrame implements NomenclatureView 
 	}
 
 	public void setNomenclatureUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
-		unitOfMeasureAutoBinding.getTargetProperty().setValue(
-				unitOfMeasureAutoBinding.getTargetObject(), unitOfMeasure);
+		richTextFieldUnitOfMeasure.setValue(unitOfMeasure);
 	}
 
 	public void save() {
 		for (Binding binding : bindingGroup.getBindings()) {
-			binding.saveAndNotify();
+			binding.save();
 		}
 	}
 }

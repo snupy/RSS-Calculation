@@ -1,9 +1,11 @@
 package ru.malik.rss.Calculation.ui.nomenclatureList;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
@@ -21,7 +23,7 @@ import ru.malik.rss.Calculation.ui.common.ListPanel;
 import ru.malik.rss.Calculation.ui.common.treeTable.JTreeTable;
 import ru.malik.rss.Calculation.ui.common.treeTable.TreeTableModel;
 
-public class NomenclatureListViewImpl extends JMdiFrame implements
+public class NomenclatureListViewImpl extends JPanel implements
 		NomenclatureListView {
 
 	private ListPanel listPanel;
@@ -42,10 +44,10 @@ public class NomenclatureListViewImpl extends JMdiFrame implements
 		super();
 		init();
 		initComponents();
-		pack();
 	}
 
 	public void init() {
+		setLayout(new BorderLayout(0, 0));
 	}
 
 	public void initComponents() {
@@ -89,8 +91,9 @@ public class NomenclatureListViewImpl extends JMdiFrame implements
 								NomenclatureListViewImpl.this);
 					}
 				});
+		
 
-		this.setContentPane(listPanel);
+		this.add(listPanel, BorderLayout.CENTER);
 	}
 
 	public void setNomenclatureListTreeModel(TreeTableModel treeTableModel) {

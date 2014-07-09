@@ -61,6 +61,12 @@ public class CalculationControllerImpl extends
 		
 	}
 
+	public void openProductList(CalculationView sender) {
+		// TODO Auto-generated method stub
 		
+	}
+
+		
+	
 	
 }
