@@ -123,9 +123,15 @@ public class CalculationViewImpl extends JPanel implements CalculationView {
 
 			@Override
 			public String getValueStringView(Product value) {
-				return value.getName();
+				return value == null ? "" : value.getName();
 			}
 		};
+		richTextField.getButton().addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				announcer.announce().openProductList(CalculationViewImpl.this);
+			}
+		});
 		GridBagConstraints gbc_richTextField = new GridBagConstraints();
 		gbc_richTextField.gridwidth = 3;
 		gbc_richTextField.insets = new Insets(0, 0, 5, 0);

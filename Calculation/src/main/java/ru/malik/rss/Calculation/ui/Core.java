@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.TreePath;
+
 import ru.malik.rss.Calculation.entity.Nomenclature;
 import ru.malik.rss.Calculation.entity.NomenclatureCategory;
 import ru.malik.rss.Calculation.entity.ProductCalculation;
@@ -26,6 +29,8 @@ import ru.malik.rss.Calculation.ui.calculationRegister.CalculationRegisterViewIm
 import ru.malik.rss.Calculation.ui.common.JMdiFrame;
 import ru.malik.rss.Calculation.ui.common.editPanel.EditPanel;
 import ru.malik.rss.Calculation.ui.common.editPanel.EditPanelListener;
+import ru.malik.rss.Calculation.ui.common.selectPanel.SelectPanel;
+import ru.malik.rss.Calculation.ui.common.treeTable.TreeTableModel;
 import ru.malik.rss.Calculation.ui.main.CategoryTreeModel;
 import ru.malik.rss.Calculation.ui.main.MainController;
 import ru.malik.rss.Calculation.ui.main.MainControllerImpl;
@@ -127,44 +132,41 @@ public class Core {
 		final CalculationModel model = new CalculationModelImpl();
 		model.setCalculation(productCalculation);
 
-		final CalculationView  view= new CalculationViewImpl();
-		
+		final CalculationView view = new CalculationViewImpl();
+
 		final CalculationController controller = new CalculationControllerImpl();
-		 controller.setModel(model);
+		controller.setModel(model);
 		controller.addView(view);
-		
+
 		final JMdiFrame frame = new JMdiFrame();
-		EditPanel editPanel= new EditPanel();
-		
+		EditPanel editPanel = new EditPanel();
+
 		editPanel.addEditPanelListener(new EditPanelListener() {
-			
+
 			public void okActionPerformed(Object sender) {
 				controller.applyChanges(view);
 				try {
-					ProductCalculcationDAO.getInstance().saveOrUpdate(model.getCalculation());
+					ProductCalculcationDAO.getInstance().saveOrUpdate(
+							model.getCalculation());
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			
+
 			public void cancelActionPerformed(Object sender) {
 				controller.cancel(view);
 				frame.dispose();
 			}
 		});
-		
-		editPanel.getContainerPanel().add((Container)view);
-		
-		
-		
+
+		editPanel.getContainerPanel().add((Container) view);
+
 		frame.setContentPane(editPanel);
-		
+
 		mainView.addChildWindows(frame);
 		frame.setVisible(true);
 		frame.pack();
-		
-		
 
 	}
 
@@ -241,6 +243,28 @@ public class Core {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		return model;
+	}
+
+	public NomenclatureListModel showNomenclatureSelectList() {
+		NomenclatureListModel model = new NomenclatureListModelImpl();
+		model.setNomenclatureListTreeModel(new NomenclatureListTreeTableModel(
+				NomenclatureListModelImpl.NomenclaturesCollector.buld(null)));
+
+		NomenclatureListView view = new NomenclatureListViewImpl();
+		JMdiFrame frame = new JMdiFrame();
+		SelectPanel selectPanel = new SelectPanel();
+		selectPanel.setContainer((NomenclatureListViewImpl) view);
+		frame.setContentPane(selectPanel);
+		frame.pack();
+		frame.setVisible(true);
+		mainView.addChildWindows(frame);
+		
+
+		NomenclatureListController controller = new NomenclatureListControllerImpl();
+		controller.addView(view);
+		controller.setModel(model);
 
 		return model;
 	}

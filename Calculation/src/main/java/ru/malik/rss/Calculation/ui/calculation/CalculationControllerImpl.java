@@ -3,6 +3,7 @@ package ru.malik.rss.Calculation.ui.calculation;
 import java.beans.PropertyChangeEvent;
 
 import ru.malik.rss.Calculation.entity.ProductCalculation;
+import ru.malik.rss.Calculation.ui.Core;
 import ru.malik.rss.Calculation.ui.materialResourceList.MaterialResourceListController;
 import ru.malik.rss.Calculation.ui.materialResourceList.MaterialResourceListControllerImpl;
 import ru.malik.rss.Calculation.ui.mvc.ControllerImpl;
@@ -62,8 +63,7 @@ public class CalculationControllerImpl extends
 	}
 
 	public void openProductList(CalculationView sender) {
-		// TODO Auto-generated method stub
-		
+		Core.getInstance().showNomenclatureSelectList();
 	}
 
 		
